@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import {
     ThemeProvider,
     StyledEngineProvider,
@@ -9,6 +10,8 @@ import {
 import { LoadingScreen } from "./shared/components/LoadingScreen";
 import theme from "./theme";
 import Routes from "./routes";
+import { ScrollToTop } from "./shared/components/ScrollToTop";
+import { Header } from "./shared/components/Header";
 
 export default function App() {
     return (
@@ -17,7 +20,15 @@ export default function App() {
                 <StyledEngineProvider injectFirst>
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
+                        <ScrollToTop />
+                        <Header />
                         <Routes />
+                        <ToastContainer
+                            position="bottom-right"
+                            autoClose={3000}
+                            closeOnClick
+                            pauseOnHover
+                        />
                     </ThemeProvider>
                 </StyledEngineProvider>
             </BrowserRouter>
