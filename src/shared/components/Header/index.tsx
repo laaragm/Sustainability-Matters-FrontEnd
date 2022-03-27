@@ -56,14 +56,11 @@ export function Header() {
                         <Divider />
                     </>
                 ) : (
-                    <>
-                        <AppBarDesktop
-                            appTitle={appTitle}
-                            onButtonClick={handleButtonClick}
-                            onMenuItemButtonClick={handleMenuItemButtonClick}
-                        />
-                        <Divider />
-                    </>
+                    <AppBarDesktop
+                        appTitle={appTitle}
+                        onButtonClick={handleButtonClick}
+                        onMenuItemButtonClick={handleMenuItemButtonClick}
+                    />
                 )}
             </AppBar>
         </header>

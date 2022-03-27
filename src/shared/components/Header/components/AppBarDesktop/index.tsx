@@ -1,8 +1,7 @@
-import { Button, Toolbar } from "@mui/material";
 import { ReactNode, useState } from "react";
-import { PATHS } from "../../../../../routes/paths";
-import { menuItems } from "../../menuItems";
+import { AppBar, Button, Stack, Toolbar } from "@mui/material";
 
+import { menuItems } from "../../menuItems";
 import { LoggedInInfo } from "../LoggedInInfo";
 
 type AppBarDesktopProps = {
@@ -31,6 +30,7 @@ export function AppBarDesktop({
         return menuItems.map((item) => {
             return (
                 <Button
+                    color="info"
                     key={item.route}
                     onClick={() => handleMenuItemButtonClick(item.route)}
                     sx={{ ml: "1.5rem", mr: "1.5rem" }}
@@ -42,12 +42,12 @@ export function AppBarDesktop({
     };
 
     return (
-        <Toolbar
-            sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-            }}
+        <Stack
+            width="100%"
+            alignItems="center"
+            justifyContent="space-between"
+            direction="row"
+            p={1}
         >
             {appTitle}
             <div>{getMenuItems()}</div>
@@ -55,9 +55,11 @@ export function AppBarDesktop({
                 {isAuthenticated ? (
                     <LoggedInInfo />
                 ) : (
-                    <Button onClick={handleButtonClick}>Sign In</Button>
+                    <Button color="secondary" onClick={handleButtonClick}>
+                        Sign In
+                    </Button>
                 )}
             </div>
-        </Toolbar>
+        </Stack>
     );
 }

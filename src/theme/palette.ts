@@ -1,23 +1,16 @@
-const primary = "#331E82";
-const secondary = "#09E85E";
-const black = "#000000";
-const white = "#ffffff";
-const background = "#0CCA98";
-const grey = "#FDFAF6";
-
 export const palette = {
-    primary: { main: primary },
-    secondary: { main: secondary },
+    primary: { main: "#0CCA98" },
+    secondary: { main: "#331E82" },
     common: {
-        black,
-        white,
+        black: "#000000",
+        white: "#ffffff",
     },
     background: {
-        default: background,
+        default: "#0CCA98",
     },
     text: {
-        primary: white,
-        secondary: black,
-        disabled: grey,
+        primary: "#ffffff",
+        secondary: "#000000",
+        disabled: "#FDFAF6",
     },
 };
