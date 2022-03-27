@@ -1,11 +1,24 @@
-import React from 'react';
+import { Suspense } from "react";
+import { BrowserRouter } from "react-router-dom";
+import {
+    ThemeProvider,
+    StyledEngineProvider,
+    CssBaseline,
+} from "@mui/material";
 
-function App() {
-  return (
-    <div>
-      <h1>Batata</h1>
-    </div>
-  );
+import { LoadingScreen } from "./shared/components/LoadingScreen";
+import theme from "./theme";
+
+export default function App() {
+    return (
+        <Suspense fallback={<LoadingScreen />}>
+            <BrowserRouter>
+                <StyledEngineProvider injectFirst>
+                    <ThemeProvider theme={theme}>
+                        <CssBaseline />
+                    </ThemeProvider>
+                </StyledEngineProvider>
+            </BrowserRouter>
+        </Suspense>
+    );
 }
-
-export default App;
