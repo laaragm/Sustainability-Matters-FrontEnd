@@ -1,5 +1,5 @@
-import { Button, Typography, useTheme } from "@mui/material";
-import { CustomizedButton } from '../../shared/components/CustomizedButton';
+import { Typography, useTheme } from "@mui/material";
+import { CustomizedButton } from "../../shared/components/CustomizedButton";
 
 export default function HomePage() {
     const theme = useTheme();
@@ -13,9 +13,7 @@ export default function HomePage() {
                 Test
             </Typography>
 
-            <CustomizedButton borderRadius='40px'>
-                batata
-            </CustomizedButton>
+            <CustomizedButton borderRadius="40px">batata</CustomizedButton>
         </>
     );
 }

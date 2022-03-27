@@ -41,11 +41,10 @@ export function Header() {
     };
 
     return (
-        <header className="header">
-            <AppBar elevation={0}>
-                {isMobile ? (
-                    <>
-                        {/* <AppBarMobile
+        <AppBar elevation={0}>
+            {isMobile ? (
+                <>
+                    {/* <AppBarMobile
                             appTitle={appTitle}
                             onDrawerClose={handleDrawerClose}
                             onDrawerOpen={handleDrawerOpen}
@@ -53,16 +52,15 @@ export function Header() {
                             onButtonClick={handleButtonClick}
                             onMenuItemButtonClick={handleMenuItemButtonClick}
                         /> */}
-                        <Divider />
-                    </>
-                ) : (
-                    <AppBarDesktop
-                        appTitle={appTitle}
-                        onButtonClick={handleButtonClick}
-                        onMenuItemButtonClick={handleMenuItemButtonClick}
-                    />
-                )}
-            </AppBar>
-        </header>
+                    <Divider />
+                </>
+            ) : (
+                <AppBarDesktop
+                    appTitle={appTitle}
+                    onButtonClick={handleButtonClick}
+                    onMenuItemButtonClick={handleMenuItemButtonClick}
+                />
+            )}
+        </AppBar>
     );
 }

@@ -1,5 +1,5 @@
 import { ReactNode, useState } from "react";
-import { AppBar, Button, Stack, Toolbar } from "@mui/material";
+import { Button, Stack } from "@mui/material";
 
 import { menuItems } from "../../menuItems";
 import { LoggedInInfo } from "../LoggedInInfo";
