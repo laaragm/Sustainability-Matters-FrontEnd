@@ -8,6 +8,7 @@ import {
 
 import { LoadingScreen } from "./shared/components/LoadingScreen";
 import theme from "./theme";
+import Routes from "./routes";
 
 export default function App() {
     return (
@@ -16,6 +17,7 @@ export default function App() {
                 <StyledEngineProvider injectFirst>
                     <ThemeProvider theme={theme}>
                         <CssBaseline />
+                        <Routes />
                     </ThemeProvider>
                 </StyledEngineProvider>
             </BrowserRouter>
