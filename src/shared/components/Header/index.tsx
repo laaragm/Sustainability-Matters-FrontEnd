@@ -11,6 +11,7 @@ import {
 } from "@mui/material";
 
 import { AppBarDesktop } from "./components/AppBarDesktop";
+import { AppBarMobile } from "./components/AppBarMobile";
 
 export function Header() {
     let navigate = useNavigate();
@@ -50,14 +51,14 @@ export function Header() {
             <Stack pl={5} pr={5} pt={1}>
                 {isMobile ? (
                     <>
-                        {/* <AppBarMobile
+                        <AppBarMobile
                             appTitle={appTitle}
                             onDrawerClose={handleDrawerClose}
                             onDrawerOpen={handleDrawerOpen}
                             drawerOpen={drawerOpen}
                             onButtonClick={handleButtonClick}
                             onMenuItemButtonClick={handleMenuItemButtonClick}
-                        /> */}
+                        />
                         <Divider />
                     </>
                 ) : (
