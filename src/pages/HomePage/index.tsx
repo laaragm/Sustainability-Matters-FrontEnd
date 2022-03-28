@@ -13,7 +13,13 @@ export default function HomePage() {
                 Test
             </Typography>
 
-            <CustomizedButton borderRadius="40px">batata</CustomizedButton>
+            <CustomizedButton
+                borderRadius="2rem"
+                color="secondary"
+                onClick={() => {}}
+            >
+                batata
+            </CustomizedButton>
         </>
     );
 }
