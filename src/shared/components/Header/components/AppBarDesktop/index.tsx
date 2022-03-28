@@ -55,20 +55,29 @@ export function AppBarDesktop({
             p={1}
         >
             {appTitle}
-            <Stack direction="row" spacing={5}>
+            <Stack direction="row" spacing={2}>
                 {getMenuItems()}
             </Stack>
             <div>
                 {isAuthenticated ? (
                     <LoggedInInfo />
                 ) : (
-                    <CustomizedButton
-                        color="info"
-                        variant="text"
-                        onClick={handleButtonClick}
-                    >
-                        Sign In
-                    </CustomizedButton>
+                    <Stack direction="row" spacing={1}>
+                        <CustomizedButton
+                            color="info"
+                            variant="text"
+                            onClick={handleButtonClick}
+                        >
+                            Login
+                        </CustomizedButton>
+                        <CustomizedButton
+                            color="secondary"
+                            borderRadius="1.5rem"
+                            onClick={handleButtonClick}
+                        >
+                            Sign up
+                        </CustomizedButton>
+                    </Stack>
                 )}
             </div>
         </Stack>

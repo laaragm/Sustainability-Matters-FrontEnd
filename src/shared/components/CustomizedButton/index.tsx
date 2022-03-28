@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 interface CustomizedButtonProps {
     children: ReactNode;
     variant?: "text" | "outlined" | "contained";
+    padding?: string;
     color?:
         | "inherit"
         | "primary"
@@ -22,6 +23,7 @@ export function CustomizedButton({
     variant = "contained",
     color = "primary",
     borderRadius = "0",
+    padding = "0.2rem 1.5rem",
     key,
     onClick,
 }: CustomizedButtonProps) {
@@ -35,7 +37,11 @@ export function CustomizedButton({
             color={color}
             variant={variant}
             onClick={handleClick}
-            sx={{ borderRadius: borderRadius, textTransform: "capitalize" }}
+            sx={{
+                borderRadius: borderRadius,
+                textTransform: "capitalize",
+                padding: padding,
+            }}
         >
             {children}
         </Button>
