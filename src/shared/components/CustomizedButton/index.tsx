@@ -15,6 +15,7 @@ interface CustomizedButtonProps {
         | "warning";
     borderRadius?: string;
     key?: string;
+    fullWidth?: boolean;
     onClick: () => void;
 }
 
@@ -25,6 +26,7 @@ export function CustomizedButton({
     borderRadius = "0",
     padding = "0.2rem 1.5rem",
     key,
+    fullWidth = false,
     onClick,
 }: CustomizedButtonProps) {
     const handleClick = () => {
@@ -34,6 +36,7 @@ export function CustomizedButton({
     return (
         <Button
             key={key}
+            fullWidth={fullWidth}
             color={color}
             variant={variant}
             onClick={handleClick}

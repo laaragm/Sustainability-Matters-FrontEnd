@@ -1,10 +1,10 @@
 import { ReactNode, useState } from "react";
-import { Button, Stack } from "@mui/material";
+import { Stack } from "@mui/material";
 
 import { menuItems } from "../../menuItems";
-import { LoggedInInfo } from "../LoggedInInfo";
 import { CustomizedButton } from "../../../CustomizedButton";
 import { ActiveLink } from "../../../ActiveLink";
+import { AccountPopover } from "./../AccountPopover/index";
 
 type AppBarDesktopProps = {
     appTitle: ReactNode;
@@ -19,9 +19,21 @@ export function AppBarDesktop({
 }: AppBarDesktopProps) {
     const [isAuthenticated, setIsAuthenticated] = useState(false); // TODO: Change this as soon as we have the authentication in place
 
-    const handleButtonClick = () => {
+    // TODO: Implement it as soon as the backend is in place
+    const handleLogin = () => {
         setIsAuthenticated((previousState) => !previousState);
         onButtonClick();
+    };
+
+    // TODO: Implement it as soon as the backend is in place
+    const handleSignUp = () => {
+        setIsAuthenticated((previousState) => !previousState);
+        onButtonClick();
+    };
+
+    // TODO: Implement it as soon as the backend is in place
+    const handleLogout = () => {
+        setIsAuthenticated(false);
     };
 
     const handleMenuItemButtonClick = (path: string) => {
@@ -60,20 +72,20 @@ export function AppBarDesktop({
             </Stack>
             <div>
                 {isAuthenticated ? (
-                    <LoggedInInfo />
+                    <AccountPopover onLogout={handleLogout} />
                 ) : (
                     <Stack direction="row" spacing={1}>
                         <CustomizedButton
                             color="info"
                             variant="text"
-                            onClick={handleButtonClick}
+                            onClick={handleLogin}
                         >
                             Login
                         </CustomizedButton>
                         <CustomizedButton
                             color="secondary"
                             borderRadius="1.5rem"
-                            onClick={handleButtonClick}
+                            onClick={handleSignUp}
                         >
                             Sign up
                         </CustomizedButton>

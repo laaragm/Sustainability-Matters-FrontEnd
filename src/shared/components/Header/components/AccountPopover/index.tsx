@@ -1,10 +1,11 @@
 import { useRef, useState } from "react";
-import { alpha, Box, Button, Divider, Typography } from "@mui/material";
+import { alpha, Box, Divider, Typography, useTheme } from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 import MIconButton from "./../../../@material-extend/MIconButton";
 import MenuPopover from "../MenuPopover";
 import MyAvatar from "../UserAvatar";
+import { CustomizedButton } from "../../../CustomizedButton";
 
 // TODO: Remove this as soon as we have the authentication process
 const user = {
@@ -12,10 +13,14 @@ const user = {
     email: "lara.galvani@gmail.com",
 };
 
-export default function AccountPopover() {
+interface AccountPopoverProps {
+    onLogout: () => void;
+}
+
+export function AccountPopover({ onLogout }: AccountPopoverProps) {
     const anchorRef = useRef(null);
     const [open, setOpen] = useState(false);
-    // const { logout, user } = useAuth();
+    const theme = useTheme();
 
     const handleOpen = () => {
         setOpen(true);
@@ -25,9 +30,10 @@ export default function AccountPopover() {
         setOpen(false);
     };
 
-    function handleLogout() {
-        // TODO: Implement the logout functionality
-    }
+    // TODO: Implement the logout functionality
+    const handleLogout = () => {
+        onLogout();
+    };
 
     return (
         <>
@@ -62,12 +68,17 @@ export default function AccountPopover() {
                 sx={{ width: 220 }}
             >
                 <Box sx={{ my: 1.5, px: 2.5 }}>
-                    <Typography variant="subtitle1" noWrap>
+                    <Typography
+                        variant="subtitle1"
+                        gutterBottom
+                        component="div"
+                        sx={{ color: theme.palette.text.secondary }}
+                    >
                         {user?.name}
                     </Typography>
                     <Typography
-                        variant="body2"
-                        sx={{ color: "text.secondary" }}
+                        variant="body1"
+                        sx={{ color: theme.palette.text.secondary }}
                         noWrap
                     >
                         {user?.email}
@@ -77,17 +88,18 @@ export default function AccountPopover() {
                 <Divider sx={{ my: 1 }} />
 
                 <Box sx={{ p: 2, pt: 1.5 }}>
-                    <Button
+                    <CustomizedButton
                         fullWidth
-                        color="inherit"
-                        variant="outlined"
+                        color="secondary"
+                        variant="contained"
+                        borderRadius="2rem"
                         onClick={handleLogout}
                     >
                         <Box sx={{ mr: 1.5, width: 24, height: 24 }}>
                             <ExitToAppIcon />
                         </Box>
                         Logout
-                    </Button>
+                    </CustomizedButton>
                 </Box>
             </MenuPopover>
         </>
