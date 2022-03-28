@@ -16,7 +16,7 @@ import { AppBarMobile } from "./components/AppBarMobile";
 export function Header() {
     let navigate = useNavigate();
     const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
     const [drawerOpen, setDrawerOpen] = useState(false);
 
     const handleDrawerOpen = () => setDrawerOpen(true);
