@@ -4,6 +4,7 @@ import {
     AppBar,
     Box,
     Divider,
+    Stack,
     Typography,
     useMediaQuery,
     useTheme,
@@ -29,7 +30,11 @@ export function Header() {
     };
 
     const appTitle = (
-        <Typography variant="h6" component="h1">
+        <Typography
+            variant="h6"
+            component="h6"
+            color={theme.palette.text.primary}
+        >
             <Box fontWeight="fontWeightBold" onClick={handleClickOnTitle}>
                 Sustainability Matters
             </Box>
@@ -42,9 +47,10 @@ export function Header() {
 
     return (
         <AppBar elevation={0}>
-            {isMobile ? (
-                <>
-                    {/* <AppBarMobile
+            <Stack pl={5} pr={5} pt={1}>
+                {isMobile ? (
+                    <>
+                        {/* <AppBarMobile
                             appTitle={appTitle}
                             onDrawerClose={handleDrawerClose}
                             onDrawerOpen={handleDrawerOpen}
@@ -52,15 +58,16 @@ export function Header() {
                             onButtonClick={handleButtonClick}
                             onMenuItemButtonClick={handleMenuItemButtonClick}
                         /> */}
-                    <Divider />
-                </>
-            ) : (
-                <AppBarDesktop
-                    appTitle={appTitle}
-                    onButtonClick={handleButtonClick}
-                    onMenuItemButtonClick={handleMenuItemButtonClick}
-                />
-            )}
+                        <Divider />
+                    </>
+                ) : (
+                    <AppBarDesktop
+                        appTitle={appTitle}
+                        onButtonClick={handleButtonClick}
+                        onMenuItemButtonClick={handleMenuItemButtonClick}
+                    />
+                )}
+            </Stack>
         </AppBar>
     );
 }

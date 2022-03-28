@@ -1,6 +1,8 @@
 export const palette = {
     primary: { main: "#0CCA98" },
     secondary: { main: "#331E82" },
+    info: { main: "#ffffff" },
+    success: { main: "#000000" },
     common: {
         black: "#000000",
         white: "#ffffff",

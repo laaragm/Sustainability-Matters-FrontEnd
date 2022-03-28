@@ -3,6 +3,8 @@ import { Button, Stack } from "@mui/material";
 
 import { menuItems } from "../../menuItems";
 import { LoggedInInfo } from "../LoggedInInfo";
+import { CustomizedButton } from "../../../CustomizedButton";
+import { ActiveLink } from "../../../ActiveLink";
 
 type AppBarDesktopProps = {
     appTitle: ReactNode;
@@ -29,14 +31,17 @@ export function AppBarDesktop({
     const getMenuItems = () => {
         return menuItems.map((item) => {
             return (
-                <Button
-                    color="info"
-                    key={item.route}
-                    onClick={() => handleMenuItemButtonClick(item.route)}
-                    sx={{ ml: "1.5rem", mr: "1.5rem" }}
-                >
-                    {item.name}
-                </Button>
+                // @ts-ignore
+                <ActiveLink href={item.route} passHref>
+                    <CustomizedButton
+                        color="info"
+                        variant="text"
+                        key={item.route}
+                        onClick={() => handleMenuItemButtonClick(item.route)}
+                    >
+                        {item.name}
+                    </CustomizedButton>
+                </ActiveLink>
             );
         });
     };
@@ -50,14 +55,20 @@ export function AppBarDesktop({
             p={1}
         >
             {appTitle}
-            <div>{getMenuItems()}</div>
+            <Stack direction="row" spacing={5}>
+                {getMenuItems()}
+            </Stack>
             <div>
                 {isAuthenticated ? (
                     <LoggedInInfo />
                 ) : (
-                    <Button color="secondary" onClick={handleButtonClick}>
+                    <CustomizedButton
+                        color="info"
+                        variant="text"
+                        onClick={handleButtonClick}
+                    >
                         Sign In
-                    </Button>
+                    </CustomizedButton>
                 )}
             </div>
         </Stack>

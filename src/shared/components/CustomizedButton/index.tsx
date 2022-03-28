@@ -13,6 +13,7 @@ interface CustomizedButtonProps {
         | "info"
         | "warning";
     borderRadius?: string;
+    key?: string;
     onClick: () => void;
 }
 
@@ -21,6 +22,7 @@ export function CustomizedButton({
     variant = "contained",
     color = "primary",
     borderRadius = "0",
+    key,
     onClick,
 }: CustomizedButtonProps) {
     const handleClick = () => {
@@ -29,6 +31,7 @@ export function CustomizedButton({
 
     return (
         <Button
+            key={key}
             color={color}
             variant={variant}
             onClick={handleClick}
