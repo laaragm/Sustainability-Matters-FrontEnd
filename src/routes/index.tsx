@@ -1,6 +1,5 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import HomePage from "../pages/HomePage";
 
 import { Loadable } from "../shared/components/Loadable";
 import { PATHS } from "./paths";
@@ -13,4 +12,4 @@ export default function Router() {
     );
 }
 
-// const HomePage = Loadable(lazy(() => import("../pages/HomePage")));
+const HomePage = Loadable(lazy(() => import("../pages/HomePage")));
