@@ -58,10 +58,6 @@ export function Header() {
         </Typography>
     );
 
-    const handleButtonClick = () => {
-        // TODO: Implement login functionality as soon as possible
-    };
-
     return (
         <AppBar elevation={0}>
             {isMobile ? (
