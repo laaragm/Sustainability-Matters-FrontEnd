@@ -1,4 +1,4 @@
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { Stack } from "@mui/material";
 
 import { menuItems } from "../../menuItems";
@@ -7,33 +7,32 @@ import { ActiveLink } from "../../../ActiveLink";
 import { AccountPopover } from "./../AccountPopover/index";
 
 type AppBarDesktopProps = {
+    isAuthenticated: boolean;
     appTitle: ReactNode;
-    onButtonClick: () => void;
+    onLogin: () => void;
+    onSignUp: () => void;
+    onLogout: () => void;
     onMenuItemButtonClick: (path: string) => void;
 };
 
 export function AppBarDesktop({
+    isAuthenticated,
     appTitle,
-    onButtonClick,
+    onLogin,
+    onSignUp,
+    onLogout,
     onMenuItemButtonClick,
 }: AppBarDesktopProps) {
-    const [isAuthenticated, setIsAuthenticated] = useState(false); // TODO: Change this as soon as we have the authentication in place
-
-    // TODO: Implement it as soon as the backend is in place
     const handleLogin = () => {
-        setIsAuthenticated((previousState) => !previousState);
-        onButtonClick();
+        onLogin();
     };
 
-    // TODO: Implement it as soon as the backend is in place
     const handleSignUp = () => {
-        setIsAuthenticated((previousState) => !previousState);
-        onButtonClick();
+        onSignUp();
     };
 
-    // TODO: Implement it as soon as the backend is in place
     const handleLogout = () => {
-        setIsAuthenticated(false);
+        onLogout();
     };
 
     const handleMenuItemButtonClick = (path: string) => {
@@ -44,7 +43,7 @@ export function AppBarDesktop({
         return menuItems.map((item) => {
             return (
                 // @ts-ignore
-                <ActiveLink href={item.route} passHref>
+                <ActiveLink href={item.route} passhref="true" key={item.route}>
                     <CustomizedButton
                         color="info"
                         variant="text"

@@ -6,13 +6,6 @@ export default function HomePage() {
 
     return (
         <>
-            <Typography
-                variant="h6"
-                sx={{ color: theme.palette.text.secondary }}
-            >
-                Test
-            </Typography>
-
             <CustomizedButton
                 borderRadius="2rem"
                 color="secondary"

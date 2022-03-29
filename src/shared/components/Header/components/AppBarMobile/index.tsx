@@ -1,30 +1,35 @@
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 import { IconButton, Stack, SwipeableDrawer, Toolbar } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 
 import { AccountPopover } from "../AccountPopover";
 import { menuItems } from "../../menuItems";
 import { CustomizedButton } from "../../../CustomizedButton";
+import { StyledToolbarContainer } from "./styles";
 
 type AppBarMobileProps = {
+    isAuthenticated: boolean;
     appTitle: ReactNode;
     drawerOpen: boolean;
     onDrawerOpen: VoidFunction;
     onDrawerClose: VoidFunction;
-    onButtonClick: () => void;
     onMenuItemButtonClick: (path: string) => void;
+    onLogin: () => void;
+    onSignUp: () => void;
+    onLogout: () => void;
 };
 
 export function AppBarMobile({
+    isAuthenticated,
     appTitle,
     drawerOpen,
     onDrawerOpen,
     onDrawerClose,
-    onButtonClick,
+    onLogin,
+    onSignUp,
+    onLogout,
     onMenuItemButtonClick,
 }: AppBarMobileProps) {
-    const [isAuthenticated, setIsAuthenticated] = useState(false); // TODO: Change this as soon as we have the authentication in place
-
     const handleOpen = () => onDrawerOpen();
     const handleClose = () => onDrawerClose();
 
@@ -32,21 +37,16 @@ export function AppBarMobile({
         onMenuItemButtonClick(path);
     };
 
-    // TODO: Implement it as soon as the backend is in place
     const handleLogin = () => {
-        setIsAuthenticated((previousState) => !previousState);
-        onButtonClick();
+        onLogin();
     };
 
-    // TODO: Implement it as soon as the backend is in place
     const handleSignUp = () => {
-        setIsAuthenticated((previousState) => !previousState);
-        onButtonClick();
+        onSignUp();
     };
 
-    // TODO: Implement it as soon as the backend is in place
     const handleLogout = () => {
-        setIsAuthenticated(false);
+        onLogout();
     };
 
     const getMenuItems = () => {
@@ -65,10 +65,37 @@ export function AppBarMobile({
     };
 
     const itemsList = () => (
-        <div role="presentation" onClick={handleClose} onKeyDown={handleClose}>
-            <Stack direction="column" spacing={1}>
-                {appTitle}
-                <Stack direction="column" spacing={2}>
+        <StyledToolbarContainer
+            role="presentation"
+            onClick={handleClose}
+            onKeyDown={handleClose}
+        >
+            <Stack
+                direction="column"
+                spacing={1}
+                p={3}
+                height="100%"
+                width="100%"
+            >
+                {isAuthenticated && (
+                    <Stack
+                        direction="column"
+                        spacing={1}
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        <AccountPopover onLogout={handleLogout} />
+                    </Stack>
+                )}
+                <Stack
+                    direction="column"
+                    spacing={2}
+                    sx={{
+                        position: isAuthenticated ? "absolute" : "",
+                        top: isAuthenticated ? "30%" : "",
+                        left: isAuthenticated ? "30%" : "",
+                    }}
+                >
                     {getMenuItems()}
                 </Stack>
                 <Stack
@@ -79,18 +106,28 @@ export function AppBarMobile({
                     {isAuthenticated ? (
                         <Stack
                             direction="column"
-                            spacing={1}
-                            justifyContent="center"
+                            spacing={2}
+                            justifyContent="flex-end"
                             alignItems="center"
+                            mb={3}
+                            sx={{ position: "absolute", bottom: 0 }}
                         >
-                            <AccountPopover onLogout={handleLogout} />
+                            <CustomizedButton
+                                color="secondary"
+                                borderRadius="1.5rem"
+                                onClick={handleLogout}
+                            >
+                                Logout
+                            </CustomizedButton>
                         </Stack>
                     ) : (
                         <Stack
                             direction="column"
-                            spacing={1}
+                            spacing={2}
                             justifyContent="center"
                             alignItems="center"
+                            mb={3}
+                            sx={{ position: "absolute", bottom: 0 }}
                         >
                             <CustomizedButton
                                 color="secondary"
@@ -110,7 +147,7 @@ export function AppBarMobile({
                     )}
                 </Stack>
             </Stack>
-        </div>
+        </StyledToolbarContainer>
     );
 
     return (
@@ -136,7 +173,7 @@ export function AppBarMobile({
                 onClose={handleClose}
                 onOpen={handleOpen}
             >
-                <div>{itemsList()}</div>
+                {itemsList()}
             </SwipeableDrawer>
         </Toolbar>
     );

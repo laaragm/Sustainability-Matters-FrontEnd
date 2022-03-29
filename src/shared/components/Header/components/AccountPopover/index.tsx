@@ -1,11 +1,20 @@
 import { useRef, useState } from "react";
-import { alpha, Box, Divider, Typography, useTheme } from "@mui/material";
+import {
+    alpha,
+    Box,
+    Divider,
+    Stack,
+    Typography,
+    useMediaQuery,
+    useTheme,
+} from "@mui/material";
 import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 
 import MIconButton from "./../../../@material-extend/MIconButton";
 import MenuPopover from "../MenuPopover";
 import MyAvatar from "../UserAvatar";
 import { CustomizedButton } from "../../../CustomizedButton";
+import { StyledText } from "./styles";
 
 // TODO: Remove this as soon as we have the authentication process
 const user = {
@@ -18,9 +27,10 @@ interface AccountPopoverProps {
 }
 
 export function AccountPopover({ onLogout }: AccountPopoverProps) {
+    const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
     const anchorRef = useRef(null);
     const [open, setOpen] = useState(false);
-    const theme = useTheme();
 
     const handleOpen = () => {
         setOpen(true);
@@ -30,13 +40,12 @@ export function AccountPopover({ onLogout }: AccountPopoverProps) {
         setOpen(false);
     };
 
-    // TODO: Implement the logout functionality
     const handleLogout = () => {
         onLogout();
     };
 
     return (
-        <>
+        <Stack direction="row" spacing={1} alignItems="center">
             <MIconButton
                 ref={anchorRef}
                 onClick={handleOpen}
@@ -61,47 +70,54 @@ export function AccountPopover({ onLogout }: AccountPopoverProps) {
                 <MyAvatar />
             </MIconButton>
 
-            <MenuPopover
-                open={open}
-                onClose={handleClose}
-                anchorEl={anchorRef.current}
-                sx={{ width: 220 }}
-            >
-                <Box sx={{ my: 1.5, px: 2.5 }}>
-                    <Typography
-                        variant="subtitle1"
-                        gutterBottom
-                        component="div"
-                        sx={{ color: theme.palette.text.secondary }}
-                    >
-                        {user?.name}
-                    </Typography>
-                    <Typography
-                        variant="body1"
-                        sx={{ color: theme.palette.text.secondary }}
-                        noWrap
-                    >
-                        {user?.email}
-                    </Typography>
-                </Box>
+            {isMobile ? (
+                <Stack direction="column">
+                    <StyledText>{user?.name}</StyledText>
+                    <StyledText>{user?.email}</StyledText>
+                </Stack>
+            ) : (
+                <MenuPopover
+                    open={open}
+                    onClose={handleClose}
+                    anchorEl={anchorRef.current}
+                    sx={{ width: 220 }}
+                >
+                    <Box sx={{ my: 1.5, px: 2.5 }}>
+                        <Typography
+                            variant="subtitle1"
+                            gutterBottom
+                            component="div"
+                            sx={{ color: theme.palette.text.secondary }}
+                        >
+                            {user?.name}
+                        </Typography>
+                        <Typography
+                            variant="body1"
+                            sx={{ color: theme.palette.text.secondary }}
+                            noWrap
+                        >
+                            {user?.email}
+                        </Typography>
+                    </Box>
 
-                <Divider sx={{ my: 1 }} />
+                    <Divider sx={{ my: 1 }} />
 
-                <Box sx={{ p: 2, pt: 1.5 }}>
-                    <CustomizedButton
-                        fullWidth
-                        color="secondary"
-                        variant="contained"
-                        borderRadius="2rem"
-                        onClick={handleLogout}
-                    >
-                        <Box sx={{ mr: 1.5, width: 24, height: 24 }}>
-                            <ExitToAppIcon />
-                        </Box>
-                        Logout
-                    </CustomizedButton>
-                </Box>
-            </MenuPopover>
-        </>
+                    <Box sx={{ p: 2, pt: 1.5 }}>
+                        <CustomizedButton
+                            fullWidth
+                            color="secondary"
+                            variant="contained"
+                            borderRadius="2rem"
+                            onClick={handleLogout}
+                        >
+                            <Box sx={{ mr: 1.5, width: 24, height: 24 }}>
+                                <ExitToAppIcon />
+                            </Box>
+                            Logout
+                        </CustomizedButton>
+                    </Box>
+                </MenuPopover>
+            )}
+        </Stack>
     );
 }

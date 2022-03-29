@@ -18,9 +18,25 @@ export function Header() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
     const [drawerOpen, setDrawerOpen] = useState(false);
+    const [isAuthenticated, setIsAuthenticated] = useState(false); // TODO: Change this as soon as we have the authentication in place
 
     const handleDrawerOpen = () => setDrawerOpen(true);
     const handleDrawerClose = () => setDrawerOpen(false);
+
+    // TODO: Implement it as soon as the backend is in place
+    const handleLogin = () => {
+        setIsAuthenticated((previousState) => !previousState);
+    };
+
+    // TODO: Implement it as soon as the backend is in place
+    const handleSignUp = () => {
+        setIsAuthenticated((previousState) => !previousState);
+    };
+
+    // TODO: Implement it as soon as the backend is in place
+    const handleLogout = () => {
+        setIsAuthenticated(false);
+    };
 
     const handleClickOnTitle = () => {
         navigate("/");
@@ -48,27 +64,33 @@ export function Header() {
 
     return (
         <AppBar elevation={0}>
-            <Stack pl={5} pr={5} pt={1}>
-                {isMobile ? (
-                    <>
-                        <AppBarMobile
-                            appTitle={appTitle}
-                            onDrawerClose={handleDrawerClose}
-                            onDrawerOpen={handleDrawerOpen}
-                            drawerOpen={drawerOpen}
-                            onButtonClick={handleButtonClick}
-                            onMenuItemButtonClick={handleMenuItemButtonClick}
-                        />
-                        <Divider />
-                    </>
-                ) : (
-                    <AppBarDesktop
+            {isMobile ? (
+                <Stack>
+                    <AppBarMobile
+                        isAuthenticated={isAuthenticated}
                         appTitle={appTitle}
-                        onButtonClick={handleButtonClick}
+                        onDrawerClose={handleDrawerClose}
+                        onDrawerOpen={handleDrawerOpen}
+                        drawerOpen={drawerOpen}
+                        onLogin={handleLogin}
+                        onSignUp={handleSignUp}
+                        onLogout={handleLogout}
                         onMenuItemButtonClick={handleMenuItemButtonClick}
                     />
-                )}
-            </Stack>
+                    <Divider />
+                </Stack>
+            ) : (
+                <Stack pl={5} pr={5} pt={1}>
+                    <AppBarDesktop
+                        isAuthenticated={isAuthenticated}
+                        appTitle={appTitle}
+                        onMenuItemButtonClick={handleMenuItemButtonClick}
+                        onLogin={handleLogin}
+                        onSignUp={handleSignUp}
+                        onLogout={handleLogout}
+                    />
+                </Stack>
+            )}
         </AppBar>
     );
 }
