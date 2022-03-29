@@ -4,7 +4,6 @@ import {
     Box,
     Divider,
     Stack,
-    Typography,
     useMediaQuery,
     useTheme,
 } from "@mui/material";
@@ -82,23 +81,10 @@ export function AccountPopover({ onLogout }: AccountPopoverProps) {
                     anchorEl={anchorRef.current}
                     sx={{ width: 220 }}
                 >
-                    <Box sx={{ my: 1.5, px: 2.5 }}>
-                        <Typography
-                            variant="subtitle1"
-                            gutterBottom
-                            component="div"
-                            sx={{ color: theme.palette.text.secondary }}
-                        >
-                            {user?.name}
-                        </Typography>
-                        <Typography
-                            variant="body1"
-                            sx={{ color: theme.palette.text.secondary }}
-                            noWrap
-                        >
-                            {user?.email}
-                        </Typography>
-                    </Box>
+                    <Stack direction="column" p={1.5}>
+                        <StyledText>{user?.name}</StyledText>
+                        <StyledText>{user?.email}</StyledText>
+                    </Stack>
 
                     <Divider sx={{ my: 1 }} />
 
