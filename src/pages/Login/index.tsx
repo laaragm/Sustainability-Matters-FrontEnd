@@ -110,7 +110,7 @@ export default function Login() {
             <Stack width="100%" sx={{ position: "absolute", bottom: 0 }}>
                 <img
                     src={aboutUsPageIllustration}
-                    alt="Abous us page illustration"
+                    alt="Login page illustration"
                     height="100%"
                     width="100%"
                 />
