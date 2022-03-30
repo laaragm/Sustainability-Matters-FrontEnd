@@ -75,7 +75,7 @@ export default function AboutUs() {
                     >
                         <img
                             src={aboutUsPageIllustration}
-                            alt="Home page illustration"
+                            alt="Abous us page illustration"
                             height="100%"
                             width={isTablet ? "100%" : "97%"}
                         />
