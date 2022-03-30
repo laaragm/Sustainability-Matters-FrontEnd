@@ -1,7 +1,7 @@
 import { Stack, TextField, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 
-import aboutUsPageIllustration from "../../assets/images/aboutUsPageIllustration.svg";
+import loginPageIllustration from "../../assets/images/loginPageIllustration.svg";
 import { StyledLabel } from "./styles";
 import { CustomizedButton } from "./../../shared/components/CustomizedButton/index";
 
@@ -109,7 +109,7 @@ export default function Login() {
             </Stack>
             <Stack width="100%" sx={{ position: "absolute", bottom: 0 }}>
                 <img
-                    src={aboutUsPageIllustration}
+                    src={loginPageIllustration}
                     alt="Login page illustration"
                     height="100%"
                     width="100%"
