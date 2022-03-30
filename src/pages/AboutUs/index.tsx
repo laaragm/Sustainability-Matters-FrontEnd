@@ -5,8 +5,8 @@ import { StyledTitle, StyledSubtitle } from "./styles";
 
 export default function AboutUs() {
     const theme = useTheme();
-    const isTablet = useMediaQuery(theme.breakpoints.down("md"));
-    const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+    const isTablet = useMediaQuery(theme.breakpoints.down("lg"));
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     console.log("is tablet: ", isTablet);
     console.log("is MOBILE: ", isMobile);
@@ -49,9 +49,10 @@ export default function AboutUs() {
                 <Stack
                     direction="column"
                     alignItems="center"
-                    justifyContent="space-between"
-                    spacing={isMobile ? 8 : 2}
+                    justifyContent="center"
+                    spacing={isTablet ? 8 : 2}
                     m={isTablet ? 0 : 5}
+                    height="100%"
                 >
                     <Stack
                         direction="column"
@@ -64,7 +65,6 @@ export default function AboutUs() {
                         pr={isTablet ? 5 : 12}
                         sx={{
                             position: isTablet ? "" : "absolute",
-                            bottom: isTablet ? "20%" : "30%",
                         }}
                     >
                         {content}
@@ -77,7 +77,7 @@ export default function AboutUs() {
                             src={aboutUsPageIllustration}
                             alt="Home page illustration"
                             height="100%"
-                            width={isMobile ? "100%" : "97%"}
+                            width={isTablet ? "100%" : "97%"}
                         />
                     </Stack>
                 </Stack>
