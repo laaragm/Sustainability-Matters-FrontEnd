@@ -46,12 +46,27 @@ export default function Login() {
                     alignItems="flex-start"
                     justifyContent="center"
                     spacing={1}
+                    width="100%"
                 >
                     <StyledLabel>Email</StyledLabel>
                     <TextField
                         id="email-field-login"
                         value={email}
                         onChange={(event) => handleEmail(event.target.value)}
+                        sx={{
+                            background: theme.palette.common.white,
+                            width: "100%",
+                            "& > div:after": {
+                                border: "none",
+                            },
+                        }}
+                        inputProps={{
+                            sx: {
+                                padding: "1.5rem",
+                                boxSizing: "border-box",
+                                color: theme.palette.text.secondary,
+                            },
+                        }}
                     />
                 </Stack>
                 <Stack
@@ -59,12 +74,28 @@ export default function Login() {
                     alignItems="flex-start"
                     justifyContent="center"
                     spacing={1}
+                    width="100%"
                 >
                     <StyledLabel>Password</StyledLabel>
                     <TextField
                         id="password-field-login"
+                        type="password"
                         value={password}
                         onChange={(event) => handlePassword(event.target.value)}
+                        sx={{
+                            background: theme.palette.common.white,
+                            width: "100%",
+                            "& > div:after": {
+                                border: "none",
+                            },
+                        }}
+                        inputProps={{
+                            sx: {
+                                padding: "1.5rem",
+                                boxSizing: "border-box",
+                                color: theme.palette.text.secondary,
+                            },
+                        }}
                     />
                 </Stack>
                 <CustomizedButton
