@@ -31,6 +31,14 @@ export default function Login() {
             m={isMobile ? 0 : 5}
             height="100%"
         >
+            <Stack width="100%" sx={{ position: "absolute", bottom: 0 }}>
+                <img
+                    src={loginPageIllustration}
+                    alt="Login page illustration"
+                    height="100%"
+                    width="100%"
+                />
+            </Stack>
             <Stack
                 direction="column"
                 alignItems="center"
@@ -102,18 +110,11 @@ export default function Login() {
                     color="secondary"
                     borderRadius="1.5rem"
                     fullWidth={true}
+                    disabled={email.length === 0 || password.length === 0}
                     onClick={handleLogin}
                 >
                     Login
                 </CustomizedButton>
-            </Stack>
-            <Stack width="100%" sx={{ position: "absolute", bottom: 0 }}>
-                <img
-                    src={loginPageIllustration}
-                    alt="Login page illustration"
-                    height="100%"
-                    width="100%"
-                />
             </Stack>
         </Stack>
     );
