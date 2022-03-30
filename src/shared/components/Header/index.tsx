@@ -12,6 +12,7 @@ import {
 
 import { AppBarDesktop } from "./components/AppBarDesktop";
 import { AppBarMobile } from "./components/AppBarMobile";
+import { PATHS } from "../../../routes/paths";
 
 export function Header() {
     let navigate = useNavigate();
@@ -23,9 +24,8 @@ export function Header() {
     const handleDrawerOpen = () => setDrawerOpen(true);
     const handleDrawerClose = () => setDrawerOpen(false);
 
-    // TODO: Implement it as soon as the backend is in place
     const handleLogin = () => {
-        setIsAuthenticated((previousState) => !previousState);
+        navigate(PATHS.login.route);
     };
 
     // TODO: Implement it as soon as the backend is in place
