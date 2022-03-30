@@ -11,4 +11,8 @@ export const PATHS = {
         name: "Contact",
         route: "/contact",
     },
+    login: {
+        name: "Login",
+        route: "/login",
+    },
 };

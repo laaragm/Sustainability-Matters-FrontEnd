@@ -8,9 +8,6 @@ export default function AboutUs() {
     const isTablet = useMediaQuery(theme.breakpoints.down("lg"));
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
-    console.log("is tablet: ", isTablet);
-    console.log("is MOBILE: ", isMobile);
-
     const content = (
         <>
             <StyledTitle>About us</StyledTitle>
