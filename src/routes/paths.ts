@@ -3,4 +3,8 @@ export const PATHS = {
         name: "Home",
         route: "/",
     },
+    about: {
+        name: "About us",
+        route: "/about",
+    },
 };
