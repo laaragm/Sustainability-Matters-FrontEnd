@@ -7,4 +7,8 @@ export const PATHS = {
         name: "About us",
         route: "/about",
     },
+    contact: {
+        name: "Contact",
+        route: "/contact",
+    },
 };
