@@ -1,9 +1,9 @@
-import { Stack, TextField, useMediaQuery, useTheme } from "@mui/material";
+import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
 
 import loginPageIllustration from "../../assets/images/loginPageIllustration.svg";
-import { StyledLabel } from "./styles";
 import { CustomizedButton } from "./../../shared/components/CustomizedButton/index";
+import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
 
 export default function Login() {
     const theme = useTheme();
@@ -56,25 +56,12 @@ export default function Login() {
                     spacing={1}
                     width="100%"
                 >
-                    <StyledLabel>Email</StyledLabel>
-                    <TextField
+                    <CustomizedTextField
+                        title="Email"
                         id="email-field-login"
+                        type="email"
                         value={email}
-                        onChange={(event) => handleEmail(event.target.value)}
-                        sx={{
-                            background: theme.palette.common.white,
-                            width: "100%",
-                            "& > div:after": {
-                                border: "none",
-                            },
-                        }}
-                        inputProps={{
-                            sx: {
-                                padding: "1.5rem",
-                                boxSizing: "border-box",
-                                color: theme.palette.text.secondary,
-                            },
-                        }}
+                        onChange={(value) => handleEmail(value)}
                     />
                 </Stack>
                 <Stack
@@ -84,26 +71,12 @@ export default function Login() {
                     spacing={1}
                     width="100%"
                 >
-                    <StyledLabel>Password</StyledLabel>
-                    <TextField
+                    <CustomizedTextField
+                        title="Password"
                         id="password-field-login"
                         type="password"
                         value={password}
-                        onChange={(event) => handlePassword(event.target.value)}
-                        sx={{
-                            background: theme.palette.common.white,
-                            width: "100%",
-                            "& > div:after": {
-                                border: "none",
-                            },
-                        }}
-                        inputProps={{
-                            sx: {
-                                padding: "1.5rem",
-                                boxSizing: "border-box",
-                                color: theme.palette.text.secondary,
-                            },
-                        }}
+                        onChange={(value) => handlePassword(value)}
                     />
                 </Stack>
                 <CustomizedButton
