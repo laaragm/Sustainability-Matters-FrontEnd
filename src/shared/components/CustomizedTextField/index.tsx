@@ -1,6 +1,6 @@
-import { TextField, useTheme } from "@mui/material";
+import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
-import { StyledLabel } from "../CustomizedButton/styles";
+import { StyledLabel, StyledTextField } from "./styles";
 
 interface CustomizedTextFieldProps {
     value: any;
@@ -18,30 +18,24 @@ export function CustomizedTextField({
     title,
 }: CustomizedTextFieldProps) {
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     return (
-        <>
+        <Stack
+            direction="column"
+            alignItems="flex-start"
+            justifyContent="center"
+            spacing={1}
+            width="100%"
+        >
             {!!title && <StyledLabel>{title}</StyledLabel>}
-            <TextField
+            <StyledTextField
                 id={id}
                 type={type}
+                isMobile={isMobile}
                 value={value}
                 onChange={(event) => onChange(event.target.value)}
-                sx={{
-                    background: theme.palette.common.white,
-                    width: "100%",
-                    "& > div:after": {
-                        border: "none",
-                    },
-                }}
-                inputProps={{
-                    sx: {
-                        padding: "1.5rem",
-                        boxSizing: "border-box",
-                        color: theme.palette.text.secondary,
-                    },
-                }}
             />
-        </>
+        </Stack>
     );
 }

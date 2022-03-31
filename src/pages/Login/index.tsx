@@ -43,7 +43,7 @@ export default function Login() {
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-                spacing={4}
+                spacing={isMobile ? 3 : 4}
                 width={isMobile ? "100%" : "20%"}
                 sx={{
                     position: "absolute",
@@ -51,10 +51,10 @@ export default function Login() {
             >
                 <Stack
                     direction="column"
-                    alignItems="flex-start"
+                    alignItems="center"
                     justifyContent="center"
                     spacing={1}
-                    width="100%"
+                    width={isMobile ? "80%" : "100%"}
                 >
                     <CustomizedTextField
                         title="Email"
@@ -66,10 +66,10 @@ export default function Login() {
                 </Stack>
                 <Stack
                     direction="column"
-                    alignItems="flex-start"
+                    alignItems="center"
                     justifyContent="center"
                     spacing={1}
-                    width="100%"
+                    width={isMobile ? "80%" : "100%"}
                 >
                     <CustomizedTextField
                         title="Password"
@@ -79,15 +79,21 @@ export default function Login() {
                         onChange={(value) => handlePassword(value)}
                     />
                 </Stack>
-                <CustomizedButton
-                    color="secondary"
-                    borderRadius="1.5rem"
-                    fullWidth={true}
-                    disabled={email.length === 0 || password.length === 0}
-                    onClick={handleLogin}
+                <Stack
+                    alignItems="center"
+                    justifyContent="center"
+                    width={isMobile ? "80%" : "100%"}
                 >
-                    Login
-                </CustomizedButton>
+                    <CustomizedButton
+                        color="secondary"
+                        borderRadius="1.5rem"
+                        fullWidth={true}
+                        disabled={email.length === 0 || password.length === 0}
+                        onClick={handleLogin}
+                    >
+                        Login
+                    </CustomizedButton>
+                </Stack>
             </Stack>
         </Stack>
     );
