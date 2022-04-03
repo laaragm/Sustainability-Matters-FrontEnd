@@ -21,11 +21,5 @@ export default function NoEmissions() {
                 {content} 
             </Stack>
         </>
-    )
-
-
-
-
-
-
-}
+    );
+};
