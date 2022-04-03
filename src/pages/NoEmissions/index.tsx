@@ -28,6 +28,18 @@ export default function NoEmissions() {
                 alignItems="center"
                 spacing={6}
             >
+                <Stack
+                    width="100%"
+                    sx={{ position: "absolute", bottom: 0 }}
+                >
+                    <img
+                        src={noEmissionsIllustration}
+                        alt="No emissions page illustration"
+                        height="100%"
+                        width= "100%"
+                    />
+                </Stack>
+                
                 <Stack 
                     alignItems= "center"
                     width="65%"
@@ -35,9 +47,7 @@ export default function NoEmissions() {
                 >
                         {content} 
                 </Stack>
-
                 <Stack
-                    width="50%"
                     justifyContent="center"
                 >
                     <CustomizedButton 
@@ -48,18 +58,6 @@ export default function NoEmissions() {
                     >
                         + Add emission
                     </CustomizedButton>
-                </Stack>
-            
-                <Stack
-                        width="100%"
-                        sx={{ position: "absolute", bottom: 0 }}
-                    >
-                        <img
-                            src={noEmissionsIllustration}
-                            alt="No emissions page illustration"
-                            height="100%"
-                            width= "100%"
-                        />
                 </Stack>
             </Stack>
             
