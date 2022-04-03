@@ -1,5 +1,9 @@
 import { Stack, useTheme } from '@mui/material';
+import { CustomizedButton } from '../../shared/components/CustomizedButton';
 import { StyledSubtitle, StyledTitle } from './styles';
+
+import noEmissionsIllustration from "../../assets/images/noEmissionsIllustration.svg";
+
 
 export default function NoEmissions() {
     const theme = useTheme();
@@ -15,11 +19,50 @@ export default function NoEmissions() {
         </> 
     );
 
+
+    const handleAddEmissions: () => void = () => 1
+  
     return (
         <>
-            <Stack>
-                {content} 
+            <Stack 
+                alignItems="center"
+                spacing={6}
+            >
+                <Stack 
+                    alignItems= "center"
+                    width="65%"
+                    justifyContent="center"
+                >
+                        {content} 
+                </Stack>
+
+                <Stack
+                    width="50%"
+                    justifyContent="center"
+                >
+                    <CustomizedButton 
+                        color='secondary'
+                        borderRadius='1.5rem'
+                        fullWidth={false}
+                        onClick={handleAddEmissions}
+                    >
+                        + Add emission
+                    </CustomizedButton>
+                </Stack>
+            
+                <Stack
+                        width="100%"
+                        sx={{ position: "absolute", bottom: 0 }}
+                    >
+                        <img
+                            src={noEmissionsIllustration}
+                            alt="No emissions page illustration"
+                            height="100%"
+                            width= "100%"
+                        />
+                </Stack>
             </Stack>
+            
         </>
     );
-};
+}

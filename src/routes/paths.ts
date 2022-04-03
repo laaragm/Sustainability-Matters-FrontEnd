@@ -17,6 +17,6 @@ export const PATHS = {
     },
     noEmissions: {
         name: "No Emissions",
-        route: "/NoEmissions"
+        route: "/emissions"
     }
 };
