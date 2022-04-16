@@ -28,7 +28,7 @@ export default function NoEmissions() {
             <Stack 
                 alignItems="center"
                 spacing={isMobile ? 3 : 8}
-                m={isMobile ? 0 : 5}
+                m={isMobile ? 1 : 5}
             >
                 {!isMobile && (
                     <Stack
