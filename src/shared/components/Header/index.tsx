@@ -30,7 +30,7 @@ export function Header() {
 
     // TODO: Implement it as soon as the backend is in place
     const handleSignUp = () => {
-        setIsAuthenticated((previousState) => !previousState);
+        navigate(PATHS.signUp.route);
     };
 
     // TODO: Implement it as soon as the backend is in place

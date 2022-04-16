@@ -1,4 +1,4 @@
-import { Stack, useTheme } from '@mui/material';
+import { Stack, useMediaQuery, useTheme } from '@mui/material';
 import { CustomizedButton } from '../../shared/components/CustomizedButton';
 import { StyledSubtitle, StyledTitle } from './styles';
 
@@ -7,6 +7,7 @@ import noEmissionsIllustration from "../../assets/images/noEmissionsIllustration
 
 export default function NoEmissions() {
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     const content = (
         <>
@@ -26,19 +27,23 @@ export default function NoEmissions() {
         <>
             <Stack 
                 alignItems="center"
-                spacing={6}
+                spacing={isMobile ? 3 : 8}
+                m={isMobile ? 0 : 5}
             >
-                <Stack
+                {!isMobile && (
+                    <Stack
                     width="100%"
                     sx={{ position: "absolute", bottom: 0 }}
-                >
+                    >
                     <img
                         src={noEmissionsIllustration}
                         alt="No emissions page illustration"
                         height="100%"
                         width= "100%"
                     />
-                </Stack>
+                    </Stack>
+                )}
+                
                 
                 <Stack 
                     alignItems= "center"

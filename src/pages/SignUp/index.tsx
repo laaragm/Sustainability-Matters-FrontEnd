@@ -32,6 +32,8 @@ export default function SignUp() {
         <>
             <Stack
                 alignItems="center"
+                direction="column"
+                spacing={2}
                 sx={{
                     width:600,
                     height:630,
@@ -47,6 +49,7 @@ export default function SignUp() {
                         CREAT YOUR ACCOUNT
                     </StyledTitle>
                 </Stack>
+
                 <Stack width="70%">
                     <CustomizedTextField
                         title="First Name"
@@ -87,10 +90,10 @@ export default function SignUp() {
                     />
                 </Stack>
 
-                <Stack width="70%">
+                <Stack width="40%" mt={20}>
                     <CustomizedButton
                         color="secondary"
-                        borderRadius="1.5rem"
+                        borderRadius="0.3rem"
                         fullWidth={true}
                         onClick={handleRegister}
                     >
