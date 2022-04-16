@@ -15,4 +15,8 @@ export const PATHS = {
         name: "Login",
         route: "/login",
     },
+    addEmission: {
+        name: "Add Emission",
+        route: "/add-emission",
+    },
 };
