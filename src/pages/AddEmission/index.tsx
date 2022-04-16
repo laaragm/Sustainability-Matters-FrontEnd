@@ -1,18 +1,43 @@
 import { useState } from "react";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
-import { StyledCard, StyledTitle } from "./styles";
 import { CategorySelector } from "./components/CategorySelector";
+import { CategoryType } from "../../types/categoryEnum";
+import { StyledCard, StyledTitle } from "./styles";
+import { ElectricityType } from "../../types/electricityEnum";
+import { FoodType } from "../../types/foodEnum";
+import { TransportType } from "../../types/transportEnum";
+
+const categoryOptions = Object.values(CategoryType);
 
 export default function AddEmission() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
+    const [subCategoryOptions, setSubCategoryOptions] = useState<any[]>([]);
     const [amount, setAmount] = useState("");
 
     const handleCategory = (newCategory: string) => {
         setCategory(newCategory);
+        updateSubCategoryOptions(newCategory);
+    };
+
+    const handleSubCategory = (newSubCategory: string) => {
+        setSubCategory(newSubCategory);
+    };
+
+    const updateSubCategoryOptions = (newCategory: string) => {
+        if (newCategory === CategoryType.electricity) {
+            const types = Object.values(ElectricityType);
+            setSubCategoryOptions(types);
+        } else if (newCategory === CategoryType.food) {
+            const types = Object.values(FoodType);
+            setSubCategoryOptions(types);
+        } else if (newCategory === CategoryType.transport) {
+            const types = Object.values(TransportType);
+            setSubCategoryOptions(types);
+        }
     };
 
     return (
@@ -37,8 +62,20 @@ export default function AddEmission() {
                     </Stack>
                     <Stack width="30%" pt={5}>
                         <CategorySelector
+                            title="Select a category"
+                            id="category-field-add-emission"
+                            options={categoryOptions}
                             value={category}
                             onChange={handleCategory}
+                        />
+                    </Stack>
+                    <Stack width="30%" pt={2}>
+                        <CategorySelector
+                            title="Select a sub-category"
+                            id="sub-category-field-add-emission"
+                            options={subCategoryOptions}
+                            value={subCategory}
+                            onChange={handleSubCategory}
                         />
                     </Stack>
                 </Stack>

@@ -2,16 +2,23 @@ import { CustomizedSelectField } from "../../../../shared/components/CustomizedS
 
 interface CategorySelectorProps {
     value: string;
+    options: string[];
+    title: string;
+    id: string;
     onChange: (newValue: string) => void;
 }
 
-const options = ["Transport", "Food", "Electricity"];
-
-export function CategorySelector({ value, onChange }: CategorySelectorProps) {
+export function CategorySelector({
+    value,
+    title,
+    id,
+    onChange,
+    options,
+}: CategorySelectorProps) {
     return (
         <CustomizedSelectField
-            title="Select a category"
-            id="category-field-add-emission"
+            title={title}
+            id={id}
             options={options}
             value={value}
             onChange={(newValue) => onChange(newValue)}

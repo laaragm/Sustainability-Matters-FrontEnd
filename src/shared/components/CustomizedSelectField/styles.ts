@@ -20,9 +20,11 @@ export const StyledSelect = styled(Select)(({ theme }) => ({
     boxSizing: "border-box",
     border: `1px solid ${theme.palette.secondary.main}`,
     borderRadius: "0.5rem",
+    textTransform: "capitalize",
 }));
 
 export const StyledMenuItem = styled(MenuItem)(({ theme }) => ({
     color: theme.palette.common.black,
     fontWeight: 400,
+    textTransform: "capitalize",
 }));
