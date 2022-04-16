@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import { StyledCard, StyledTitle } from "./styles";
+import { CategorySelector } from "./components/CategorySelector";
 
 export default function AddEmission() {
     const theme = useTheme();
@@ -9,6 +10,10 @@ export default function AddEmission() {
     const [category, setCategory] = useState("");
     const [subCategory, setSubCategory] = useState("");
     const [amount, setAmount] = useState("");
+
+    const handleCategory = (newCategory: string) => {
+        setCategory(newCategory);
+    };
 
     return (
         <Stack
@@ -29,6 +34,12 @@ export default function AddEmission() {
                 >
                     <Stack direction="row">
                         <StyledTitle>CO2 Emissions</StyledTitle>
+                    </Stack>
+                    <Stack width="30%" pt={5}>
+                        <CategorySelector
+                            value={category}
+                            onChange={handleCategory}
+                        />
                     </Stack>
                 </Stack>
             </StyledCard>
