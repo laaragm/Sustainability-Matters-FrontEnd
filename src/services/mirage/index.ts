@@ -189,6 +189,8 @@ export function makeServer() {
         },
         seeds(server) {
             server.createList("transportUsage", 200);
+            server.createList("foodConsumption", 200);
+            server.createList("electricityConsumption", 200);
         },
         routes() {
             this.namespace = "api";
