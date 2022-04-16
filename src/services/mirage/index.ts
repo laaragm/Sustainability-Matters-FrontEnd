@@ -5,8 +5,8 @@ import {
     Response,
     ActiveModelSerializer,
 } from "miragejs";
+// @ts-ignore
 import faker from "faker";
-import uuid from "uuid";
 
 import { TransportType } from "../../types/transportEnum";
 import { FoodType } from "../../types/foodEnum";
@@ -74,7 +74,6 @@ export function makeServer() {
             application: ActiveModelSerializer,
         },
         models: {
-            // user: Model.extend<Partial<User>>({}),
             transportUsage: Model.extend<Partial<TransportUsage>>({}),
             foodConsumption: Model.extend<Partial<FoodConsumption>>({}),
             electricityConsumption: Model.extend<
@@ -82,30 +81,10 @@ export function makeServer() {
             >({}),
         },
         factories: {
-            // user: Factory.extend({
-            //     id() {
-            //         return uuid();
-            //     },
-            //     firstName() {
-            //         return faker.name.firstName();
-            //     },
-            //     surname() {
-            //         return faker.name.lastName();
-            //     },
-            //     email() {
-            //         return faker.internet.email().toLowerCase();
-            //     },
-            //     location() {
-            //         return faker.address.city();
-            //     },
-            //     createdAt() {
-            //         return faker.date.recent(15);
-            //     },
-            // }),
             transportUsage: Factory.extend({
                 transport() {
                     const transport: Category = {
-                        id: uuid(),
+                        id: faker.random.uuid(),
                         type: getRandomTransportCategory(),
                         emissionFactor:
                             Math.floor(
@@ -124,7 +103,7 @@ export function makeServer() {
                 },
                 user() {
                     const user: User = {
-                        id: uuid(),
+                        id: faker.random.uuid(),
                         firstName: faker.name.firstName(),
                         surname: faker.name.lastName(),
                         email: faker.internet.email().toLowerCase(),
@@ -140,7 +119,7 @@ export function makeServer() {
             foodConsumption: Factory.extend({
                 food() {
                     const food: Category = {
-                        id: uuid(),
+                        id: faker.random.uuid(),
                         type: getRandomFoodCategory(),
                         emissionFactor:
                             Math.floor(
@@ -159,7 +138,7 @@ export function makeServer() {
                 },
                 user() {
                     const user: User = {
-                        id: uuid(),
+                        id: faker.random.uuid(),
                         firstName: faker.name.firstName(),
                         surname: faker.name.lastName(),
                         email: faker.internet.email().toLowerCase(),
@@ -175,7 +154,7 @@ export function makeServer() {
             electricityConsumption: Factory.extend({
                 electricity() {
                     const electricity: Category = {
-                        id: uuid(),
+                        id: faker.random.uuid(),
                         type: getRandomElectricityCategory(),
                         emissionFactor:
                             Math.floor(
@@ -194,7 +173,7 @@ export function makeServer() {
                 },
                 user() {
                     const user: User = {
-                        id: uuid(),
+                        id: faker.random.uuid(),
                         firstName: faker.name.firstName(),
                         surname: faker.name.lastName(),
                         email: faker.internet.email().toLowerCase(),
