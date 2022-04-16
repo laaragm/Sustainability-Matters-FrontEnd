@@ -7,6 +7,7 @@ import { StyledCard, StyledTitle } from "./styles";
 import { ElectricityType } from "../../types/electricityEnum";
 import { FoodType } from "../../types/foodEnum";
 import { TransportType } from "../../types/transportEnum";
+import { CustomizedButton } from "./../../shared/components/CustomizedButton/index";
 
 const categoryOptions = Object.values(CategoryType);
 
@@ -39,6 +40,10 @@ export default function AddEmission() {
             setSubCategoryOptions(types);
         }
     };
+
+    const handleCancel = () => {};
+
+    const handleAddEmission = () => {};
 
     return (
         <Stack
@@ -77,6 +82,29 @@ export default function AddEmission() {
                             value={subCategory}
                             onChange={handleSubCategory}
                         />
+                    </Stack>
+                    <Stack direction="row" width="30%" spacing={1} pt={5}>
+                        <CustomizedButton
+                            variant="text"
+                            color="secondary"
+                            borderRadius="1.5rem"
+                            fullWidth={true}
+                            onClick={handleCancel}
+                        >
+                            Cancel
+                        </CustomizedButton>
+                        <CustomizedButton
+                            color="secondary"
+                            borderRadius="1.5rem"
+                            fullWidth={true}
+                            disabled={
+                                category.length === 0 ||
+                                subCategory.length === 0
+                            }
+                            onClick={handleAddEmission}
+                        >
+                            Add
+                        </CustomizedButton>
                     </Stack>
                 </Stack>
             </StyledCard>
