@@ -8,16 +8,18 @@ import { ElectricityType } from "../../types/electricityEnum";
 import { FoodType } from "../../types/foodEnum";
 import { TransportType } from "../../types/transportEnum";
 import { CustomizedButton } from "./../../shared/components/CustomizedButton/index";
+import { AmountField } from "./components/AmountField";
 
 const categoryOptions = Object.values(CategoryType);
 
 export default function AddEmission() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const [category, setCategory] = useState("");
-    const [subCategory, setSubCategory] = useState("");
+    const [category, setCategory] = useState<string>("");
+    const [subCategory, setSubCategory] = useState<string>("");
     const [subCategoryOptions, setSubCategoryOptions] = useState<any[]>([]);
-    const [amount, setAmount] = useState("");
+    const [amountFieldTitle, setAmountFieldTitle] = useState<string>("");
+    const [amount, setAmount] = useState<number>(0);
 
     const handleCategory = (newCategory: string) => {
         setCategory(newCategory);
@@ -28,16 +30,23 @@ export default function AddEmission() {
         setSubCategory(newSubCategory);
     };
 
+    const handleAmount = (newAmount: number) => {
+        setAmount(newAmount);
+    };
+
     const updateSubCategoryOptions = (newCategory: string) => {
         if (newCategory === CategoryType.electricity) {
             const types = Object.values(ElectricityType);
             setSubCategoryOptions(types);
+            setAmountFieldTitle("Amount (Watt)");
         } else if (newCategory === CategoryType.food) {
             const types = Object.values(FoodType);
             setSubCategoryOptions(types);
+            setAmountFieldTitle("Amount (kg)");
         } else if (newCategory === CategoryType.transport) {
             const types = Object.values(TransportType);
             setSubCategoryOptions(types);
+            setAmountFieldTitle("Distance (km)");
         }
     };
 
@@ -83,6 +92,16 @@ export default function AddEmission() {
                             onChange={handleSubCategory}
                         />
                     </Stack>
+                    {subCategory.length > 0 && (
+                        <Stack width="30%" pt={2}>
+                            <AmountField
+                                title="Distance (km)"
+                                id="amount-field-add-emission"
+                                value={amount}
+                                onChange={handleAmount}
+                            />
+                        </Stack>
+                    )}
                     <Stack direction="row" width="30%" spacing={1} pt={5}>
                         <CustomizedButton
                             variant="text"
