@@ -7,6 +7,7 @@ interface CustomizedTextFieldProps {
     id: string;
     type?: string;
     title?: string;
+    customTextField?: boolean;
     onChange: (value: any) => void;
 }
 
@@ -16,6 +17,7 @@ export function CustomizedTextField({
     id,
     type = "text",
     title,
+    customTextField = false,
 }: CustomizedTextFieldProps) {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
@@ -31,6 +33,7 @@ export function CustomizedTextField({
             {!!title && <StyledLabel>{title}</StyledLabel>}
             <StyledTextField
                 id={id}
+                customTextField={customTextField}
                 type={type}
                 isMobile={isMobile}
                 value={value}

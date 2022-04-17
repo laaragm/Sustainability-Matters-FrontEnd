@@ -11,6 +11,7 @@ export function AmountField({ title, id, value, onChange }: AmountFieldProps) {
         <CustomizedTextField
             title={title}
             id={id}
+            customTextField
             type="number"
             value={value}
             onChange={(value) => onChange(value)}

@@ -95,7 +95,7 @@ export default function AddEmission() {
                     {subCategory.length > 0 && (
                         <Stack width="30%" pt={2}>
                             <AmountField
-                                title="Distance (km)"
+                                title={amountFieldTitle}
                                 id="amount-field-add-emission"
                                 value={amount}
                                 onChange={handleAmount}
