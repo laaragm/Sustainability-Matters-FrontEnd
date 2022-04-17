@@ -12,6 +12,8 @@ import { CustomizedButton } from "./../../shared/components/CustomizedButton/ind
 import { AmountField } from "./components/AmountField";
 import { CO2Indicator } from "./components/CO2Indicator";
 import { PATHS } from "../../routes/paths";
+import axios from "axios";
+import { api } from "../../services/api";
 
 const categoryOptions = Object.values(CategoryType);
 
@@ -63,7 +65,34 @@ export default function AddEmission() {
         navigate(PATHS.emissions.route);
     };
 
-    const handleAddEmission = () => {};
+    const handleAddEmission = async () => {
+        if (category === CategoryType.electricity) {
+            const response = await api.post("electricity-consumption", {
+                electricityConsumption: {
+                    amount: amount,
+                    date: new Date(),
+                },
+            });
+            console.log(response);
+        } else if (category === CategoryType.food) {
+            const response = await api.post("food-consumption", {
+                foodConsumption: {
+                    amount: amount,
+                    date: new Date(),
+                },
+            });
+            console.log(response);
+        } else {
+            const response = await api.post("transport-usage", {
+                transportUsage: {
+                    amount: amount,
+                    date: new Date(),
+                },
+            });
+            console.log(response);
+        }
+        navigate(PATHS.emissions.route);
+    };
 
     return (
         <Stack

@@ -245,7 +245,7 @@ export function makeServer() {
                 const offsetEnd = offsetStart + +quantityPerPage;
                 // @ts-ignore
                 const electricityConsumption = this.serialize(
-                    schema.all("foodConsumption")
+                    schema.all("electricityConsumption")
                 ).users.slice(offsetStart, offsetEnd);
 
                 return new Response(

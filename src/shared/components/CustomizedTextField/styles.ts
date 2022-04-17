@@ -16,11 +16,9 @@ export const StyledTextField = styled("input")<StyledTextFieldProps>(
             ? `1px solid ${theme.palette.secondary.main}`
             : `1px solid ${theme.palette.common.black}`,
         borderRadius: customTextField ? "0.5rem" : 0,
-        // background: theme.palette.common.white,
         width: "100%",
         padding: isMobile ? "0.5rem" : "1rem",
         boxSizing: "border-box",
-        // border: `1px solid ${theme.palette.common.black}`,
         "& > div:after": {
             border: "none",
         },
