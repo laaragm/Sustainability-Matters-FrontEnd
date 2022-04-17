@@ -19,10 +19,11 @@ export default function AddEmission() {
     const theme = useTheme();
     let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const [category, setCategory] = useState<string>("");
+    const [category, setCategory] = useState<string>(categoryOptions[0]);
     const [subCategory, setSubCategory] = useState<string>("");
     const [subCategoryOptions, setSubCategoryOptions] = useState<any[]>([]);
-    const [amountFieldTitle, setAmountFieldTitle] = useState<string>("");
+    const [amountFieldTitle, setAmountFieldTitle] =
+        useState<string>("Distance (km)");
     const [amount, setAmount] = useState<number>(0);
 
     const handleCategory = (newCategory: string) => {
@@ -101,7 +102,7 @@ export default function AddEmission() {
                                 onChange={handleSubCategory}
                             />
                         </Stack>
-                        {subCategory.length > 0 && (
+                        {category.length > 0 && (
                             <Stack width={isMobile ? "60%" : "50%"} pt={2}>
                                 <AmountField
                                     title={amountFieldTitle}
