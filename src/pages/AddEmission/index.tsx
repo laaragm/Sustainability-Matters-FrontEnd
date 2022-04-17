@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
@@ -25,6 +25,10 @@ export default function AddEmission() {
     const [amountFieldTitle, setAmountFieldTitle] =
         useState<string>("Distance (km)");
     const [amount, setAmount] = useState<number>(0);
+
+    useEffect(() => {
+        updateSubCategoryOptions(category);
+    }, []);
 
     const handleCategory = (newCategory: string) => {
         setCategory(newCategory);
