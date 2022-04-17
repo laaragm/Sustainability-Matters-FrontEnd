@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import { CategorySelector } from "./components/CategorySelector";
@@ -10,11 +11,13 @@ import { TransportType } from "../../types/transportEnum";
 import { CustomizedButton } from "./../../shared/components/CustomizedButton/index";
 import { AmountField } from "./components/AmountField";
 import { CO2Indicator } from "./components/CO2Indicator";
+import { PATHS } from "../../routes/paths";
 
 const categoryOptions = Object.values(CategoryType);
 
 export default function AddEmission() {
     const theme = useTheme();
+    let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [category, setCategory] = useState<string>("");
     const [subCategory, setSubCategory] = useState<string>("");
@@ -51,7 +54,9 @@ export default function AddEmission() {
         }
     };
 
-    const handleCancel = () => {};
+    const handleCancel = () => {
+        navigate(PATHS.emissions.route);
+    };
 
     const handleAddEmission = () => {};
 
