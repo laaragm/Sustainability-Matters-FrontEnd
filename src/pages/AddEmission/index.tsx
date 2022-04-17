@@ -9,6 +9,7 @@ import { FoodType } from "../../types/foodEnum";
 import { TransportType } from "../../types/transportEnum";
 import { CustomizedButton } from "./../../shared/components/CustomizedButton/index";
 import { AmountField } from "./components/AmountField";
+import { CO2Indicator } from "./components/CO2Indicator";
 
 const categoryOptions = Object.values(CategoryType);
 
@@ -65,65 +66,82 @@ export default function AddEmission() {
             width="100%"
         >
             <StyledCard>
-                <Stack
-                    direction="column"
-                    alignItems="flex-start"
-                    justifyContent="flex-start"
-                    spacing={2}
-                >
-                    <Stack direction="row">
-                        <StyledTitle>CO2 Emissions</StyledTitle>
-                    </Stack>
-                    <Stack width="30%" pt={5}>
-                        <CategorySelector
-                            title="Select a category"
-                            id="category-field-add-emission"
-                            options={categoryOptions}
-                            value={category}
-                            onChange={handleCategory}
-                        />
-                    </Stack>
-                    <Stack width="30%" pt={2}>
-                        <CategorySelector
-                            title="Select a sub-category"
-                            id="sub-category-field-add-emission"
-                            options={subCategoryOptions}
-                            value={subCategory}
-                            onChange={handleSubCategory}
-                        />
-                    </Stack>
-                    {subCategory.length > 0 && (
-                        <Stack width="30%" pt={2}>
-                            <AmountField
-                                title={amountFieldTitle}
-                                id="amount-field-add-emission"
-                                value={amount}
-                                onChange={handleAmount}
+                <Stack direction="row" width="100%">
+                    <Stack
+                        direction="column"
+                        alignItems="flex-start"
+                        justifyContent="flex-start"
+                        spacing={2}
+                        width="50%"
+                    >
+                        <Stack direction="row">
+                            <StyledTitle>CO2 Emissions</StyledTitle>
+                        </Stack>
+                        <Stack width={isMobile ? "60%" : "50%"} pt={5}>
+                            <CategorySelector
+                                title="Select a category"
+                                id="category-field-add-emission"
+                                options={categoryOptions}
+                                value={category}
+                                onChange={handleCategory}
                             />
                         </Stack>
-                    )}
-                    <Stack direction="row" width="30%" spacing={1} pt={5}>
-                        <CustomizedButton
-                            variant="text"
-                            color="secondary"
-                            borderRadius="1.5rem"
-                            fullWidth={true}
-                            onClick={handleCancel}
+                        <Stack width={isMobile ? "60%" : "50%"} pt={2}>
+                            <CategorySelector
+                                title="Select a sub-category"
+                                id="sub-category-field-add-emission"
+                                options={subCategoryOptions}
+                                value={subCategory}
+                                onChange={handleSubCategory}
+                            />
+                        </Stack>
+                        {subCategory.length > 0 && (
+                            <Stack width={isMobile ? "60%" : "50%"} pt={2}>
+                                <AmountField
+                                    title={amountFieldTitle}
+                                    id="amount-field-add-emission"
+                                    value={amount}
+                                    onChange={handleAmount}
+                                />
+                            </Stack>
+                        )}
+                        <Stack
+                            direction="row"
+                            justifyContent="center"
+                            alignItems="center"
+                            width={isMobile ? "60%" : "50%"}
+                            spacing={1}
+                            pt={5}
                         >
-                            Cancel
-                        </CustomizedButton>
-                        <CustomizedButton
-                            color="secondary"
-                            borderRadius="1.5rem"
-                            fullWidth={true}
-                            disabled={
-                                category.length === 0 ||
-                                subCategory.length === 0
-                            }
-                            onClick={handleAddEmission}
-                        >
-                            Add
-                        </CustomizedButton>
+                            <CustomizedButton
+                                variant="outlined"
+                                color="secondary"
+                                borderRadius="1.5rem"
+                                fullWidth={true}
+                                onClick={handleCancel}
+                            >
+                                Cancel
+                            </CustomizedButton>
+                            <CustomizedButton
+                                color="secondary"
+                                borderRadius="1.5rem"
+                                fullWidth={true}
+                                disabled={
+                                    category.length === 0 ||
+                                    subCategory.length === 0
+                                }
+                                onClick={handleAddEmission}
+                            >
+                                Add
+                            </CustomizedButton>
+                        </Stack>
+                    </Stack>
+                    <Stack
+                        width="50%"
+                        alignItems="center"
+                        justifyContent="center"
+                    >
+                        <CO2Indicator value={38.55} />
                     </Stack>
                 </Stack>
             </StyledCard>
