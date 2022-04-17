@@ -7,6 +7,9 @@ export const StyledCard = styled("div")(({ theme }) => ({
     padding: "3rem",
     width: "80%",
     height: "70%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
 }));
 
 export const StyledTitle = styled("span")(({ theme }) => ({

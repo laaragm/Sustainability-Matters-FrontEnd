@@ -73,6 +73,7 @@ export default function AddEmission() {
                         justifyContent="flex-start"
                         spacing={2}
                         width="50%"
+                        pl={3}
                     >
                         <Stack direction="row">
                             <StyledTitle>CO2 Emissions</StyledTitle>
