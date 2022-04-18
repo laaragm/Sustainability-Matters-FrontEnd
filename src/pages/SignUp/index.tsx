@@ -37,8 +37,8 @@ export default function SignUp() {
             <Stack
                 alignItems="center"
                 direction="column"
-                justifyContent="center"
-                spacing={isMobile ? 1 : 2}
+                justifyContent="space-evenly"
+                spacing={isMobile ? 1 : 0.1}
                 sx={{
                     width:"32.0rem",
                     height:"34.0rem",
@@ -62,6 +62,7 @@ export default function SignUp() {
 
                 <Stack
                 alignItems={isMobile ? "center" : "baseline"}
+                justifyContent="space-evenly"
                 width="90%"
                 sx={{
                     width:"30.0rem",
