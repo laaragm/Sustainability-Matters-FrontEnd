@@ -58,7 +58,7 @@ export default function SignUp() {
                             width= "100%"
                         />
                     </Stack>
-                 )}    
+                 )}
 
                 <Stack
                 alignItems={isMobile ? "center" : "baseline"}
@@ -118,6 +118,7 @@ export default function SignUp() {
                     <CustomizedButton
                         color="secondary"
                         borderRadius="0.3rem"
+                        disabled={email.length === 0 || password.length === 0 || lastName.length === 0 || firstName.length === 0}
                         fullWidth={true}
                         onClick={handleRegister}
                     >
