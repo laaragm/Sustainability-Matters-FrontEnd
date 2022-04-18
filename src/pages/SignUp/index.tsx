@@ -1,4 +1,4 @@
-import {Stack, useTheme } from '@mui/material';
+import {Stack, useMediaQuery, useTheme } from '@mui/material';
 import { useState } from 'react';
 import { CustomizedButton } from '../../shared/components/CustomizedButton';
 import { CustomizedTextField } from '../../shared/components/CustomizedTextField';
@@ -10,6 +10,7 @@ import signUpPageIllustration from "../../assets/images/signUpPageIllustration.s
 export default function SignUp() {
 
     const theme = useTheme();
+    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastname] = useState("");
     const [email, setEmail] = useState("");
@@ -37,7 +38,7 @@ export default function SignUp() {
                 alignItems="center"
                 direction="column"
                 justifyContent="center"
-                spacing={2}
+                spacing={isMobile ? 1 : 2}
                 sx={{
                     width:"32.0rem",
                     height:"34.0rem",
@@ -45,20 +46,22 @@ export default function SignUp() {
                     borderRadius:"1.5rem",
                 }}
             >
-                <Stack
-                    width="100%"
-                    sx={{ position: "absolute", bottom: 0 }}
-                    >
-                    <img
-                        src={signUpPageIllustration}
-                        alt="Sing up page illustration"
-                        height="100%"
-                        width= "100%"
-                    />
-                </Stack>    
+                 {!isMobile && (
+                    <Stack
+                        width="100%"
+                        sx={{ position: "absolute", bottom: 0 }}
+                        >
+                        <img
+                            src={signUpPageIllustration}
+                            alt="Sing up page illustration"
+                            height="100%"
+                            width= "100%"
+                        />
+                    </Stack>
+                 )}    
 
                 <Stack
-                alignItems="baseline"
+                alignItems={isMobile ? "center" : "baseline"}
                 width="90%"
                 sx={{
                     width:"30.0rem",
