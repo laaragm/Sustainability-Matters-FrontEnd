@@ -33,6 +33,19 @@ export default function SignUp() {
 
     return (
         <>
+            {!isMobile && (
+                <Stack
+                    width="100%"
+                    sx={{ position: "absolute", bottom: 0, zIndex: "-1" }}
+                    >
+                    <img
+                        src={signUpPageIllustration}
+                        alt="Sing up page illustration"
+                        height="100%"
+                        width= "100%"
+                    />
+                </Stack>
+            )}
 
             <Stack
                 alignItems="center"
@@ -46,19 +59,7 @@ export default function SignUp() {
                     borderRadius:"1.5rem",
                 }}
             >
-                 {!isMobile && (
-                    <Stack
-                        width="100%"
-                        sx={{ position: "absolute", bottom: 0 }}
-                        >
-                        <img
-                            src={signUpPageIllustration}
-                            alt="Sing up page illustration"
-                            height="100%"
-                            width= "100%"
-                        />
-                    </Stack>
-                 )}
+                 
 
                 <Stack
                 alignItems={isMobile ? "center" : "baseline"}
@@ -125,7 +126,6 @@ export default function SignUp() {
                         Register
                     </CustomizedButton>
                 </Stack>
-                
             </Stack>
         </>
     );
