@@ -1,7 +1,7 @@
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 
 import { api } from "../services/api";
-import { FoodConsumption } from "../types/foodConsumption";
+import { FoodConsumption } from "../types/food/foodConsumption";
 
 type GetFoodConsumptionResponse = {
     totalCount: number;

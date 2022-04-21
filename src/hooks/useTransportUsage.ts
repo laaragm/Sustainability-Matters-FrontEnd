@@ -1,7 +1,7 @@
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 
 import { api } from "../services/api";
-import { TransportUsage } from "../types/transportUsage";
+import { TransportUsage } from "../types/transport/transportUsage";
 
 type GetTransportUsageResponse = {
     totalCount: number;

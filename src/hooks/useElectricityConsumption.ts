@@ -1,7 +1,7 @@
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
 
 import { api } from "../services/api";
-import { ElectricityConsumption } from "../types/electricityConsumption";
+import { ElectricityConsumption } from "../types/electricity/electricityConsumption";
 
 type GetElectricityConsumptionResponse = {
     totalCount: number;
