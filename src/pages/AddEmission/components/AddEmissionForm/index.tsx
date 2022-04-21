@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { Stack, useMediaQuery, useTheme } from "@mui/material";
+import { Stack } from "@mui/material";
 
 import { CustomizedButton } from "../../../../shared/components/CustomizedButton";
 import { AmountField } from "../AmountField";
@@ -14,6 +14,7 @@ interface AddEmissionFormProps {
     subCategory: string;
     amount: number;
     amountFieldTitle: string;
+    isMobile: boolean;
     onCategoryChange: (newCategory: string) => void;
     onSubCategoryChange: (newSubCategory: string) => void;
     onAmountChange: (newAmount: number) => void;
@@ -27,14 +28,13 @@ export function AddEmissionForm({
     subCategory,
     amount,
     amountFieldTitle,
+    isMobile,
     onSubCategoryChange,
     onAmountChange,
     onCategoryChange,
     onAddEmission,
 }: AddEmissionFormProps) {
     let navigate = useNavigate();
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
     const handleCategory = (newCategory: string) => {
         onCategoryChange(newCategory);
@@ -61,14 +61,14 @@ export function AddEmissionForm({
             direction="column"
             alignItems="flex-start"
             justifyContent="flex-start"
-            spacing={2}
-            width="50%"
-            pl={3}
+            spacing={isMobile ? 3 : 2}
+            width={isMobile ? "60%" : "50%"}
+            pl={isMobile ? 1 : 3}
         >
             <Stack direction="row">
-                <StyledTitle>CO2 Emissions</StyledTitle>
+                <StyledTitle isMobile={isMobile}>CO2 Emissions</StyledTitle>
             </Stack>
-            <Stack width={isMobile ? "60%" : "50%"} pt={5}>
+            <Stack width={isMobile ? "90%" : "50%"} pt={5}>
                 <CategorySelector
                     title="Select a category"
                     id="category-field-add-emission"
@@ -77,7 +77,7 @@ export function AddEmissionForm({
                     onChange={handleCategory}
                 />
             </Stack>
-            <Stack width={isMobile ? "60%" : "50%"} pt={2}>
+            <Stack width={isMobile ? "90%" : "50%"} pt={2}>
                 <CategorySelector
                     title="Select a sub-category"
                     id="sub-category-field-add-emission"
@@ -87,10 +87,11 @@ export function AddEmissionForm({
                 />
             </Stack>
             {category.length > 0 && (
-                <Stack width={isMobile ? "60%" : "50%"} pt={2}>
+                <Stack width={isMobile ? "90%" : "50%"} pt={2}>
                     <AmountField
                         title={amountFieldTitle}
                         id="amount-field-add-emission"
+                        isMobile={isMobile}
                         value={amount}
                         onChange={handleAmount}
                     />
@@ -100,7 +101,7 @@ export function AddEmissionForm({
                 direction="row"
                 justifyContent="center"
                 alignItems="center"
-                width={isMobile ? "60%" : "50%"}
+                width={isMobile ? "90%" : "50%"}
                 spacing={1}
                 pt={5}
             >

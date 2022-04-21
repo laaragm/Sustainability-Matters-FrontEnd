@@ -1,25 +1,37 @@
 import { styled } from "@mui/material/styles";
 
-export const StyledIndicator = styled("div")(({ theme }) => ({
-    color: theme.palette.common.black,
-    borderRadius: "22.5rem",
-    boxSizing: "border-box",
-    border: `1.25rem solid ${theme.palette.secondary.main}`,
-    width: "70%",
-    height: "100%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-}));
+interface StyledIndicatorProps {
+    isMobile: boolean;
+}
 
-export const StyledValue = styled("div")(({ theme }) => ({
-    fontWeight: 700,
-    fontSize: "4.688rem",
-    lineHeight: "1.25rem",
-}));
+export const StyledIndicator = styled("div")<StyledIndicatorProps>(
+    ({ theme, isMobile }) => ({
+        color: theme.palette.common.black,
+        borderRadius: "22.5rem",
+        boxSizing: "border-box",
+        border: isMobile
+            ? `0.7rem solid ${theme.palette.secondary.main}`
+            : `1.25rem solid ${theme.palette.secondary.main}`,
+        width: isMobile ? "90%" : "70%",
+        height: isMobile ? "22%" : "100%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    })
+);
 
-export const StyledSubtitle = styled("div")(({ theme }) => ({
-    fontWeight: 400,
-    fontSize: "1.563rem",
-    lineHeight: "1.25rem",
-}));
+export const StyledValue = styled("div")<StyledIndicatorProps>(
+    ({ theme, isMobile }) => ({
+        fontWeight: 700,
+        fontSize: isMobile ? "1.5rem" : "4.688rem",
+        lineHeight: "1.25rem",
+    })
+);
+
+export const StyledSubtitle = styled("div")<StyledIndicatorProps>(
+    ({ theme, isMobile }) => ({
+        fontWeight: 400,
+        fontSize: isMobile ? "1rem" : "1.563rem",
+        lineHeight: "1.25rem",
+    })
+);

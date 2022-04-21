@@ -1,7 +1,13 @@
 import { styled } from "@mui/material/styles";
 
-export const StyledTitle = styled("span")(({ theme }) => ({
-    fontWeight: 700,
-    fontSize: "2rem",
-    lineHeight: "1.25rem",
-}));
+interface StyledTitleProps {
+    isMobile: boolean;
+}
+
+export const StyledTitle = styled("span")<StyledTitleProps>(
+    ({ theme, isMobile }) => ({
+        fontWeight: 700,
+        fontSize: isMobile ? "1.5rem" : "2rem",
+        lineHeight: isMobile ? "2rem" : "1.25rem",
+    })
+);

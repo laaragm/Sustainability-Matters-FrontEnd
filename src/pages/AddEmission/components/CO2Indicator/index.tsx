@@ -4,19 +4,20 @@ import { StyledIndicator, StyledValue, StyledSubtitle } from "./styles";
 
 interface CO2IndicatorProps {
     value: number;
+    isMobile: boolean;
 }
 
-export function CO2Indicator({ value }: CO2IndicatorProps) {
+export function CO2Indicator({ value, isMobile }: CO2IndicatorProps) {
     return (
-        <StyledIndicator>
+        <StyledIndicator isMobile={isMobile}>
             <Stack
                 direction="column"
-                spacing={5}
+                spacing={isMobile ? 1 : 5}
                 alignItems="center"
                 justifyContent="center"
             >
-                <StyledValue>{value}</StyledValue>
-                <StyledSubtitle>kgCO2eq</StyledSubtitle>
+                <StyledValue isMobile={isMobile}>{value}</StyledValue>
+                <StyledSubtitle isMobile={isMobile}>kgCO2eq</StyledSubtitle>
             </Stack>
         </StyledIndicator>
     );

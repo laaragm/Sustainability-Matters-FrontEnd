@@ -8,6 +8,7 @@ interface CustomizedTextFieldProps {
     type?: string;
     title?: string;
     customTextField?: boolean;
+    height?: string;
     onChange: (value: any) => void;
 }
 
@@ -17,6 +18,7 @@ export function CustomizedTextField({
     id,
     type = "text",
     title,
+    height,
     customTextField = false,
 }: CustomizedTextFieldProps) {
     const theme = useTheme();
@@ -37,6 +39,7 @@ export function CustomizedTextField({
                 type={type}
                 isMobile={isMobile}
                 value={value}
+                height={!!height ? height : "auto"}
                 onChange={(event) => onChange(event.target.value)}
             />
         </Stack>

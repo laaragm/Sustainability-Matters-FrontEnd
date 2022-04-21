@@ -131,15 +131,16 @@ export default function AddEmission() {
 
     return (
         <Stack
-            direction="column"
+            direction={isMobile ? "row" : "column"}
             alignItems="center"
             justifyContent="center"
             spacing={isMobile ? 8 : 2}
             m={isMobile ? 0 : 5}
+            mt={isMobile ? 6 : 5}
             height="100%"
             width="100%"
         >
-            <StyledCard>
+            <StyledCard isMobile={isMobile}>
                 <Stack direction="row" width="100%">
                     <AddEmissionForm
                         categoryOptions={categoryOptions}
@@ -152,13 +153,17 @@ export default function AddEmission() {
                         onAmountChange={handleAmount}
                         onCategoryChange={handleCategory}
                         onAddEmission={handleAddEmission}
+                        isMobile={isMobile}
                     />
                     <Stack
-                        width="50%"
+                        width={isMobile ? "40%" : "50%"}
                         alignItems="center"
                         justifyContent="center"
                     >
-                        <CO2Indicator value={co2Emission || 0} />
+                        <CO2Indicator
+                            value={co2Emission || 0}
+                            isMobile={isMobile}
+                        />
                     </Stack>
                 </Stack>
             </StyledCard>

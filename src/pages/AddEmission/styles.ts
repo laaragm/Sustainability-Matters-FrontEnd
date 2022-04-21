@@ -1,13 +1,19 @@
 import { styled } from "@mui/material/styles";
 
-export const StyledCard = styled("div")(({ theme }) => ({
-    backgroundColor: theme.palette.common.white,
-    color: theme.palette.common.black,
-    borderRadius: "1.25rem",
-    padding: "3rem",
-    width: "80%",
-    height: "70%",
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "center",
-}));
+interface StyledCardProps {
+    isMobile: boolean;
+}
+
+export const StyledCard = styled("div")<StyledCardProps>(
+    ({ theme, isMobile }) => ({
+        backgroundColor: theme.palette.common.white,
+        color: theme.palette.common.black,
+        borderRadius: "1.25rem",
+        padding: isMobile ? 0 : "3rem",
+        width: isMobile ? "90%" : "80%",
+        height: isMobile ? "90%" : "70%",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+    })
+);

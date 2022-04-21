@@ -3,10 +3,11 @@ import { styled } from "@mui/material/styles";
 interface StyledTextFieldProps {
     isMobile: boolean;
     customTextField: boolean;
+    height?: string;
 }
 
 export const StyledTextField = styled("input")<StyledTextFieldProps>(
-    ({ theme, isMobile, customTextField }) => ({
+    ({ theme, isMobile, customTextField, height }) => ({
         background: customTextField
             ? "rgba(51, 30, 130, 0.13)"
             : theme.palette.common.white,
@@ -17,6 +18,7 @@ export const StyledTextField = styled("input")<StyledTextFieldProps>(
             : `1px solid ${theme.palette.common.black}`,
         borderRadius: customTextField ? "0.5rem" : 0,
         width: "100%",
+        height: !!height ? height : "auto",
         padding: isMobile ? "0.5rem" : "1rem",
         boxSizing: "border-box",
         "& > div:after": {
