@@ -1,5 +1,5 @@
-import { Category } from "./category";
-import { User } from "./user";
+import { Category } from "../category";
+import { User } from "../user";
 
 export interface ElectricityConsumption {
     electricity: Category;

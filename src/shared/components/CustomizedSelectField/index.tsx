@@ -1,26 +1,22 @@
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
-import { StyledLabel, StyledTextField } from "./styles";
+import { StyledLabel, StyledSelect, StyledMenuItem } from "./styles";
 
-interface CustomizedTextFieldProps {
+interface CustomizedSelectFieldProps {
     value: any;
     id: string;
-    type?: string;
     title?: string;
-    customTextField?: boolean;
-    height?: string;
+    options: any;
     onChange: (value: any) => void;
 }
 
-export function CustomizedTextField({
+export function CustomizedSelectField({
     value,
     onChange,
+    options,
     id,
-    type = "text",
     title,
-    height,
-    customTextField = false,
-}: CustomizedTextFieldProps) {
+}: CustomizedSelectFieldProps) {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
@@ -33,15 +29,19 @@ export function CustomizedTextField({
             width="100%"
         >
             {!!title && <StyledLabel>{title}</StyledLabel>}
-            <StyledTextField
+            <StyledSelect
+                labelId={`${id}-label`}
                 id={id}
-                customTextField={customTextField}
-                type={type}
-                isMobile={isMobile}
                 value={value}
-                height={!!height ? height : "auto"}
+                label=""
                 onChange={(event) => onChange(event.target.value)}
-            />
+            >
+                {options.map((option: any) => (
+                    <StyledMenuItem key={option} value={option}>
+                        {option}
+                    </StyledMenuItem>
+                ))}
+            </StyledSelect>
         </Stack>
     );
 }

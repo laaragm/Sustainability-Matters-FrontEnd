@@ -8,8 +8,8 @@ import {
 // @ts-ignore
 import faker from "faker";
 
-import { TransportType } from "../../types/transportEnum";
-import { FoodType } from "../../types/foodEnum";
+import { TransportType } from "../../types/transport/transportEnum";
+import { FoodType } from "../../types/food/foodEnum";
 
 interface User {
     id: string;
@@ -245,7 +245,7 @@ export function makeServer() {
                 const offsetEnd = offsetStart + +quantityPerPage;
                 // @ts-ignore
                 const electricityConsumption = this.serialize(
-                    schema.all("foodConsumption")
+                    schema.all("electricityConsumption")
                 ).users.slice(offsetStart, offsetEnd);
 
                 return new Response(
