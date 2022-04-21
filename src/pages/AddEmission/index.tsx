@@ -2,13 +2,10 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
-import { CategorySelector } from "./components/CategorySelector";
 import { CategoryType } from "../../types/categoryEnum";
-import { StyledCard, StyledTitle } from "./styles";
+import { StyledCard } from "./styles";
 import { FoodType } from "../../types/food/foodEnum";
 import { TransportType } from "../../types/transport/transportEnum";
-import { CustomizedButton } from "./../../shared/components/CustomizedButton/index";
-import { AmountField } from "./components/AmountField";
 import { CO2Indicator } from "./components/CO2Indicator";
 import { PATHS } from "../../routes/paths";
 import { api } from "../../services/api";
@@ -16,6 +13,7 @@ import { ElectricityType } from "../../types/electricity/electricityEnum";
 import { electricityFactors } from "../../types/electricity/electricityFactors";
 import { foodFactors } from "../../types/food/foodFactors";
 import { transportFactors } from "../../types/transport/transportFactors";
+import { AddEmissionForm } from "./components/AddEmissionForm";
 
 const categoryOptions = Object.values(CategoryType);
 
@@ -102,10 +100,6 @@ export default function AddEmission() {
         }
     };
 
-    const handleCancel = () => {
-        navigate(PATHS.emissions.route);
-    };
-
     const handleAddEmission = async () => {
         if (category === CategoryType.electricity) {
             const response = await api.post("electricity-consumption", {
@@ -147,82 +141,24 @@ export default function AddEmission() {
         >
             <StyledCard>
                 <Stack direction="row" width="100%">
-                    <Stack
-                        direction="column"
-                        alignItems="flex-start"
-                        justifyContent="flex-start"
-                        spacing={2}
-                        width="50%"
-                        pl={3}
-                    >
-                        <Stack direction="row">
-                            <StyledTitle>CO2 Emissions</StyledTitle>
-                        </Stack>
-                        <Stack width={isMobile ? "60%" : "50%"} pt={5}>
-                            <CategorySelector
-                                title="Select a category"
-                                id="category-field-add-emission"
-                                options={categoryOptions}
-                                value={category}
-                                onChange={handleCategory}
-                            />
-                        </Stack>
-                        <Stack width={isMobile ? "60%" : "50%"} pt={2}>
-                            <CategorySelector
-                                title="Select a sub-category"
-                                id="sub-category-field-add-emission"
-                                options={subCategoryOptions}
-                                value={subCategory}
-                                onChange={handleSubCategory}
-                            />
-                        </Stack>
-                        {category.length > 0 && (
-                            <Stack width={isMobile ? "60%" : "50%"} pt={2}>
-                                <AmountField
-                                    title={amountFieldTitle}
-                                    id="amount-field-add-emission"
-                                    value={amount}
-                                    onChange={handleAmount}
-                                />
-                            </Stack>
-                        )}
-                        <Stack
-                            direction="row"
-                            justifyContent="center"
-                            alignItems="center"
-                            width={isMobile ? "60%" : "50%"}
-                            spacing={1}
-                            pt={5}
-                        >
-                            <CustomizedButton
-                                variant="outlined"
-                                color="secondary"
-                                borderRadius="1.5rem"
-                                fullWidth={true}
-                                onClick={handleCancel}
-                            >
-                                Cancel
-                            </CustomizedButton>
-                            <CustomizedButton
-                                color="secondary"
-                                borderRadius="1.5rem"
-                                fullWidth={true}
-                                disabled={
-                                    category.length === 0 ||
-                                    subCategory.length === 0
-                                }
-                                onClick={handleAddEmission}
-                            >
-                                Add
-                            </CustomizedButton>
-                        </Stack>
-                    </Stack>
+                    <AddEmissionForm
+                        categoryOptions={categoryOptions}
+                        category={category}
+                        subCategoryOptions={subCategoryOptions}
+                        subCategory={subCategory}
+                        amount={amount}
+                        amountFieldTitle={amountFieldTitle}
+                        onSubCategoryChange={handleSubCategory}
+                        onAmountChange={handleAmount}
+                        onCategoryChange={handleCategory}
+                        onAddEmission={handleAddEmission}
+                    />
                     <Stack
                         width="50%"
                         alignItems="center"
                         justifyContent="center"
                     >
-                        <CO2Indicator value={co2Emission} />
+                        <CO2Indicator value={co2Emission || 0} />
                     </Stack>
                 </Stack>
             </StyledCard>
