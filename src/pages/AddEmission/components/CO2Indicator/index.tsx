@@ -16,7 +16,7 @@ export function CO2Indicator({ value }: CO2IndicatorProps) {
                 justifyContent="center"
             >
                 <StyledValue>{value}</StyledValue>
-                <StyledSubtitle>kgC02eq</StyledSubtitle>
+                <StyledSubtitle>kgCO2eq</StyledSubtitle>
             </Stack>
         </StyledIndicator>
     );
