@@ -8,8 +8,8 @@ import {
 // @ts-ignore
 import faker from "faker";
 
-import { TransportType } from "../../types/transportEnum";
-import { FoodType } from "../../types/foodEnum";
+import { TransportType } from "../../types/transport/transportEnum";
+import { FoodType } from "../../types/food/foodEnum";
 
 interface User {
     id: string;
