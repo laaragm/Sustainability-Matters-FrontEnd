@@ -5,15 +5,17 @@ import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import { CategorySelector } from "./components/CategorySelector";
 import { CategoryType } from "../../types/categoryEnum";
 import { StyledCard, StyledTitle } from "./styles";
-import { ElectricityType } from "../../types/electricityEnum";
-import { FoodType } from "../../types/foodEnum";
-import { TransportType } from "../../types/transportEnum";
+import { FoodType } from "../../types/food/foodEnum";
+import { TransportType } from "../../types/transport/transportEnum";
 import { CustomizedButton } from "./../../shared/components/CustomizedButton/index";
 import { AmountField } from "./components/AmountField";
 import { CO2Indicator } from "./components/CO2Indicator";
 import { PATHS } from "../../routes/paths";
-import axios from "axios";
 import { api } from "../../services/api";
+import { ElectricityType } from "../../types/electricity/electricityEnum";
+import { electricityFactors } from "../../types/electricity/electricityFactors";
+import { foodFactors } from "../../types/food/foodFactors";
+import { transportFactors } from "../../types/transport/transportFactors";
 
 const categoryOptions = Object.values(CategoryType);
 
@@ -27,10 +29,49 @@ export default function AddEmission() {
     const [amountFieldTitle, setAmountFieldTitle] =
         useState<string>("Distance (km)");
     const [amount, setAmount] = useState<number>(0);
+    const [co2Emission, setCO2Emission] = useState<number>(0);
 
     useEffect(() => {
         updateSubCategoryOptions(category);
     }, []);
+
+    useEffect(() => {
+        if (
+            category.length > 0 &&
+            subCategoryOptions.length > 0 &&
+            amount >= 0
+        ) {
+            calculateC02Emission();
+        }
+    }, [amount, subCategory, category]);
+
+    const calculateC02Emission = () => {
+        let selectedKey = "";
+        let keys: string[] = [];
+        let emissionFactor = 0;
+        const subCategoryValue = subCategory.replace(/ /g, "");
+        if (category === CategoryType.electricity) {
+            keys = Object.keys(electricityFactors);
+            // @ts-ignore
+            selectedKey = keys.find((key) => key === subCategoryValue);
+            // @ts-ignore
+            emissionFactor = electricityFactors[selectedKey];
+        } else if (category === CategoryType.food) {
+            keys = Object.keys(foodFactors);
+            // @ts-ignore
+            selectedKey = keys.find((key) => key === subCategoryValue);
+            // @ts-ignore
+            emissionFactor = foodFactors[selectedKey];
+        } else if (category === CategoryType.transport) {
+            keys = Object.keys(transportFactors);
+            // @ts-ignore
+            selectedKey = keys.find((key) => key === subCategoryValue);
+            // @ts-ignore
+            emissionFactor = transportFactors[selectedKey];
+        }
+        const result = emissionFactor * amount;
+        setCO2Emission(+result.toFixed(3));
+    };
 
     const handleCategory = (newCategory: string) => {
         setCategory(newCategory);
@@ -181,7 +222,7 @@ export default function AddEmission() {
                         alignItems="center"
                         justifyContent="center"
                     >
-                        <CO2Indicator value={38.55} />
+                        <CO2Indicator value={co2Emission} />
                     </Stack>
                 </Stack>
             </StyledCard>
