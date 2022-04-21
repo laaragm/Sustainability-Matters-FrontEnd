@@ -11,9 +11,3 @@ export const StyledCard = styled("div")(({ theme }) => ({
     alignItems: "center",
     justifyContent: "center",
 }));
-
-export const StyledTitle = styled("span")(({ theme }) => ({
-    fontWeight: 700,
-    fontSize: "2rem",
-    lineHeight: "1.25rem",
-}));

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import { CategoryType } from "../../types/categoryEnum";
-import { StyledCard } from "./styles";
 import { FoodType } from "../../types/food/foodEnum";
 import { TransportType } from "../../types/transport/transportEnum";
 import { CO2Indicator } from "./components/CO2Indicator";
@@ -14,6 +13,7 @@ import { electricityFactors } from "../../types/electricity/electricityFactors";
 import { foodFactors } from "../../types/food/foodFactors";
 import { transportFactors } from "../../types/transport/transportFactors";
 import { AddEmissionForm } from "./components/AddEmissionForm";
+import { StyledCard } from "./styles";
 
 const categoryOptions = Object.values(CategoryType);
 
