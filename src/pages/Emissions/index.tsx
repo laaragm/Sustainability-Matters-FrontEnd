@@ -2,6 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import { StyledCard } from "./styles";
+import { CustomizedButton } from "../../shared/components/CustomizedButton";
 
 export default function Emissions() {
     const theme = useTheme();
@@ -20,6 +21,21 @@ export default function Emissions() {
             width="100%"
         >
             <StyledCard isMobile={isMobile}></StyledCard>
+            <Stack
+                direction="row"
+                justifyContent="flex-end"
+                alignItems="end"
+                spacing={1}
+                pt={5}
+            >
+                <CustomizedButton
+                    color="secondary"
+                    borderRadius="1.5rem"
+                    onClick={() => {}}
+                >
+                    Add
+                </CustomizedButton>
+            </Stack>
         </Stack>
     );
 }
