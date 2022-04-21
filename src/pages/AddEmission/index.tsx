@@ -23,7 +23,7 @@ export default function AddEmission() {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [category, setCategory] = useState<string>(categoryOptions[0]);
     const [subCategory, setSubCategory] = useState<string>("");
-    const [subCategoryOptions, setSubCategoryOptions] = useState<any[]>([]);
+    const [subCategoryOptions, setSubCategoryOptions] = useState<string[]>([]);
     const [amountFieldTitle, setAmountFieldTitle] =
         useState<string>("Distance (km)");
     const [amount, setAmount] = useState<number>(0);
