@@ -37,7 +37,9 @@ export function CustomizedSelectField({
                 onChange={(event) => onChange(event.target.value)}
             >
                 {options.map((option: any) => (
-                    <StyledMenuItem value={option}>{option}</StyledMenuItem>
+                    <StyledMenuItem key={option} value={option}>
+                        {option}
+                    </StyledMenuItem>
                 ))}
             </StyledSelect>
         </Stack>
