@@ -60,7 +60,7 @@ function getRandomElectricitySubcategory() {
 }
 
 function getRandomCategoryData() {
-    const items = Object.keys(Category);
+    const items = Object.values(Category).slice(0, 3);
     const item = items[Math.floor(Math.random() * items.length)];
     if (item === "Food") {
         const name = getRandomFoodSubcategory();
