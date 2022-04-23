@@ -14,6 +14,7 @@ export default function Router() {
             <Route path={PATHS.noEmissions.route} element={<NoEmissions />} />
             <Route path={PATHS.signUp.route} element={<SignUp />} />
             <Route path={PATHS.addEmission.route} element={<AddEmission />} />
+            <Route path={PATHS.emissions.route} element={<Emissions />} />
         </Routes>
     );
 }
@@ -23,5 +24,6 @@ const AboutUs = Loadable(lazy(() => import("../pages/AboutUs")));
 const Contact = Loadable(lazy(() => import("../pages/Contact")));
 const Login = Loadable(lazy(() => import("../pages/Login")));
 const NoEmissions = Loadable(lazy(() => import("../pages/NoEmissions")));
-const SignUp = Loadable(lazy(() => import("../pages/SignUp")))
+const SignUp = Loadable(lazy(() => import("../pages/SignUp")));
 const AddEmission = Loadable(lazy(() => import("../pages/AddEmission")));
+const Emissions = Loadable(lazy(() => import("../pages/Emissions")));
