@@ -2,12 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { CircularProgress } from "@mui/material";
 
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CardContent } from "./components/CardContent";
 import { useEmissions } from "../../hooks/useEmissions";
 import { StyledCard, StyledStack } from "./styles";
-import { CircularProgress } from "@mui/material";
 
 export default function Emissions() {
     const theme = useTheme();
@@ -25,8 +25,8 @@ export default function Emissions() {
         <Stack
             alignItems="center"
             justifyContent="center"
-            width="100%"
-            height="100%"
+            width="70vw"
+            height="55vh"
         >
             <CircularProgress color="inherit" />
         </Stack>
@@ -55,12 +55,12 @@ export default function Emissions() {
                     <InfiniteScroll
                         next={onScroll}
                         hasMore={hasMoreData}
-                        loader="Loading..." // TODO: Change this
+                        loader={Loader}
                         dataLength={9} // TODO: Change this
                         scrollableTarget="scrollable-element"
-                        style={{ overflow: "inherit", width: "100%" }}
+                        style={{ overflow: "inherit" }}
                     >
-                        <Stack direction="column" width="100%">
+                        <Stack direction="column" width="70vw">
                             {!isLoading && data?.emissions != undefined && (
                                 // @ts-ignore
                                 <CardContent emissions={data?.emissions} />
