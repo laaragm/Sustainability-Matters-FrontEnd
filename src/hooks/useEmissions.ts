@@ -5,7 +5,7 @@ import { Emission } from "../types/emission";
 
 type GetEmissionsResponse = {
     totalCount: number;
-    emissions: Emission[];
+    emissions: { [key: string]: Emission[] };
 };
 
 export async function getEmissions(
@@ -17,11 +17,13 @@ export async function getEmissions(
         },
     });
     const totalCount = +headers["x-total-count"];
-    const emissions: Emission[] = data.emissions?.map((item: Emission) => {
+    const result: Emission[] = data.emissions?.map((item: Emission) => {
         return {
             subcategory: item.subcategory,
             amount: item.amount,
-            co2Emission: item.co2Emission,
+            co2Emission: +(
+                item.amount * item.subcategory?.emissionFactor
+            ).toFixed(3),
             user: item.user,
             date: new Date(item.date).toLocaleDateString("en", {
                 day: "2-digit",
@@ -30,6 +32,11 @@ export async function getEmissions(
             }),
         };
     });
+    const emissions = {
+        "April 2022": result.slice(0, 3),
+        "March 2022": result.slice(3, 6),
+        "February 2022": result.slice(6, 9),
+    };
 
     return { emissions, totalCount };
 }
