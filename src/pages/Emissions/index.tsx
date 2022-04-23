@@ -46,12 +46,12 @@ export default function Emissions() {
 
     return (
         <Stack
-            direction={isMobile ? "row" : "column"}
+            direction="column"
             alignItems="center"
             justifyContent="center"
-            spacing={isMobile ? 8 : 3}
+            spacing={isMobile ? 2 : 3}
             m={isMobile ? 0 : 5}
-            mt={isMobile ? 6 : 5}
+            mt={isMobile ? 8 : 5}
             height="100%"
             width="100%"
         >
@@ -62,7 +62,7 @@ export default function Emissions() {
                     width="100%"
                     height="100%"
                     justifyContent="space-between"
-                    spacing={3}
+                    spacing={isMobile ? 1 : 3}
                 >
                     <InfiniteScroll
                         next={onScroll}
@@ -85,7 +85,7 @@ export default function Emissions() {
                 </StyledStack>
             </StyledCard>
             <Stack
-                width="80%"
+                width={isMobile ? "90%" : "80%"}
                 justifyContent="flex-end"
                 alignItems="flex-end"
                 spacing={1}

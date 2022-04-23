@@ -10,7 +10,7 @@ export const StyledCard = styled("div")<StyledCardProps>(
         backgroundColor: theme.palette.common.white,
         color: theme.palette.common.black,
         borderRadius: "1.25rem",
-        padding: isMobile ? 0 : "3rem",
+        padding: isMobile ? "1rem" : "3rem",
         width: isMobile ? "90%" : "80%",
         height: isMobile ? "90%" : "70%",
         display: "flex",
