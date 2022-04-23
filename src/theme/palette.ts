@@ -3,6 +3,7 @@ export const palette = {
     secondary: { main: "#331E82" },
     info: { main: "#ffffff" },
     success: { main: "#000000" },
+    warning: { main: "#6F6F6F" },
     common: {
         black: "#000000",
         white: "#ffffff",
