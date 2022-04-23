@@ -34,5 +34,9 @@ export const PATHS = {
     forgotPassword: {
         name: "Forgot Password",
         route: "/forgotpassword",
+    },
+    budget: {
+        name: "Budget",
+        route: "/budget",
     }
 };
