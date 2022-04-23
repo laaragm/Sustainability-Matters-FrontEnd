@@ -17,3 +17,12 @@ export const StyledCard = styled("div")<StyledCardProps>(
         justifyContent: "center",
     })
 );
+
+export const StyledTitle = styled("div")(({ theme }) => ({
+    backgroundColor: theme.palette.common.white,
+    color: theme.palette.secondary.main,
+    fontSize: "1.5rem",
+    "@media (max-width: 400px)": {
+        fontSize: "1.1rem",
+    },
+}));

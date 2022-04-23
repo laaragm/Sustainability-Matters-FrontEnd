@@ -1,13 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
-import { StyledCard } from "./styles";
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
+import { CardContent } from "./components/CardContent";
+import { useEmissions } from "../../hooks/useEmissions";
+import { StyledCard } from "./styles";
 
 export default function Emissions() {
     const theme = useTheme();
     let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+    const { data, isLoading } = useEmissions(1);
 
     return (
         <Stack
@@ -20,7 +23,10 @@ export default function Emissions() {
             height="100%"
             width="100%"
         >
-            <StyledCard isMobile={isMobile}></StyledCard>
+            <StyledCard isMobile={isMobile}>
+                {/* @ts-ignore */}
+                {!isLoading && <CardContent emissions={data?.emissions} />}
+            </StyledCard>
             <Stack
                 direction="row"
                 justifyContent="flex-end"

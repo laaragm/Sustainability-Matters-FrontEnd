@@ -101,32 +101,19 @@ export default function AddEmission() {
     };
 
     const handleAddEmission = async () => {
-        if (category === CategoryType.electricity) {
-            const response = await api.post("electricity-consumption", {
-                electricityConsumption: {
+        try {
+            const response = await api.post("emissions", {
+                emission: {
                     amount: amount,
                     date: new Date(),
+                    subcategory: subCategory,
                 },
             });
             console.log(response);
-        } else if (category === CategoryType.food) {
-            const response = await api.post("food-consumption", {
-                foodConsumption: {
-                    amount: amount,
-                    date: new Date(),
-                },
-            });
-            console.log(response);
-        } else {
-            const response = await api.post("transport-usage", {
-                transportUsage: {
-                    amount: amount,
-                    date: new Date(),
-                },
-            });
-            console.log(response);
+            navigate(PATHS.emissions.route);
+        } catch (error) {
+            console.log(error);
         }
-        navigate(PATHS.emissions.route);
     };
 
     return (
