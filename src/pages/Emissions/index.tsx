@@ -41,12 +41,16 @@ export default function Emissions() {
         navigate(route);
     };
 
+    const handleAddEmission = () => {
+        navigate(PATHS.addEmission.route);
+    };
+
     return (
         <Stack
             direction={isMobile ? "row" : "column"}
             alignItems="center"
             justifyContent="center"
-            spacing={isMobile ? 8 : 2}
+            spacing={isMobile ? 8 : 3}
             m={isMobile ? 0 : 5}
             mt={isMobile ? 6 : 5}
             height="100%"
@@ -82,18 +86,17 @@ export default function Emissions() {
                 </StyledStack>
             </StyledCard>
             <Stack
-                direction="row"
+                width="80%"
                 justifyContent="flex-end"
-                alignItems="end"
+                alignItems="flex-end"
                 spacing={1}
-                pt={5}
             >
                 <CustomizedButton
                     color="secondary"
                     borderRadius="1.5rem"
-                    onClick={() => {}}
+                    onClick={handleAddEmission}
                 >
-                    Add
+                    + Add emission
                 </CustomizedButton>
             </Stack>
         </Stack>
