@@ -7,9 +7,8 @@ import { CircularProgress } from "@mui/material";
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CardContent } from "./components/CardContent";
 import { useEmissions } from "../../hooks/useEmissions";
-import { StyledCard, StyledStack } from "./styles";
-import { Emission } from "../../types/emission";
 import { PATHS } from "../../routes/paths";
+import { StyledCard, StyledStack } from "./styles";
 
 export default function Emissions() {
     const theme = useTheme();
