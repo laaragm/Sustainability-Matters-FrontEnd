@@ -13,6 +13,7 @@ export const StyledTitle = styled("div")(({ theme }) => ({
     color: theme.palette.text.secondary,
     textTransform: "capitalize",
     fontSize: "1rem",
+    fontWeight: 500,
     "@media (max-width: 400px)": {
         fontSize: "0.9rem",
     },

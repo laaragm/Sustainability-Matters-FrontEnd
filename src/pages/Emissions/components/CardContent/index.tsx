@@ -31,7 +31,6 @@ export function CardContent({ emissions }: CardContentProps) {
                             <Stack
                                 key={`${emission.subcategory}-${emission.amount}-${emission.date}`}
                                 direction="column"
-                                spacing={1}
                                 mb={1}
                             >
                                 <StyledTitle>
@@ -41,7 +40,9 @@ export function CardContent({ emissions }: CardContentProps) {
                                     {emission.date} - {emission.co2Emission}{" "}
                                     kgCO2eq
                                 </StyledDescription>
-                                <StyledDivider />
+                                <Stack width="100%" mt={1}>
+                                    <StyledDivider />
+                                </Stack>
                             </Stack>
                         ))}
                     </Stack>

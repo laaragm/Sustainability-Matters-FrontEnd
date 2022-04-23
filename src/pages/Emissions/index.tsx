@@ -7,6 +7,7 @@ import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CardContent } from "./components/CardContent";
 import { useEmissions } from "../../hooks/useEmissions";
 import { StyledCard, StyledStack } from "./styles";
+import { CircularProgress } from "@mui/material";
 
 export default function Emissions() {
     const theme = useTheme();
@@ -19,6 +20,17 @@ export default function Emissions() {
     const onScroll = () => {
         setHasMoreData(false);
     };
+
+    const Loader = (
+        <Stack
+            alignItems="center"
+            justifyContent="center"
+            width="100%"
+            height="100%"
+        >
+            <CircularProgress color="inherit" />
+        </Stack>
+    );
 
     return (
         <Stack
@@ -43,15 +55,17 @@ export default function Emissions() {
                     <InfiniteScroll
                         next={onScroll}
                         hasMore={hasMoreData}
-                        loader="Loading..."
+                        loader="Loading..." // TODO: Change this
                         dataLength={9} // TODO: Change this
                         scrollableTarget="scrollable-element"
-                        style={{ overflow: "inherit" }}
+                        style={{ overflow: "inherit", width: "100%" }}
                     >
-                        {!isLoading && data?.emissions != undefined && (
-                            // @ts-ignore
-                            <CardContent emissions={data?.emissions} />
-                        )}
+                        <Stack direction="column" width="100%">
+                            {!isLoading && data?.emissions != undefined && (
+                                // @ts-ignore
+                                <CardContent emissions={data?.emissions} />
+                            )}
+                        </Stack>
                     </InfiniteScroll>
                 </StyledStack>
             </StyledCard>
