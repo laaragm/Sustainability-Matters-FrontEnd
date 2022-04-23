@@ -32,3 +32,7 @@ export const StyledDivider = styled("hr")(({ theme }) => ({
     boxSizing: "border-box",
     width: "100%",
 }));
+
+export const StyledImage = styled("img")(({ theme }) => ({
+    cursor: "pointer",
+}));

@@ -8,6 +8,8 @@ import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CardContent } from "./components/CardContent";
 import { useEmissions } from "../../hooks/useEmissions";
 import { StyledCard, StyledStack } from "./styles";
+import { Emission } from "../../types/emission";
+import { PATHS } from "../../routes/paths";
 
 export default function Emissions() {
     const theme = useTheme();
@@ -31,6 +33,14 @@ export default function Emissions() {
             <CircularProgress color="inherit" />
         </Stack>
     );
+
+    const handleClickOnMonth = (date: Date) => {
+        const route = `${
+            PATHS.emissions.route
+        }/${date.getMonth()}-${date.getFullYear()}`;
+        console.log(route);
+        navigate(route);
+    };
 
     return (
         <Stack
@@ -63,7 +73,10 @@ export default function Emissions() {
                         <Stack direction="column" width="70vw">
                             {!isLoading && data?.emissions != undefined && (
                                 // @ts-ignore
-                                <CardContent emissions={data?.emissions} />
+                                <CardContent
+                                    emissions={data?.emissions}
+                                    onMonthClick={handleClickOnMonth}
+                                />
                             )}
                         </Stack>
                     </InfiniteScroll>
