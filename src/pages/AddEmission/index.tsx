@@ -109,7 +109,6 @@ export default function AddEmission() {
                     subcategory: subCategory,
                 },
             });
-            console.log(response);
             navigate(PATHS.emissions.route);
         } catch (error) {
             console.log(error);

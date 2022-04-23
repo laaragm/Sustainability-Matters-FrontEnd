@@ -37,7 +37,6 @@ export default function Emissions() {
         const route = `${
             PATHS.emissions.route
         }/${date.getMonth()}-${date.getFullYear()}`;
-        console.log(route);
         navigate(route);
     };
 

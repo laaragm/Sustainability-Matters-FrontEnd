@@ -20,8 +20,6 @@ interface CardContentProps {
 }
 
 export function CardContent({ emissions, onMonthClick }: CardContentProps) {
-    console.log(emissions);
-
     const handleMonth = (date: string) => {
         onMonthClick(new Date(date));
     };
