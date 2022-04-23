@@ -1,3 +1,4 @@
+import { Stack } from "@mui/material";
 import { styled } from "@mui/material/styles";
 
 interface StyledCardProps {
@@ -25,4 +26,22 @@ export const StyledTitle = styled("div")(({ theme }) => ({
     "@media (max-width: 400px)": {
         fontSize: "1.1rem",
     },
+}));
+
+export const StyledStack = styled(Stack)(({ theme }) => ({
+    "::-webkit-scrollbar": {
+        width: "10px",
+        height: "10px",
+    },
+    "::-webkit-scrollbar-track": {
+        background: "white",
+    },
+    "::-webkit-scrollbar-thumb": {
+        background: theme.palette.info.light,
+    },
+    "::-webkit-scrollbar-thumb:hover": {
+        background: theme.palette.info.light,
+    },
+    WebkitOverflowScrolling: "touch",
+    overflowY: "scroll",
 }));

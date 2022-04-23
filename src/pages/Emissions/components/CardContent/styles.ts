@@ -25,9 +25,9 @@ export const StyledDescription = styled("div")(({ theme }) => ({
 }));
 
 export const StyledDivider = styled("hr")(({ theme }) => ({
-    color: theme.palette.warning.main,
+    color: theme.palette.info.light,
     fontWeight: "bold",
-    border: `1px solid ${theme.palette.warning.main}`,
+    border: `1px solid ${theme.palette.info.light}`,
     boxSizing: "border-box",
     width: "100%",
 }));

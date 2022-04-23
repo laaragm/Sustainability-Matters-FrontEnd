@@ -1,16 +1,24 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CardContent } from "./components/CardContent";
 import { useEmissions } from "../../hooks/useEmissions";
-import { StyledCard } from "./styles";
+import { StyledCard, StyledStack } from "./styles";
 
 export default function Emissions() {
     const theme = useTheme();
     let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const { data, isLoading } = useEmissions(1);
+    const [hasMoreData, setHasMoreData] = useState(true);
+
+    // TODO: Adjust this
+    const onScroll = () => {
+        setHasMoreData(false);
+    };
 
     return (
         <Stack
@@ -24,8 +32,28 @@ export default function Emissions() {
             width="100%"
         >
             <StyledCard isMobile={isMobile}>
-                {/* @ts-ignore */}
-                {!isLoading && <CardContent emissions={data?.emissions} />}
+                <StyledStack
+                    id="scrollable-element"
+                    direction="row"
+                    width="100%"
+                    height="100%"
+                    justifyContent="space-between"
+                    spacing={3}
+                >
+                    <InfiniteScroll
+                        next={onScroll}
+                        hasMore={hasMoreData}
+                        loader="Loading..."
+                        dataLength={9} // TODO: Change this
+                        scrollableTarget="scrollable-element"
+                        style={{ overflow: "inherit" }}
+                    >
+                        {!isLoading && data?.emissions != undefined && (
+                            // @ts-ignore
+                            <CardContent emissions={data?.emissions} />
+                        )}
+                    </InfiniteScroll>
+                </StyledStack>
             </StyledCard>
             <Stack
                 direction="row"
