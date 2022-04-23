@@ -30,5 +30,9 @@ export const PATHS = {
     emissions: {
         name: "Emissions",
         route: "/emissions",
+    },
+    forgotPassword: {
+        name: "Forgot Password",
+        route: "/forgotpassword",
     }
 };
