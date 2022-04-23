@@ -54,17 +54,18 @@ export default function ForgotPassord() {
                         sx={{
                             width:"30.0rem",
                             height:"4.0rem",
+                            mb: 10,
                         }}
                     >
                         <StyledTitle>
                             FORGOT PASSWORD
                         </StyledTitle>
                         <StyledSubtitle>
-                            Please, provide your account's email for which you wnat to reset your password
+                            Please, provide your account's email for which you want to reset your password
                         </StyledSubtitle>
                     </Stack>
 
-                    <Stack width="70%">
+                    <Stack width="50%">
                         <CustomizedTextField
                             title="Email"
                             id="email-field"
@@ -77,7 +78,7 @@ export default function ForgotPassord() {
                         </StyledText>
                     </Stack>
 
-                    <Stack width="45%" mt={20}>
+                    <Stack width="45%">
                         <CustomizedButton
                             color="secondary"
                             borderRadius="0.1rem"
