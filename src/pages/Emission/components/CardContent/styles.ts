@@ -36,3 +36,13 @@ export const StyledDivider = styled("hr")(({ theme }) => ({
 export const StyledImage = styled("img")(({ theme }) => ({
     cursor: "pointer",
 }));
+
+export const StyledConsumptionInfo = styled("div")(({ theme }) => ({
+    color: theme.palette.warning.main,
+    fontSize: "1rem",
+    fontWeight: 500,
+    lineHeight: "1.25rem",
+    "@media (max-width: 400px)": {
+        fontSize: "0.9rem",
+    },
+}));

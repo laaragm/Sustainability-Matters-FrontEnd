@@ -68,7 +68,7 @@ export default function Emissions() {
                         next={onScroll}
                         hasMore={hasMoreData}
                         loader={Loader}
-                        dataLength={9} // TODO: Change this
+                        dataLength={data?.totalCount || 0}
                         scrollableTarget="scrollable-element"
                         style={{ overflow: "inherit" }}
                     >

@@ -77,7 +77,7 @@ export default function Emission() {
                         next={onScroll}
                         hasMore={hasMoreData}
                         loader={Loader}
-                        dataLength={9} // TODO: Change this
+                        dataLength={data?.totalCount || 0}
                         scrollableTarget="scrollable-element"
                         style={{ overflow: "inherit" }}
                     >
@@ -85,7 +85,7 @@ export default function Emission() {
                             {!isLoading && data?.emissions != undefined && (
                                 // @ts-ignore
                                 <CardContent
-                                    emissions={data?.emissions}
+                                    data={data}
                                     date={date}
                                     onRowClick={handleClickOnRow}
                                 />

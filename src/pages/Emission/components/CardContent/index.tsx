@@ -12,15 +12,26 @@ import {
     StyledDescription,
     StyledDivider,
     StyledImage,
+    StyledConsumptionInfo,
 } from "./styles";
 
-interface CardContentProps {
+interface EmissionData {
+    totalCount: number;
     emissions: Emission[];
+    totalConsumption: number;
+    europeanUnionAverage: number;
+}
+
+interface CardContentProps {
+    data: EmissionData;
     date: string;
     onRowClick: (emission: Emission) => void;
 }
 
-export function CardContent({ emissions, date, onRowClick }: CardContentProps) {
+export function CardContent({ data, date, onRowClick }: CardContentProps) {
+    const { emissions, totalCount, totalConsumption, europeanUnionAverage } =
+        data;
+
     const handleRowClick = (emission: Emission) => {
         onRowClick(emission);
     };
@@ -47,6 +58,14 @@ export function CardContent({ emissions, date, onRowClick }: CardContentProps) {
             width="100%"
         >
             <StyledDate key={date}>{date}</StyledDate>
+            <Stack direction="column" mt={2} mb={2} spacing={0.5}>
+                <StyledConsumptionInfo>
+                    Total: {totalConsumption} kgCO2eq
+                </StyledConsumptionInfo>
+                <StyledConsumptionInfo>
+                    EU average: {europeanUnionAverage} kgCO2eq
+                </StyledConsumptionInfo>
+            </Stack>
             <Stack width="100%">
                 {emissions?.map((emission) => (
                     <Stack
