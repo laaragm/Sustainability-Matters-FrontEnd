@@ -19,6 +19,7 @@ export async function getEmissions(
     const totalCount = +headers["x-total-count"];
     const result: Emission[] = data.emissions?.map((item: Emission) => {
         return {
+            title: item.title,
             subcategory: item.subcategory,
             amount: item.amount,
             co2Emission: +(

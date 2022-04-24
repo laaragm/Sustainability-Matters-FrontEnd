@@ -22,6 +22,7 @@ export async function getEmission(page: number): Promise<GetEmissionResponse> {
     const emissions: Emission[] = data.emissions?.map((item: Emission) => {
         totalConsumption += +(item.amount * item.subcategory?.emissionFactor);
         return {
+            title: item.title,
             subcategory: item.subcategory,
             amount: item.amount,
             co2Emission: totalConsumption.toFixed(3),
