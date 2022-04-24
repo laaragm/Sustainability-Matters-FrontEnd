@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CircularProgress } from "@mui/material";
 
 import { CardContent } from "./components/CardContent";
-import { PATHS } from "../../routes/paths";
 import { useEmission } from "../../hooks/useEmission";
+import { Emission as EmissionType } from "../../types/emission";
 import { StyledCard, StyledStack } from "./styles";
 
 export default function Emission() {
     const theme = useTheme();
-    let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const { data, isLoading } = useEmission(1);
     const [hasMoreData, setHasMoreData] = useState(true);
@@ -52,7 +50,8 @@ export default function Emission() {
         </Stack>
     );
 
-    const handleClickOnRow = (date: Date) => {};
+    // TODO: Open modal
+    const handleClickOnRow = (emission: EmissionType) => {};
 
     return (
         <Stack

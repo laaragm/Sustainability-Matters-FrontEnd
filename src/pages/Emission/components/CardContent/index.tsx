@@ -17,12 +17,12 @@ import {
 interface CardContentProps {
     emissions: Emission[];
     date: string;
-    onRowClick: (date: Date) => void;
+    onRowClick: (emission: Emission) => void;
 }
 
 export function CardContent({ emissions, date, onRowClick }: CardContentProps) {
-    const handleRowClick = (date: string) => {
-        onRowClick(new Date(date));
+    const handleRowClick = (emission: Emission) => {
+        onRowClick(emission);
     };
 
     const getIcon = (category: any) => {
@@ -46,18 +46,7 @@ export function CardContent({ emissions, date, onRowClick }: CardContentProps) {
             justifyContent="flex-start"
             width="100%"
         >
-            <Stack direction="row">
-                <StyledDate key={date}>{date}</StyledDate>
-                <Stack mt={1} ml={1}>
-                    <StyledImage
-                        src={chevronForwardIcon}
-                        alt="Chevron forward icon"
-                        height="20"
-                        width="20"
-                        onClick={() => handleRowClick(date)}
-                    />
-                </Stack>
-            </Stack>
+            <StyledDate key={date}>{date}</StyledDate>
             <Stack width="100%">
                 {emissions?.map((emission) => (
                     <Stack
@@ -69,15 +58,28 @@ export function CardContent({ emissions, date, onRowClick }: CardContentProps) {
                         <Stack mt={1}>
                             {getIcon(emission.subcategory?.category)}
                         </Stack>
-                        <Stack direction="column" mb={1} width="100%">
-                            <StyledTitle>
-                                {emission.subcategory?.name}
-                            </StyledTitle>
-                            <StyledDescription>
-                                {emission.date} - {emission.co2Emission} kgCO2eq
-                            </StyledDescription>
-                            <Stack width="100%" mt={1}>
-                                <StyledDivider />
+
+                        <Stack direction="row" width="100%">
+                            <Stack direction="column" mb={1} width="100%">
+                                <StyledTitle>
+                                    {emission.subcategory?.name}
+                                </StyledTitle>
+                                <StyledDescription>
+                                    {emission.date} - {emission.co2Emission}{" "}
+                                    kgCO2eq
+                                </StyledDescription>
+                                <Stack width="100%" mt={1}>
+                                    <StyledDivider />
+                                </Stack>
+                            </Stack>
+                            <Stack mt={1.3} ml={1}>
+                                <StyledImage
+                                    src={chevronForwardIcon}
+                                    alt="Chevron forward icon"
+                                    height="20"
+                                    width="20"
+                                    onClick={() => handleRowClick(emission)}
+                                />
                             </Stack>
                         </Stack>
                     </Stack>
