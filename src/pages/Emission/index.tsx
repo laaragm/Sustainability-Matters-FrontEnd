@@ -7,6 +7,7 @@ import { CardContent } from "./components/CardContent";
 import { useEmission } from "../../hooks/useEmission";
 import { Emission as EmissionType } from "../../types/emission";
 import { StyledCard, StyledStack } from "./styles";
+import { SideModal } from "./components/SideModal";
 
 export default function Emission() {
     const theme = useTheme();
@@ -14,6 +15,8 @@ export default function Emission() {
     const { data, isLoading } = useEmission(1);
     const [hasMoreData, setHasMoreData] = useState(true);
     const [date, setDate] = useState("");
+    const [selectedEmission, setSelectedEmission] =
+        useState<EmissionType | null>(null);
 
     useEffect(() => {
         defineDate();
@@ -50,8 +53,16 @@ export default function Emission() {
         </Stack>
     );
 
-    // TODO: Open modal
-    const handleClickOnRow = (emission: EmissionType) => {};
+    const handleClickOnRow = (emission: EmissionType) => {
+        setSelectedEmission(emission);
+    };
+
+    const handleCancel = () => {
+        setSelectedEmission(null);
+    };
+
+    // TODO: Implement delete functionality
+    const handleDelete = (emission: EmissionType) => {};
 
     return (
         <Stack
@@ -62,7 +73,7 @@ export default function Emission() {
             m={isMobile ? 0 : 5}
             mt={isMobile ? 8 : 5}
             height="100%"
-            width="100%"
+            width={selectedEmission != null ? "85%" : "100%"}
         >
             <StyledCard isMobile={isMobile}>
                 <StyledStack
@@ -81,7 +92,10 @@ export default function Emission() {
                         scrollableTarget="scrollable-element"
                         style={{ overflow: "inherit" }}
                     >
-                        <Stack direction="column" width="70vw">
+                        <Stack
+                            direction="column"
+                            width={selectedEmission != null ? "60vw" : "70vw"}
+                        >
                             {!isLoading && data?.emissions != undefined && (
                                 // @ts-ignore
                                 <CardContent
@@ -94,6 +108,13 @@ export default function Emission() {
                     </InfiniteScroll>
                 </StyledStack>
             </StyledCard>
+            {selectedEmission != null && (
+                <SideModal
+                    emission={selectedEmission}
+                    onCancel={handleCancel}
+                    onDelete={handleDelete}
+                />
+            )}
         </Stack>
     );
 }
