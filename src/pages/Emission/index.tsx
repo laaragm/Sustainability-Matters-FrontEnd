@@ -8,6 +8,7 @@ import { useEmission } from "../../hooks/useEmission";
 import { Emission as EmissionType } from "../../types/emission";
 import { StyledCard, StyledStack } from "./styles";
 import { SideModal } from "./components/SideModal";
+import { ModalMobile } from "./components/ModalMobile";
 
 export default function Emission() {
     const theme = useTheme();
@@ -61,8 +62,9 @@ export default function Emission() {
         setSelectedEmission(null);
     };
 
-    // TODO: Implement delete functionality
-    const handleDelete = (emission: EmissionType) => {};
+    const handleDelete = (emission: EmissionType) => {
+        setSelectedEmission(null);
+    };
 
     return (
         <Stack
@@ -75,45 +77,60 @@ export default function Emission() {
             height="100%"
             width={selectedEmission != null ? "85%" : "100%"}
         >
-            <StyledCard isMobile={isMobile}>
-                <StyledStack
-                    id="scrollable-element"
-                    direction="row"
-                    width="100%"
-                    height="100%"
-                    justifyContent="space-between"
-                    spacing={isMobile ? 1 : 3}
-                >
-                    <InfiniteScroll
-                        next={onScroll}
-                        hasMore={hasMoreData}
-                        loader={Loader}
-                        dataLength={data?.totalCount || 0}
-                        scrollableTarget="scrollable-element"
-                        style={{ overflow: "inherit" }}
+            {(!isMobile || selectedEmission == null) && (
+                <StyledCard isMobile={isMobile}>
+                    <StyledStack
+                        id="scrollable-element"
+                        direction="row"
+                        width="100%"
+                        height="100%"
+                        justifyContent="space-between"
+                        spacing={isMobile ? 1 : 3}
                     >
-                        <Stack
-                            direction="column"
-                            width={selectedEmission != null ? "60vw" : "70vw"}
+                        <InfiniteScroll
+                            next={onScroll}
+                            hasMore={hasMoreData}
+                            loader={Loader}
+                            dataLength={data?.totalCount || 0}
+                            scrollableTarget="scrollable-element"
+                            style={{ overflow: "inherit" }}
                         >
-                            {!isLoading && data?.emissions != undefined && (
-                                // @ts-ignore
-                                <CardContent
-                                    data={data}
-                                    date={date}
-                                    onRowClick={handleClickOnRow}
-                                />
-                            )}
-                        </Stack>
-                    </InfiniteScroll>
-                </StyledStack>
-            </StyledCard>
+                            <Stack
+                                direction="column"
+                                width={
+                                    selectedEmission != null ? "60vw" : "70vw"
+                                }
+                            >
+                                {!isLoading && data?.emissions != undefined && (
+                                    // @ts-ignore
+                                    <CardContent
+                                        data={data}
+                                        date={date}
+                                        isMobile={isMobile}
+                                        onRowClick={handleClickOnRow}
+                                    />
+                                )}
+                            </Stack>
+                        </InfiniteScroll>
+                    </StyledStack>
+                </StyledCard>
+            )}
             {selectedEmission != null && (
-                <SideModal
-                    emission={selectedEmission}
-                    onCancel={handleCancel}
-                    onDelete={handleDelete}
-                />
+                <>
+                    {isMobile ? (
+                        <ModalMobile
+                            emission={selectedEmission}
+                            onCancel={handleCancel}
+                            onDelete={handleDelete}
+                        />
+                    ) : (
+                        <SideModal
+                            emission={selectedEmission}
+                            onCancel={handleCancel}
+                            onDelete={handleDelete}
+                        />
+                    )}
+                </>
             )}
         </Stack>
     );

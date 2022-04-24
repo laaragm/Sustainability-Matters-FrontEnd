@@ -25,10 +25,16 @@ interface EmissionData {
 interface CardContentProps {
     data: EmissionData;
     date: string;
+    isMobile: boolean;
     onRowClick: (emission: Emission) => void;
 }
 
-export function CardContent({ data, date, onRowClick }: CardContentProps) {
+export function CardContent({
+    data,
+    date,
+    isMobile,
+    onRowClick,
+}: CardContentProps) {
     const { emissions, totalCount, totalConsumption, europeanUnionAverage } =
         data;
 
@@ -77,7 +83,6 @@ export function CardContent({ data, date, onRowClick }: CardContentProps) {
                         <Stack mt={1}>
                             {getIcon(emission.subcategory?.category)}
                         </Stack>
-
                         <Stack direction="row" width="100%">
                             <Stack direction="column" mb={1} width="100%">
                                 <StyledTitle>
@@ -91,7 +96,7 @@ export function CardContent({ data, date, onRowClick }: CardContentProps) {
                                     <StyledDivider />
                                 </Stack>
                             </Stack>
-                            <Stack mt={1.3} ml={1}>
+                            <Stack mt={isMobile ? 3 : 1.3} ml={1}>
                                 <StyledImage
                                     src={chevronForwardIcon}
                                     alt="Chevron forward icon"
