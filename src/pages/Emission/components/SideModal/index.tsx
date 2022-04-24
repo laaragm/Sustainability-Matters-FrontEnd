@@ -23,8 +23,10 @@ export function SideModal({ emission, onDelete, onCancel }: SideModalProps) {
     return (
         <StyledCard>
             {emission != null && (
-                <Stack direction="column" spacing={3}>
-                    <StyledTitle>Emission</StyledTitle>
+                <Stack direction="column" spacing={5} width="100%">
+                    <Stack mb={10}>
+                        <StyledTitle>Emission</StyledTitle>
+                    </Stack>
                     <EmissionInformation label="Title" value={emission.title} />
                     <EmissionInformation
                         label="Category"
@@ -48,6 +50,10 @@ export function SideModal({ emission, onDelete, onCancel }: SideModalProps) {
                         spacing={2}
                         alignItems="center"
                         justifyContent="center"
+                        bottom="5%"
+                        position="absolute"
+                        mb={3}
+                        width="70%"
                     >
                         <CustomizedButton
                             color="error"
