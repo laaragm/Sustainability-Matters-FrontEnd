@@ -44,6 +44,7 @@ export function CustomizedButton({
                 borderRadius: borderRadius,
                 textTransform: "capitalize",
                 padding: padding,
+                fontWeight: variant === "text" ? "bold" : "normal",
             }}
         >
             {children}

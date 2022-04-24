@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
-import { CategoryType } from "../../types/categoryEnum";
+import { CategoryEnum } from "../../types/categoryEnum";
 import { FoodType } from "../../types/food/foodEnum";
 import { TransportType } from "../../types/transport/transportEnum";
 import { CO2Indicator } from "./components/CO2Indicator";
@@ -15,7 +15,7 @@ import { transportFactors } from "../../types/transport/transportFactors";
 import { AddEmissionForm } from "./components/AddEmissionForm";
 import { StyledCard } from "./styles";
 
-const categoryOptions = Object.values(CategoryType);
+const categoryOptions = Object.values(CategoryEnum);
 
 export default function AddEmission() {
     const theme = useTheme();
@@ -48,19 +48,19 @@ export default function AddEmission() {
         let keys: string[] = [];
         let emissionFactor = 0;
         const subCategoryValue = subCategory.replace(/ /g, "");
-        if (category === CategoryType.electricity) {
+        if (category === CategoryEnum.Electricity) {
             keys = Object.keys(electricityFactors);
             // @ts-ignore
             selectedKey = keys.find((key) => key === subCategoryValue);
             // @ts-ignore
             emissionFactor = electricityFactors[selectedKey];
-        } else if (category === CategoryType.food) {
+        } else if (category === CategoryEnum.Food) {
             keys = Object.keys(foodFactors);
             // @ts-ignore
             selectedKey = keys.find((key) => key === subCategoryValue);
             // @ts-ignore
             emissionFactor = foodFactors[selectedKey];
-        } else if (category === CategoryType.transport) {
+        } else if (category === CategoryEnum.Transport) {
             keys = Object.keys(transportFactors);
             // @ts-ignore
             selectedKey = keys.find((key) => key === subCategoryValue);
@@ -85,15 +85,15 @@ export default function AddEmission() {
     };
 
     const updateSubCategoryOptions = (newCategory: string) => {
-        if (newCategory === CategoryType.electricity) {
+        if (newCategory === CategoryEnum.Electricity) {
             const types = Object.values(ElectricityType);
             setSubCategoryOptions(types);
             setAmountFieldTitle("Amount (Watt)");
-        } else if (newCategory === CategoryType.food) {
+        } else if (newCategory === CategoryEnum.Food) {
             const types = Object.values(FoodType);
             setSubCategoryOptions(types);
             setAmountFieldTitle("Amount (kg)");
-        } else if (newCategory === CategoryType.transport) {
+        } else if (newCategory === CategoryEnum.Transport) {
             const types = Object.values(TransportType);
             setSubCategoryOptions(types);
             setAmountFieldTitle("Distance (km)");

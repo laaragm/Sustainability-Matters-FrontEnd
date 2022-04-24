@@ -21,9 +21,9 @@ interface User {
 }
 
 enum Category {
-    Transport = 1,
-    Food = 2,
-    Electricity = 3,
+    Transport = "Transport",
+    Food = "Food",
+    Electricity = "Electricity",
 }
 
 interface Subcategory {
@@ -34,6 +34,7 @@ interface Subcategory {
 }
 
 interface Emission {
+    title: string;
     subcategory: Subcategory;
     user: User;
     amount: number;
@@ -87,6 +88,9 @@ export function makeServer() {
         },
         factories: {
             emission: Factory.extend({
+                title(index: number) {
+                    return `My emission ${index + 1}`;
+                },
                 subcategory() {
                     const { category, name } = getRandomCategoryData();
                     const subcategory: Subcategory = {
