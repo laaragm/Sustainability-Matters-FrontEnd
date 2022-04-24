@@ -1,21 +1,38 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { CircularProgress } from "@mui/material";
 
-import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CardContent } from "./components/CardContent";
-import { useEmissions } from "../../hooks/useEmissions";
-import { PATHS } from "../../routes/paths";
+import { useEmission } from "../../hooks/useEmission";
+import { Emission as EmissionType } from "../../types/emission";
 import { StyledCard, StyledStack } from "./styles";
 
-export default function Emissions() {
+export default function Emission() {
     const theme = useTheme();
-    let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const { data, isLoading } = useEmissions(1);
+    const { data, isLoading } = useEmission(1);
     const [hasMoreData, setHasMoreData] = useState(true);
+    const [date, setDate] = useState("");
+
+    useEffect(() => {
+        defineDate();
+    }, []);
+
+    const defineDate = () => {
+        const value = window.location.href.substring(
+            window.location.href.lastIndexOf("/") + 1
+        );
+        if (value != undefined) {
+            const month = +value.split("-")[0];
+            const year = +value.split("-")[1];
+            const newDate = new Date(year, month, 1).toLocaleDateString("en", {
+                month: "long",
+                year: "numeric",
+            });
+            setDate(newDate);
+        }
+    };
 
     // TODO: Adjust this
     const onScroll = () => {
@@ -33,16 +50,8 @@ export default function Emissions() {
         </Stack>
     );
 
-    const handleClickOnMonth = (date: Date) => {
-        const route = `${
-            PATHS.emissions.route
-        }/${date.getMonth()}-${date.getFullYear()}`;
-        navigate(route);
-    };
-
-    const handleAddEmission = () => {
-        navigate(PATHS.addEmission.route);
-    };
+    // TODO: Open modal
+    const handleClickOnRow = (emission: EmissionType) => {};
 
     return (
         <Stack
@@ -76,28 +85,15 @@ export default function Emissions() {
                             {!isLoading && data?.emissions != undefined && (
                                 // @ts-ignore
                                 <CardContent
-                                    emissions={data?.emissions}
-                                    onMonthClick={handleClickOnMonth}
+                                    data={data}
+                                    date={date}
+                                    onRowClick={handleClickOnRow}
                                 />
                             )}
                         </Stack>
                     </InfiniteScroll>
                 </StyledStack>
             </StyledCard>
-            <Stack
-                width={isMobile ? "90%" : "80%"}
-                justifyContent="flex-end"
-                alignItems="flex-end"
-                spacing={1}
-            >
-                <CustomizedButton
-                    color="secondary"
-                    borderRadius="1.5rem"
-                    onClick={handleAddEmission}
-                >
-                    + Add emission
-                </CustomizedButton>
-            </Stack>
         </Stack>
     );
 }
