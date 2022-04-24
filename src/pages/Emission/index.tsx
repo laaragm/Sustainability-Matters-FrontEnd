@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
-import InfiniteScroll from "react-infinite-scroll-component";
 import { CircularProgress } from "@mui/material";
+import InfiniteScroll from "react-infinite-scroll-component";
 
 import { CardContent } from "./components/CardContent";
 import { useEmission } from "../../hooks/useEmission";
@@ -9,9 +10,12 @@ import { Emission as EmissionType } from "../../types/emission";
 import { StyledCard, StyledStack } from "./styles";
 import { SideModal } from "./components/SideModal";
 import { ModalMobile } from "./components/ModalMobile";
+import { CustomizedButton } from "../../shared/components/CustomizedButton";
+import { PATHS } from "../../routes/paths";
 
 export default function Emission() {
     const theme = useTheme();
+    let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const { data, isLoading } = useEmission(1);
     const [hasMoreData, setHasMoreData] = useState(true);
@@ -66,6 +70,10 @@ export default function Emission() {
         setSelectedEmission(null);
     };
 
+    const handleGoBackToList = () => {
+        navigate(PATHS.emissions.route);
+    };
+
     return (
         <Stack
             direction="column"
@@ -78,42 +86,61 @@ export default function Emission() {
             width={selectedEmission != null ? "85%" : "100%"}
         >
             {(!isMobile || selectedEmission == null) && (
-                <StyledCard isMobile={isMobile}>
-                    <StyledStack
-                        id="scrollable-element"
-                        direction="row"
-                        width="100%"
-                        height="100%"
-                        justifyContent="space-between"
-                        spacing={isMobile ? 1 : 3}
-                    >
-                        <InfiniteScroll
-                            next={onScroll}
-                            hasMore={hasMoreData}
-                            loader={Loader}
-                            dataLength={data?.totalCount || 0}
-                            scrollableTarget="scrollable-element"
-                            style={{ overflow: "inherit" }}
+                <>
+                    <StyledCard isMobile={isMobile}>
+                        <StyledStack
+                            id="scrollable-element"
+                            direction="row"
+                            width="100%"
+                            height="100%"
+                            justifyContent="space-between"
+                            spacing={isMobile ? 1 : 3}
                         >
-                            <Stack
-                                direction="column"
-                                width={
-                                    selectedEmission != null ? "60vw" : "70vw"
-                                }
+                            <InfiniteScroll
+                                next={onScroll}
+                                hasMore={hasMoreData}
+                                loader={Loader}
+                                dataLength={data?.totalCount || 0}
+                                scrollableTarget="scrollable-element"
+                                style={{ overflow: "inherit" }}
                             >
-                                {!isLoading && data?.emissions != undefined && (
-                                    // @ts-ignore
-                                    <CardContent
-                                        data={data}
-                                        date={date}
-                                        isMobile={isMobile}
-                                        onRowClick={handleClickOnRow}
-                                    />
-                                )}
-                            </Stack>
-                        </InfiniteScroll>
-                    </StyledStack>
-                </StyledCard>
+                                <Stack
+                                    direction="column"
+                                    width={
+                                        selectedEmission != null
+                                            ? "60vw"
+                                            : "70vw"
+                                    }
+                                >
+                                    {!isLoading &&
+                                        data?.emissions != undefined && (
+                                            // @ts-ignore
+                                            <CardContent
+                                                data={data}
+                                                date={date}
+                                                isMobile={isMobile}
+                                                onRowClick={handleClickOnRow}
+                                            />
+                                        )}
+                                </Stack>
+                            </InfiniteScroll>
+                        </StyledStack>
+                    </StyledCard>
+                    <Stack
+                        width={isMobile ? "90%" : "80%"}
+                        justifyContent="flex-end"
+                        alignItems="flex-end"
+                        spacing={1}
+                    >
+                        <CustomizedButton
+                            color="secondary"
+                            borderRadius="1.5rem"
+                            onClick={handleGoBackToList}
+                        >
+                            Go back to list
+                        </CustomizedButton>
+                    </Stack>
+                </>
             )}
             {selectedEmission != null && (
                 <>
