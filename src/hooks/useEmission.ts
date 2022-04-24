@@ -17,7 +17,7 @@ export async function getEmission(page: number): Promise<GetEmissionResponse> {
         },
     });
     const totalCount = +headers["x-total-count"];
-    const europeanUnionAverage = 2256; // TODO: Think about how we're going to get this information
+    const europeanUnionAverage = 2256.41; // TODO: Think about how we're going to get this information
     let totalConsumption = 0;
     const emissions: Emission[] = data.emissions?.map((item: Emission) => {
         totalConsumption += +(
