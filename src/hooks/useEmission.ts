@@ -6,6 +6,8 @@ import { Emission } from "../types/emission";
 type GetEmissionResponse = {
     totalCount: number;
     emissions: Emission[];
+    totalConsumption: number;
+    europeanUnionAverage: number;
 };
 
 export async function getEmission(page: number): Promise<GetEmissionResponse> {
@@ -15,13 +17,14 @@ export async function getEmission(page: number): Promise<GetEmissionResponse> {
         },
     });
     const totalCount = +headers["x-total-count"];
+    const europeanUnionAverage = 2256; // TODO: Think about how we're going to get this information
+    let totalConsumption = 0;
     const emissions: Emission[] = data.emissions?.map((item: Emission) => {
+        totalConsumption += +(item.amount * item.subcategory?.emissionFactor);
         return {
             subcategory: item.subcategory,
             amount: item.amount,
-            co2Emission: +(
-                item.amount * item.subcategory?.emissionFactor
-            ).toFixed(3),
+            co2Emission: totalConsumption.toFixed(3),
             user: item.user,
             date: new Date(item.date).toLocaleDateString("en", {
                 day: "2-digit",
@@ -31,7 +34,7 @@ export async function getEmission(page: number): Promise<GetEmissionResponse> {
         };
     });
 
-    return { emissions, totalCount };
+    return { emissions, totalCount, totalConsumption, europeanUnionAverage };
 }
 
 export function useEmission(page: number, options?: UseQueryOptions) {
