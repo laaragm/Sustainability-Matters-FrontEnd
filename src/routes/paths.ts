@@ -31,4 +31,8 @@ export const PATHS = {
         name: "Emissions",
         route: "/emissions",
     },
+    emission: {
+        name: "Emission",
+        route: "/emissions/:id",
+    },
 };
