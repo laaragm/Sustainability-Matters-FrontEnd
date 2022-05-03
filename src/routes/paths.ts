@@ -35,4 +35,12 @@ export const PATHS = {
         name: "Emission",
         route: "/emissions/:id",
     },
+    forgotPassword: {
+        name: "Forgot Password",
+        route: "/forgotpassword",
+    },
+    budget: {
+        name: "Budget",
+        route: "/budget",
+    }
 };
