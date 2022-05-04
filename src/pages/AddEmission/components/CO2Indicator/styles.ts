@@ -12,8 +12,8 @@ export const StyledIndicator = styled("div")<StyledIndicatorProps>(
         border: isMobile
             ? `0.7rem solid ${theme.palette.secondary.main}`
             : `1.25rem solid ${theme.palette.secondary.main}`,
-        width: isMobile ? "90%" : "70%",
-        height: isMobile ? "22%" : "100%",
+        width: isMobile ? "90%" : "80%",
+        height: isMobile ? "22%" : "80%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

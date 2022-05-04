@@ -31,6 +31,7 @@ export function CustomizedDatePicker({ value, onChange }: DatePickerProps) {
                                 background: "rgba(51, 30, 130, 0.13)",
                                 border: `1px solid ${theme.palette.secondary.main}`,
                                 borderRadius: "0.5rem",
+                                color: theme.palette.text.secondary,
                             }}
                         />
                     )}
