@@ -67,16 +67,16 @@ export function CardContent({ emissions, onMonthClick }: CardContentProps) {
                                 spacing={1}
                                 mt={1}
                             >
-                                <Stack mt={1}>
+                                <Stack mt={3}>
                                     {getIcon(emission.subcategory?.category)}
                                 </Stack>
                                 <Stack direction="column" mb={1} width="100%">
-                                    <StyledTitle>
-                                        {emission.subcategory?.name}
-                                    </StyledTitle>
+                                    <StyledTitle>{emission.title}</StyledTitle>
                                     <StyledDescription>
-                                        {emission.date} - {emission.co2Emission}{" "}
-                                        kgCO2eq
+                                        {emission.subcategory?.name}
+                                    </StyledDescription>
+                                    <StyledDescription>
+                                        {emission.date} - {emission.co2} kgCO2eq
                                     </StyledDescription>
                                     <Stack width="100%" mt={1}>
                                         <StyledDivider />

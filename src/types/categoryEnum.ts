@@ -1,5 +1,5 @@
 export enum CategoryEnum {
-    Transport = "Transport",
-    Electricity = "Electricity",
-    Food = "Food",
+    Transport = "transport",
+    Electricity = "electricity",
+    Food = "food",
 }

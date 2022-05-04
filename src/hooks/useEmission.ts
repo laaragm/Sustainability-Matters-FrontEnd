@@ -20,13 +20,12 @@ export async function getEmission(page: number): Promise<GetEmissionResponse> {
     const europeanUnionAverage = 2256.41; // TODO: Think about how we're going to get this information
     let totalConsumption = 0;
     const emissions: Emission[] = data.emissions?.map((item: Emission) => {
-        totalConsumption += +(item.amount * item.subcategory?.emissionFactor);
+        totalConsumption += +(item.amount * item.co2);
         return {
             title: item.title,
             subcategory: item.subcategory,
             amount: item.amount,
-            co2Emission: totalConsumption.toFixed(3),
-            user: item.user,
+            co2: totalConsumption.toFixed(3),
             date: new Date(item.date).toLocaleDateString("en", {
                 day: "2-digit",
                 month: "long",

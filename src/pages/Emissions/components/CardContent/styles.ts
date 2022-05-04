@@ -23,6 +23,7 @@ export const StyledDescription = styled("div")(({ theme }) => ({
     color: theme.palette.warning.main,
     fontWeight: 400,
     fontSize: "0.9rem",
+    textTransform: "capitalize",
 }));
 
 export const StyledDivider = styled("hr")(({ theme }) => ({
