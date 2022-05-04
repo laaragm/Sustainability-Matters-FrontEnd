@@ -17,9 +17,9 @@ export function AmountField({
     return (
         <CustomizedTextField
             height={isMobile ? "3rem" : "auto"}
+            customTextField
             title={title}
             id={id}
-            customTextField
             type="number"
             value={value}
             onChange={(value) => onChange(value)}

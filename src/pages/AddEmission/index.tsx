@@ -28,6 +28,8 @@ export default function AddEmission() {
         useState<string>("Distance (km)");
     const [amount, setAmount] = useState<number>(0);
     const [co2Emission, setCO2Emission] = useState<number>(0);
+    const [title, setTitle] = useState(null);
+    const [date, setDate] = useState(null);
 
     useEffect(() => {
         updateSubCategoryOptions(category);
@@ -84,6 +86,14 @@ export default function AddEmission() {
         setAmount(newAmount);
     };
 
+    const handleDate = (value: any) => {
+        setDate(value);
+    };
+
+    const handleTitle = (value: any) => {
+        setTitle(value);
+    };
+
     const updateSubCategoryOptions = (newCategory: string) => {
         if (newCategory === CategoryEnum.Electricity) {
             const types = Object.values(ElectricityType);
@@ -135,10 +145,14 @@ export default function AddEmission() {
                         subCategory={subCategory}
                         amount={amount}
                         amountFieldTitle={amountFieldTitle}
+                        title={title}
+                        date={date}
                         onSubCategoryChange={handleSubCategory}
                         onAmountChange={handleAmount}
                         onCategoryChange={handleCategory}
                         onAddEmission={handleAddEmission}
+                        onTitleChange={handleTitle}
+                        onDateChange={handleDate}
                         isMobile={isMobile}
                     />
                     <Stack
