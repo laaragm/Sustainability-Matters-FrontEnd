@@ -13,7 +13,7 @@ export const StyledIndicator = styled("div")<StyledIndicatorProps>(
             ? `0.7rem solid ${theme.palette.secondary.main}`
             : `1.25rem solid ${theme.palette.secondary.main}`,
         width: isMobile ? "90%" : "80%",
-        height: isMobile ? "22%" : "80%",
+        height: isMobile ? "20%" : "80%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
@@ -23,7 +23,7 @@ export const StyledIndicator = styled("div")<StyledIndicatorProps>(
 export const StyledValue = styled("div")<StyledIndicatorProps>(
     ({ theme, isMobile }) => ({
         fontWeight: 700,
-        fontSize: isMobile ? "1.5rem" : "4.688rem",
+        fontSize: isMobile ? "1.1rem" : "4.688rem",
         lineHeight: "1.25rem",
     })
 );
@@ -31,7 +31,7 @@ export const StyledValue = styled("div")<StyledIndicatorProps>(
 export const StyledSubtitle = styled("div")<StyledIndicatorProps>(
     ({ theme, isMobile }) => ({
         fontWeight: 400,
-        fontSize: isMobile ? "1rem" : "1.563rem",
+        fontSize: isMobile ? "0.9rem" : "1.563rem",
         lineHeight: "1.25rem",
     })
 );
