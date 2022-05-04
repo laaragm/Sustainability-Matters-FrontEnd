@@ -24,7 +24,7 @@ export function TokenContextProvider({ children }: TokenContextProviderProps) {
                     auth: {
                         // TODO: Change this
                         username: "string",
-                        password: "123",
+                        password: "string",
                     },
                 }
             );
