@@ -146,7 +146,12 @@ export function AddEmissionForm({
                     color="secondary"
                     borderRadius="1.5rem"
                     fullWidth={true}
-                    disabled={category.length === 0 || subCategory.length === 0}
+                    disabled={
+                        category.length === 0 ||
+                        subCategory.length === 0 ||
+                        title == null ||
+                        date == null
+                    }
                     onClick={handleAddEmission}
                 >
                     Add
