@@ -45,7 +45,7 @@ export function CardContent({ emissions, onMonthClick }: CardContentProps) {
             justifyContent="flex-start"
             width="100%"
         >
-            {Object.keys(emissions).map((key, index) => (
+            {Object.keys(emissions).map((key) => (
                 <>
                     <Stack direction="row">
                         <StyledDate key={key}>{key}</StyledDate>
