@@ -5,8 +5,8 @@ import { CustomizedButton } from "../../../../shared/components/CustomizedButton
 import { AmountField } from "../AmountField";
 import { CategorySelector } from "../CategorySelector";
 import { PATHS } from "../../../../routes/paths";
-import { CustomizedDatePicker } from "../CustomizedDatePicker";
 import { Title } from "../Title";
+import { CustomizedDate } from "../CustomizedDate";
 import { StyledTitle } from "./styles";
 
 interface AddEmissionFormProps {
@@ -94,7 +94,11 @@ export function AddEmissionForm({
                 />
             </Stack>
             <Stack width={isMobile ? "90%" : "50%"} pt={2}>
-                <CustomizedDatePicker value={date} onChange={handleDate} />
+                <CustomizedDate
+                    value={date}
+                    isMobile={isMobile}
+                    onChange={handleDate}
+                />
             </Stack>
             <Stack width={isMobile ? "90%" : "50%"} pt={2}>
                 <CategorySelector
@@ -150,7 +154,8 @@ export function AddEmissionForm({
                         category.length === 0 ||
                         subCategory.length === 0 ||
                         title == null ||
-                        date == null
+                        date == null ||
+                        amount === 0
                     }
                     onClick={handleAddEmission}
                 >
