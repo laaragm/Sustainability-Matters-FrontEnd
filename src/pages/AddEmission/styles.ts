@@ -11,7 +11,7 @@ export const StyledCard = styled("div")<StyledCardProps>(
         borderRadius: "1.25rem",
         padding: isMobile ? 0 : "3rem",
         width: isMobile ? "90%" : "80%",
-        height: isMobile ? "90%" : "70%",
+        height: isMobile ? "90%" : "80%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",

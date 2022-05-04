@@ -5,6 +5,8 @@ import { CustomizedButton } from "../../../../shared/components/CustomizedButton
 import { AmountField } from "../AmountField";
 import { CategorySelector } from "../CategorySelector";
 import { PATHS } from "../../../../routes/paths";
+import { Title } from "../Title";
+import { CustomizedDate } from "../CustomizedDate";
 import { StyledTitle } from "./styles";
 
 interface AddEmissionFormProps {
@@ -14,11 +16,15 @@ interface AddEmissionFormProps {
     subCategory: string;
     amount: number;
     amountFieldTitle: string;
+    title: any;
+    date: any;
     isMobile: boolean;
     onCategoryChange: (newCategory: string) => void;
     onSubCategoryChange: (newSubCategory: string) => void;
     onAmountChange: (newAmount: number) => void;
     onAddEmission: () => void;
+    onTitleChange: (value: string) => void;
+    onDateChange: (value: string) => void;
 }
 
 export function AddEmissionForm({
@@ -28,11 +34,15 @@ export function AddEmissionForm({
     subCategory,
     amount,
     amountFieldTitle,
+    title,
+    date,
     isMobile,
     onSubCategoryChange,
     onAmountChange,
     onCategoryChange,
     onAddEmission,
+    onTitleChange,
+    onDateChange,
 }: AddEmissionFormProps) {
     let navigate = useNavigate();
 
@@ -56,6 +66,14 @@ export function AddEmissionForm({
         onAddEmission();
     };
 
+    const handleTitle = (value: any) => {
+        onTitleChange(value);
+    };
+
+    const handleDate = (value: any) => {
+        onDateChange(value);
+    };
+
     return (
         <Stack
             direction="column"
@@ -68,7 +86,21 @@ export function AddEmissionForm({
             <Stack direction="row">
                 <StyledTitle isMobile={isMobile}>CO2 Emissions</StyledTitle>
             </Stack>
-            <Stack width={isMobile ? "90%" : "50%"} pt={5}>
+            <Stack width={isMobile ? "90%" : "50%"} pt={2}>
+                <Title
+                    value={title}
+                    isMobile={isMobile}
+                    onChange={handleTitle}
+                />
+            </Stack>
+            <Stack width={isMobile ? "90%" : "50%"} pt={2}>
+                <CustomizedDate
+                    value={date}
+                    isMobile={isMobile}
+                    onChange={handleDate}
+                />
+            </Stack>
+            <Stack width={isMobile ? "90%" : "50%"} pt={2}>
                 <CategorySelector
                     title="Select a category"
                     id="category-field-add-emission"
@@ -118,7 +150,13 @@ export function AddEmissionForm({
                     color="secondary"
                     borderRadius="1.5rem"
                     fullWidth={true}
-                    disabled={category.length === 0 || subCategory.length === 0}
+                    disabled={
+                        category.length === 0 ||
+                        subCategory.length === 0 ||
+                        title == null ||
+                        date == null ||
+                        amount === 0
+                    }
                     onClick={handleAddEmission}
                 >
                     Add
