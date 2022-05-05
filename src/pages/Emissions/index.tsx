@@ -77,6 +77,7 @@ export default function Emissions() {
                                 // @ts-ignore
                                 <CardContent
                                     emissions={data?.emissions}
+                                    isMobile={isMobile}
                                     onMonthClick={handleClickOnMonth}
                                 />
                             )}

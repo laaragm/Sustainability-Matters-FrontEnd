@@ -16,10 +16,15 @@ import {
 
 interface CardContentProps {
     emissions: { [key: string]: Emission[] };
+    isMobile: boolean;
     onMonthClick: (date: Date) => void;
 }
 
-export function CardContent({ emissions, onMonthClick }: CardContentProps) {
+export function CardContent({
+    emissions,
+    isMobile,
+    onMonthClick,
+}: CardContentProps) {
     const handleMonth = (date: string) => {
         onMonthClick(new Date(date));
     };
@@ -49,7 +54,7 @@ export function CardContent({ emissions, onMonthClick }: CardContentProps) {
                 <>
                     <Stack direction="row">
                         <StyledDate key={key}>{key}</StyledDate>
-                        <Stack mt={1} ml={1}>
+                        <Stack mt={isMobile ? 0.5 : 1} ml={1}>
                             <StyledImage
                                 src={chevronForwardIcon}
                                 alt="Chevron forward icon"
