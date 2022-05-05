@@ -10,38 +10,20 @@ type GetEmissionResponse = {
     europeanUnionAverage: number;
 };
 
-export async function getEmission(page: number): Promise<GetEmissionResponse> {
-    const { data, headers } = await api.get("emissions", {
-        params: {
-            page,
-        },
-    });
-    const totalCount = +headers["x-total-count"];
-    const europeanUnionAverage = 2256.41; // TODO: Think about how we're going to get this information
-    let totalConsumption = 0;
-    const emissions: Emission[] = data.emissions?.map((item: Emission) => {
-        totalConsumption += +(item.amount * item.co2);
-        return {
-            title: item.title,
-            subcategory: item.subcategory,
-            amount: item.amount,
-            co2: totalConsumption.toFixed(3),
-            date: new Date(item.date).toLocaleDateString("en", {
-                day: "2-digit",
-                month: "long",
-                year: "numeric",
-            }),
-        };
-    });
-    totalConsumption = +totalConsumption.toFixed(3);
+export async function getEmission(date: string): Promise<GetEmissionResponse> {
+    const response = await api.get(`monthemission/specific-date/${date}`);
+    const data = response?.data;
+    console.log("RESPONSE: ", data);
+    const { emissions, totalConsumption, europeanUnionAverage } = data;
+    const totalCount = emissions?.length;
 
-    return { emissions, totalCount, totalConsumption, europeanUnionAverage };
+    return { emissions, totalConsumption, europeanUnionAverage, totalCount };
 }
 
-export function useEmission(page: number, options?: UseQueryOptions) {
+export function useEmission(date: string, options?: UseQueryOptions) {
     const { data, isLoading, isFetching, error } = useQuery(
-        ["emission", page],
-        () => getEmission(page),
+        ["emission"],
+        () => getEmission(date),
         // @ts-ignore
         {
             staleTime: 1000 * 15,
