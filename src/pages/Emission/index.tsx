@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import { CircularProgress } from "@mui/material";
@@ -17,7 +17,11 @@ export default function Emission() {
     const theme = useTheme();
     let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const { data, isLoading } = useEmission(1);
+    const url = new URL(window.location.href);
+    const dateParam = useMemo(() => {
+        return url.pathname.split("/")[url.pathname.split("/")?.length - 1];
+    }, [url]);
+    const { data, isLoading } = useEmission(dateParam);
     const [hasMoreData, setHasMoreData] = useState(true);
     const [date, setDate] = useState("");
     const [selectedEmission, setSelectedEmission] =
