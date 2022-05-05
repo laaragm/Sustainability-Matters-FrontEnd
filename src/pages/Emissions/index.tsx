@@ -34,9 +34,12 @@ export default function Emissions() {
     );
 
     const handleClickOnMonth = (date: Date) => {
-        const route = `${
-            PATHS.emissions.route
-        }/${date.getMonth()}-${date.getFullYear()}`;
+        const month =
+            date.getMonth()?.toString()?.length === 1
+                ? `0${date.getMonth()}`
+                : date.getMonth();
+        const year = date.getFullYear();
+        const route = `${PATHS.emissions.route}/${year}-${month}`;
         navigate(route);
     };
 
