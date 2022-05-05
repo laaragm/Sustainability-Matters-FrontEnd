@@ -13,7 +13,6 @@ type GetEmissionResponse = {
 export async function getEmission(date: string): Promise<GetEmissionResponse> {
     const response = await api.get(`monthemission/specific-date/${date}`);
     const data = response?.data;
-    console.log("RESPONSE: ", data);
     const { emissions, totalConsumption, europeanUnionAverage } = data;
     const totalCount = emissions?.length;
 

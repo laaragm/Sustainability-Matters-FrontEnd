@@ -11,7 +11,6 @@ type GetEmissionsResponse = {
 export async function getEmissions(): Promise<GetEmissionsResponse> {
     const response = await api.get("monthemission/month");
     const emissions = response?.data;
-    console.log("RESPONSE: ", emissions);
     const totalCount = emissions?.length;
 
     return { emissions, totalCount };
