@@ -13,7 +13,7 @@ export function CustomizedDate({ value, isMobile, onChange }: DatePickerProps) {
 
     return (
         <CustomizedTextField
-            title="Date (dd/mm/yyy)"
+            title="Date (dd/mm/yyyy)"
             id="date-field-add-emission"
             height={isMobile ? "3rem" : "auto"}
             customTextField
