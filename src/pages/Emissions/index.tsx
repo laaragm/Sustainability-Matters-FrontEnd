@@ -14,10 +14,10 @@ export default function Emissions() {
     const theme = useTheme();
     let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const { data, isLoading } = useEmissions(1);
     const [hasMoreData, setHasMoreData] = useState(true);
+    // @ts-ignore
+    const { data, isLoading } = useEmissions();
 
-    // TODO: Adjust this
     const onScroll = () => {
         setHasMoreData(false);
     };
@@ -34,9 +34,12 @@ export default function Emissions() {
     );
 
     const handleClickOnMonth = (date: Date) => {
-        const route = `${
-            PATHS.emissions.route
-        }/${date.getMonth()}-${date.getFullYear()}`;
+        const month =
+            date.getMonth()?.toString()?.length === 1
+                ? `0${date.getMonth()}`
+                : date.getMonth();
+        const year = date.getFullYear();
+        const route = `${PATHS.emissions.route}/${year}-${month}`;
         navigate(route);
     };
 
@@ -77,6 +80,7 @@ export default function Emissions() {
                                 // @ts-ignore
                                 <CardContent
                                     emissions={data?.emissions}
+                                    isMobile={isMobile}
                                     onMonthClick={handleClickOnMonth}
                                 />
                             )}

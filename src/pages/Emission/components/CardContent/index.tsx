@@ -55,6 +55,8 @@ export function CardContent({
         return <img src={icon} alt="Category icon" height="24" width="24" />;
     };
 
+    console.log(data);
+
     return (
         <Stack
             direction="column"
@@ -89,6 +91,7 @@ export function CardContent({
                                     {emission.subcategory?.name}
                                 </StyledTitle>
                                 <StyledDescription>
+                                    {/* @ts-ignore */}
                                     {emission.date} - {emission.co2Emission}{" "}
                                     kgCO2eq
                                 </StyledDescription>

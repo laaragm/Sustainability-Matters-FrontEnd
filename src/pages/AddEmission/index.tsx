@@ -130,9 +130,9 @@ export default function AddEmission() {
             direction={isMobile ? "row" : "column"}
             alignItems="center"
             justifyContent="center"
-            spacing={isMobile ? 8 : 2}
+            spacing={isMobile ? 5 : 2}
             m={isMobile ? 0 : 5}
-            mt={isMobile ? 6 : 5}
+            mt={5}
             height="100%"
             width="100%"
         >

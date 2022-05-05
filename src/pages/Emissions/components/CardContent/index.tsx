@@ -16,10 +16,15 @@ import {
 
 interface CardContentProps {
     emissions: { [key: string]: Emission[] };
+    isMobile: boolean;
     onMonthClick: (date: Date) => void;
 }
 
-export function CardContent({ emissions, onMonthClick }: CardContentProps) {
+export function CardContent({
+    emissions,
+    isMobile,
+    onMonthClick,
+}: CardContentProps) {
     const handleMonth = (date: string) => {
         onMonthClick(new Date(date));
     };
@@ -45,11 +50,11 @@ export function CardContent({ emissions, onMonthClick }: CardContentProps) {
             justifyContent="flex-start"
             width="100%"
         >
-            {Object.keys(emissions).map((key, index) => (
+            {Object.keys(emissions).map((key) => (
                 <>
                     <Stack direction="row">
                         <StyledDate key={key}>{key}</StyledDate>
-                        <Stack mt={1} ml={1}>
+                        <Stack mt={isMobile ? 0.5 : 1} ml={1}>
                             <StyledImage
                                 src={chevronForwardIcon}
                                 alt="Chevron forward icon"
@@ -67,16 +72,16 @@ export function CardContent({ emissions, onMonthClick }: CardContentProps) {
                                 spacing={1}
                                 mt={1}
                             >
-                                <Stack mt={1}>
+                                <Stack mt={3}>
                                     {getIcon(emission.subcategory?.category)}
                                 </Stack>
                                 <Stack direction="column" mb={1} width="100%">
-                                    <StyledTitle>
-                                        {emission.subcategory?.name}
-                                    </StyledTitle>
+                                    <StyledTitle>{emission.title}</StyledTitle>
                                     <StyledDescription>
-                                        {emission.date} - {emission.co2Emission}{" "}
-                                        kgCO2eq
+                                        {emission.subcategory?.name}
+                                    </StyledDescription>
+                                    <StyledDescription>
+                                        {emission.date} - {emission.co2} kgCO2eq
                                     </StyledDescription>
                                     <Stack width="100%" mt={1}>
                                         <StyledDivider />

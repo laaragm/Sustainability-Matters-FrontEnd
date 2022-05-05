@@ -42,7 +42,7 @@ export function SideModal({ emission, onDelete, onCancel }: SideModalProps) {
                     />
                     <EmissionInformation
                         label="Quantity"
-                        value={`${emission.co2Emission} kgCO2eq`}
+                        value={`${emission.co2} kgCO2eq`}
                     />
                     <Stack
                         direction="column"
