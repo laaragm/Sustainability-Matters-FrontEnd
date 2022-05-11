@@ -1,6 +1,7 @@
-import { Stack, useMediaQuery, useTheme } from '@mui/material';
+import { Box, Stack, useMediaQuery, useTheme } from '@mui/material';
 import budgetIllustration from "../../assets/images/budgetPageIllustration.svg";
-import { StyledTitle, StyledText } from './styles';
+import { StyledTitle, StyledSubtitle, StyledText } from './styles';
+import { CustomizedBox } from "../../shared/components/CustomizedBox";
 
 export default function Budget() {
 
@@ -35,6 +36,12 @@ export default function Budget() {
                 <StyledTitle>
                     C02 consumption based on European standards
                 </StyledTitle>
+                <Stack>
+                    <StyledSubtitle>
+                        Testeee
+                    </StyledSubtitle>
+                    <CustomizedBox color="red"/>  
+                </Stack>
             </Stack>
         </>
     )
