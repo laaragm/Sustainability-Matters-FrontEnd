@@ -9,10 +9,10 @@ export const StyledTitle = styled("div")(({ theme }) => ({
 }));
 
 export const StyledSubtitle = styled("div")(({ theme })=> ({
-    fontWeight: 400,
+    fontWeight: 550,
     fontSize: "1rem",
     lineHeight: "2rem",
-    color: theme.palette.grey[500],
+    color: theme.palette.text.secondary,
     textAlign: "left",
     textJustify: "inter-word",
 }));

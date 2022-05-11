@@ -2,11 +2,17 @@ import { Box, Stack, useMediaQuery, useTheme } from '@mui/material';
 import budgetIllustration from "../../assets/images/budgetPageIllustration.svg";
 import { StyledTitle, StyledSubtitle, StyledText } from './styles';
 import { CustomizedBox } from "../../shared/components/CustomizedBox";
+import { useState } from 'react';
 
 export default function Budget() {
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+
+    const [dailyConsumption, setDailyConsumption] = useState("");
+    const [monthlyConsumption, setMonthlyConsumption] = useState("");
+    const [annualyConsumption, setAnnualyConsumption] = useState("");
+
 
     return (
         <>
@@ -25,7 +31,7 @@ export default function Budget() {
                 alignItems="center"
                 direction="column"
                 justifyContent="space-evenly"
-                spacing={isMobile ? 1 : 0.1}
+                spacing={isMobile ? 1 : 2}
                 sx={{
                     width:"34.0rem",
                     height:"38.0rem",
@@ -37,10 +43,53 @@ export default function Budget() {
                     C02 consumption based on European standards
                 </StyledTitle>
                 <Stack>
-                    <StyledSubtitle>
-                        Testeee
-                    </StyledSubtitle>
-                    <CustomizedBox color="red"/>  
+                    <Stack mb={2}>
+                        <StyledSubtitle>
+                            Daily
+                        </StyledSubtitle>
+                        <Stack
+                            direction="row"
+                            justifyContent="space-between"
+                        >
+                            <CustomizedBox color="red" width= {120} />
+                            <StyledText>38,56 kgCO2eq</StyledText>
+                        </Stack>
+                        <StyledText>
+                            Your daily consumption is according to European standars
+                        </StyledText>
+                    </Stack>
+
+                    <Stack mb={2}>
+                        <StyledSubtitle>
+                            Monthly
+                        </StyledSubtitle>
+                        <Stack
+                            direction="row"
+                            justifyContent="space-between"
+                        >
+                            <CustomizedBox color="green" width= {240}/>
+                            <StyledText>38,56 kgCO2eq</StyledText>
+                        </Stack>
+                        <StyledText>
+                            Your monthly consumption is according to European standars
+                        </StyledText>
+                    </Stack>
+
+                    <Stack mb={2}>
+                        <StyledSubtitle>
+                            Annualy
+                        </StyledSubtitle>
+                        <Stack
+                            direction="row"
+                            justifyContent="space-between"
+                        >
+                            <CustomizedBox color="orange" width= {320}/>
+                            <StyledText>38,56 kgCO2eq</StyledText>
+                        </Stack>
+                        <StyledText>
+                            Your annualy consumption is according to European standars
+                        </StyledText>
+                    </Stack>      
                 </Stack>
             </Stack>
         </>
