@@ -1,43 +1,31 @@
 import { useQuery, UseQueryOptions, UseQueryResult } from "react-query";
+
 import { api } from "../services/api";
+import { Budget } from "../types/budget";
 
-type BudgetItem = {
-    year: number;
-    month: number;
-    day: number;
-};
-
-type GetBudgetItemResponse = {
+type GetBudgetResponse = {
     totalCount: number;
-    budget: BudgetItem[];
+    budget: { [key: string]: Budget[] };
 };
 
-export async function getBudgetData(): Promise<GetBudgetItemResponse> {
-    const response = await api.get("monthemission/UserFullConsumption");
-    const data = response?.data;
-    const budget: BudgetItem[] = data?.map((item: any) => {
-        return {
-            // @ts-ignore
-            year: item.year,
-            month: item.month,
-            day: item.day
-        };
-    });
+export async function getBudget(): Promise<GetBudgetResponse> {
+    const response = await api.get("/monthemission/UserFullConsumption");
+    const budget = response?.data;
     const totalCount = budget?.length;
 
-    return { totalCount, budget };
+    return { budget, totalCount };
 }
 
 export function useBudget(options?: UseQueryOptions) {
     const { data, isLoading, isFetching, error } = useQuery(
         ["budget"],
-        () => getBudgetData(),
+        () => getBudget(),
         // @ts-ignore
         {
             staleTime: 1000 * 15,
             ...options,
         }
-    ) as UseQueryResult<GetBudgetItemResponse, unknown>;
+    ) as UseQueryResult<GetBudgetResponse, unknown>;
 
     return { data, isLoading, isFetching, error };
 }

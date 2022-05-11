@@ -4,6 +4,8 @@ import { StyledTitle, StyledSubtitle, StyledText } from './styles';
 import { CustomizedBox } from "../../shared/components/CustomizedBox";
 import { useState } from 'react';
 
+import { useBudget} from "../../hooks/useBudget";
+
 export default function Budget() {
 
     const theme = useTheme();
@@ -12,6 +14,17 @@ export default function Budget() {
     const [dailyConsumption, setDailyConsumption] = useState("");
     const [monthlyConsumption, setMonthlyConsumption] = useState("");
     const [annualyConsumption, setAnnualyConsumption] = useState("");
+
+    const { data: posts, isLoading } = useBudget();
+    const [loading, setLoading] = useState(false);
+
+
+
+    console.log("testeeeeeee");
+    console.log(posts?.budget.year);
+    console.log(posts?.budget.month);
+    console.log(posts?.budget.day);
+    console.log("testeeeeeee");
 
 
     return (
