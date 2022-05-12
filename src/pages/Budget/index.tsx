@@ -10,22 +10,8 @@ export default function Budget() {
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
-    const [dailyConsumption, setDailyConsumption] = useState("");
-    const [monthlyConsumption, setMonthlyConsumption] = useState("");
-    const [annualyConsumption, setAnnualyConsumption] = useState("");
-
+    
     const { data: posts, isLoading } = useBudget();
-    const [loading, setLoading] = useState(false);
-
-
-
-    console.log("testeeeeeee");
-    console.log(posts?.budget.year);
-    console.log(posts?.budget.month);
-    console.log(posts?.budget.day);
-    console.log("testeeeeeee");
-
 
     return (
         <>
@@ -63,9 +49,14 @@ export default function Budget() {
                         <Stack
                             direction="row"
                             justifyContent="space-between"
-                        >
-                            <CustomizedBox color="red" width= {120} />
-                            <StyledText>38,56 kgCO2eq</StyledText>
+                        >                          
+                            <CustomizedBox 
+                                color="red" 
+                                width= {120}
+                                // @ts-ignore 
+                                consumption = {posts?.budget.day} 
+                                type="day"/>
+                            <StyledText> {posts?.budget.day} kgCO2eq </StyledText>
                         </Stack>
                         <StyledText>
                             Your daily consumption is according to European standars
@@ -80,8 +71,13 @@ export default function Budget() {
                             direction="row"
                             justifyContent="space-between"
                         >
-                            <CustomizedBox color="green" width= {240}/>
-                            <StyledText>38,56 kgCO2eq</StyledText>
+                            <CustomizedBox 
+                                color="green" 
+                                width= {240}
+                                // @ts-ignore  
+                                consumption = {posts?.budget.month} 
+                                type="month"/>
+                            <StyledText>{posts?.budget.month} kgCO2eq </StyledText>
                         </Stack>
                         <StyledText>
                             Your monthly consumption is according to European standars
@@ -96,8 +92,13 @@ export default function Budget() {
                             direction="row"
                             justifyContent="space-between"
                         >
-                            <CustomizedBox color="orange" width= {320}/>
-                            <StyledText>38,56 kgCO2eq</StyledText>
+                            <CustomizedBox 
+                                color="orange" 
+                                width= {320}
+                                // @ts-ignore  
+                                consumption = {posts?.budget.year} 
+                                type="year"/>
+                            <StyledText>{posts?.budget.year} kgCO2eq </StyledText>
                         </Stack>
                         <StyledText>
                             Your annualy consumption is according to European standars
