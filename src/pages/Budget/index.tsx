@@ -2,6 +2,8 @@ import { Box, Stack, useMediaQuery, useTheme } from '@mui/material';
 import budgetIllustration from "../../assets/images/budgetPageIllustration.svg";
 import { StyledTitle, StyledSubtitle, StyledText } from './styles';
 import { CustomizedBox } from "../../shared/components/CustomizedBox";
+import { CustomizedMessage } from "../../shared/components/CustomizedMessage";
+
 import { useState } from 'react';
 
 import { useBudget} from "../../hooks/useBudget";
@@ -10,7 +12,7 @@ export default function Budget() {
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    
+
     const { data: posts, isLoading } = useBudget();
 
     return (
@@ -51,16 +53,16 @@ export default function Budget() {
                             justifyContent="space-between"
                         >                          
                             <CustomizedBox 
-                                color="red" 
-                                width= {120}
                                 // @ts-ignore 
                                 consumption = {posts?.budget.day} 
                                 type="day"/>
                             <StyledText> {posts?.budget.day} kgCO2eq </StyledText>
                         </Stack>
-                        <StyledText>
-                            Your daily consumption is according to European standars
-                        </StyledText>
+                        <CustomizedMessage
+                            // @ts-ignore
+                            consumption = {posts?.budget.day} 
+                            type="day"
+                        />
                     </Stack>
 
                     <Stack mb={2}>
@@ -72,16 +74,16 @@ export default function Budget() {
                             justifyContent="space-between"
                         >
                             <CustomizedBox 
-                                color="green" 
-                                width= {240}
                                 // @ts-ignore  
                                 consumption = {posts?.budget.month} 
                                 type="month"/>
                             <StyledText>{posts?.budget.month} kgCO2eq </StyledText>
                         </Stack>
-                        <StyledText>
-                            Your monthly consumption is according to European standars
-                        </StyledText>
+                        <CustomizedMessage
+                            // @ts-ignore
+                            consumption = {posts?.budget.month} 
+                            type="month"
+                        />
                     </Stack>
 
                     <Stack mb={2}>
@@ -93,16 +95,16 @@ export default function Budget() {
                             justifyContent="space-between"
                         >
                             <CustomizedBox 
-                                color="orange" 
-                                width= {320}
                                 // @ts-ignore  
                                 consumption = {posts?.budget.year} 
                                 type="year"/>
                             <StyledText>{posts?.budget.year} kgCO2eq </StyledText>
                         </Stack>
-                        <StyledText>
-                            Your annualy consumption is according to European standars
-                        </StyledText>
+                        <CustomizedMessage
+                            // @ts-ignore
+                            consumption = {posts?.budget.year} 
+                            type="year"
+                        />        
                     </Stack>      
                 </Stack>
             </Stack>

@@ -1,13 +1,11 @@
 import { Box } from "@mui/material";
 
 interface CustomizedBoxProps {
-    color?: string;
-    width?: 120 | 240 | 320;
     consumption: number;
     type: "day" | "month" | "year"
 }
 
-export function CustomizedBox({color, width, consumption, type}: CustomizedBoxProps) {
+export function CustomizedBox({consumption, type}: CustomizedBoxProps) {
 
     if(type === "day"){
         if(consumption < 500){
