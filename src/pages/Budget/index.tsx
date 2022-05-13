@@ -4,8 +4,6 @@ import { StyledTitle, StyledSubtitle, StyledText } from './styles';
 import { CustomizedBox } from "../../shared/components/CustomizedBox";
 import { CustomizedMessage } from "../../shared/components/CustomizedMessage";
 
-import { useState } from 'react';
-
 import { useBudget} from "../../hooks/useBudget";
 
 export default function Budget() {
@@ -31,8 +29,8 @@ export default function Budget() {
             <Stack
                 alignItems="center"
                 direction="column"
-                justifyContent="space-evenly"
-                spacing={isMobile ? 1 : 2}
+                justifyContent= {isMobile ? "flex-start" : "space-evenly"} 
+                spacing={isMobile ? 0 : 2}
                 sx={{
                     width:"34.0rem",
                     height:"38.0rem",

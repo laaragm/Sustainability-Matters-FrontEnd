@@ -12,8 +12,8 @@ export function CustomizedBox({consumption, type}: CustomizedBoxProps) {
             return (
                 <Box
                     sx={{
-                        width: 120,
-                        height: 40,
+                        width: "4.0rem",
+                        height: "2.5rem",
                         backgroundColor: "green",
                         borderRadius:"2.0rem",
                     }}
@@ -25,8 +25,8 @@ export function CustomizedBox({consumption, type}: CustomizedBoxProps) {
             return (
                 <Box
                     sx={{
-                        width: 320,
-                        height: 40,
+                        width: "17.0rem",
+                        height: "2.5rem",
                         backgroundColor: "red",
                         borderRadius:"2.0rem",
                     }}
@@ -38,8 +38,8 @@ export function CustomizedBox({consumption, type}: CustomizedBoxProps) {
             return (
                 <Box
                     sx={{
-                        width: 240,
-                        height: 40,
+                        width: "11.0rem",
+                        height: "2.5rem",
                         backgroundColor: "orange",
                         borderRadius:"2.0rem",
                     }}
@@ -54,8 +54,8 @@ export function CustomizedBox({consumption, type}: CustomizedBoxProps) {
             return (
                 <Box
                     sx={{
-                        width: 120,
-                        height: 40,
+                        width: "4.0rem",
+                        height: "2.5rem",
                         backgroundColor: "green",
                         borderRadius:"2.0rem",
                     }}
@@ -67,8 +67,8 @@ export function CustomizedBox({consumption, type}: CustomizedBoxProps) {
             return (
                 <Box
                     sx={{
-                        width: 320,
-                        height: 40,
+                        width: "17.0rem",
+                        height: "2.5rem",
                         backgroundColor: "red",
                         borderRadius:"2.0rem",
                     }}
@@ -80,8 +80,8 @@ export function CustomizedBox({consumption, type}: CustomizedBoxProps) {
             return (
                 <Box
                     sx={{
-                        width: 240,
-                        height: 40,
+                        width: "11.0rem",
+                        height: "2.5rem",
                         backgroundColor: "orange",
                         borderRadius:"2.0rem",
                     }}
@@ -96,8 +96,8 @@ export function CustomizedBox({consumption, type}: CustomizedBoxProps) {
             return (
                 <Box
                     sx={{
-                        width: 120,
-                        height: 40,
+                        width: "4.0rem",
+                        height: "2.5rem",
                         backgroundColor: "green",
                         borderRadius:"2.0rem",
                     }}
@@ -110,8 +110,8 @@ export function CustomizedBox({consumption, type}: CustomizedBoxProps) {
             return (
                 <Box
                     sx={{
-                        width: 320,
-                        height: 40,
+                        width: "17.0rem",
+                        height: "2.5rem",
                         backgroundColor: "red",
                         borderRadius:"2.0rem",
                     }}
@@ -124,8 +124,8 @@ export function CustomizedBox({consumption, type}: CustomizedBoxProps) {
             return (
                 <Box
                     sx={{
-                        width: 240,
-                        height: 40,
+                        width: "11.0rem",
+                        height: "2.5rem",
                         backgroundColor: "orange",
                         borderRadius:"2.0rem",
                     }}
