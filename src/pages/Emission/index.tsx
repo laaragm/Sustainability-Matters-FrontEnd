@@ -36,8 +36,8 @@ export default function Emission() {
             window.location.href.lastIndexOf("/") + 1
         );
         if (value != undefined) {
-            const month = +value.split("-")[0];
-            const year = +value.split("-")[1];
+            const month = +value.split("-")[1];
+            const year = +value.split("-")[0];
             const newDate = new Date(year, month, 1).toLocaleDateString("en", {
                 month: "long",
                 year: "numeric",
