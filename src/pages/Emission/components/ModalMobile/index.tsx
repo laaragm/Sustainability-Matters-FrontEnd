@@ -46,7 +46,7 @@ export function ModalMobile({
                     />
                     <EmissionInformation
                         label="Quantity"
-                        value={`${emission.co2} kgCO2eq`}
+                        value={`${emission.co2Emission} kgCO2eq`}
                     />
                     <Stack
                         direction="column"

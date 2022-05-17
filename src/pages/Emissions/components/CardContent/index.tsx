@@ -81,7 +81,8 @@ export function CardContent({
                                         {emission.subcategory?.name}
                                     </StyledDescription>
                                     <StyledDescription>
-                                        {emission.date} - {emission.co2} kgCO2eq
+                                        {emission.date} - {emission.co2Emission}{" "}
+                                        kgCO2eq
                                     </StyledDescription>
                                     <Stack width="100%" mt={1}>
                                         <StyledDivider />

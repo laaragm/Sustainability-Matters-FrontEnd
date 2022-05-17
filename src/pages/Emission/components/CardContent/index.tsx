@@ -55,8 +55,6 @@ export function CardContent({
         return <img src={icon} alt="Category icon" height="24" width="24" />;
     };
 
-    console.log(data);
-
     return (
         <Stack
             direction="column"

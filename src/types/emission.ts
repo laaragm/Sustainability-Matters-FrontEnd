@@ -4,6 +4,6 @@ export interface Emission {
     title: string;
     subcategory: Subcategory;
     amount: number;
-    co2: number;
+    co2Emission: number;
     date: string;
 }
