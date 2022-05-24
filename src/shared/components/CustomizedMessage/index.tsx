@@ -1,92 +1,79 @@
-import {StyledText } from './styles';
+import { StyledText } from "./styles";
 
 interface CustomizedMessageProps {
     consumption: number;
-    type: "day" | "month" | "year"
+    type: "day" | "month" | "year";
 }
 
-export function CustomizedMessage({consumption, type}: CustomizedMessageProps) {
-
-    if(type === "day"){
-        if(consumption < 500){
+export function CustomizedMessage({
+    consumption,
+    type,
+}: CustomizedMessageProps) {
+    if (type === "day") {
+        if (consumption < 500) {
             return (
                 <StyledText>
-                    Your daily consumption is according to European standars
+                    Your daily consumption is according to European standards
                 </StyledText>
             );
-
         }
-        if(consumption > 1000){
+        if (consumption > 1000) {
             return (
                 <StyledText>
-                    Your daily consumption is above European standars
+                    Your daily consumption is above European standards
                 </StyledText>
             );
-
-        }
-        else{
+        } else {
             return (
                 <StyledText>
-                    Your daily consumption is according to European standars
-                 </StyledText> 
+                    Your daily consumption is according to European standards
+                </StyledText>
             );
-
-        }  
+        }
     }
 
-    if(type === "month"){
-        if(consumption < 500){
+    if (type === "month") {
+        if (consumption < 500) {
             return (
                 <StyledText>
-                    Your monthly consumption is according to European standars
-                </StyledText> 
+                    Your monthly consumption is according to European standards
+                </StyledText>
             );
-
         }
-        if(consumption > 1000){
+        if (consumption > 1000) {
             return (
                 <StyledText>
-                    Your monthly consumption is above European standars
-                </StyledText> 
+                    Your monthly consumption is above European standards
+                </StyledText>
             );
-
+        } else {
+            return (
+                <StyledText>
+                    Your monthly consumption is according to European standards
+                </StyledText>
+            );
         }
-        else{
+    } else {
+        if (consumption < 500) {
             return (
                 <StyledText>
-                    Your monthly consumption is according to European standars
-                </StyledText> 
-            );
-
-        } 
-    }
-
-    else {
-        if(consumption < 500){
-            return (
-                <StyledText>
-                    Your annualy consumption is according to European standars
-                </StyledText> 
-            );
-
-        }
-
-        if(consumption > 1000){
-            return (
-                <StyledText>
-                    Your annualy consumption is above European standars
-                </StyledText>  
+                    Your annualy consumption is according to European standards
+                </StyledText>
             );
         }
 
-        else{
+        if (consumption > 1000) {
             return (
                 <StyledText>
-                    Your annualy consumption is according to European standars
-                </StyledText>   
+                    Your annualy consumption is above European standards
+                </StyledText>
             );
-
-        } 
-
+        } else {
+            return (
+                <StyledText>
+                    Your annualy consumption is according to European standards
+                </StyledText>
+            );
+        }
     }
 }
