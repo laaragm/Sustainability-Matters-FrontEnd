@@ -1,23 +1,38 @@
-import {Stack, useMediaQuery, useTheme } from '@mui/material';
-import { useState } from 'react';
-import { CustomizedButton } from '../../shared/components/CustomizedButton';
-import { CustomizedTextField } from '../../shared/components/CustomizedTextField';
-import { StyledTitle } from './styles';
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
+import { CustomizedButton } from "../../shared/components/CustomizedButton";
+import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
+import { StyledTitle } from "./styles";
 import signUpPageIllustration from "../../assets/images/signUpPageIllustration.svg";
-
+import { api } from "../../services/api";
+import { PATHS } from "../../routes/paths";
 
 export default function SignUp() {
-
     const theme = useTheme();
+    let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
-    const handleRegister: () => void = () => 1
-    
+    const handleRegister = async () => {
+        try {
+            const response = await api.post("/user/", {
+                email: email,
+                name: firstName,
+                last_name: lastName,
+                password: password,
+                consumption: [],
+            });
+            navigate(PATHS.noEmissions.route);
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
     const handleFirstName = (value: string) => {
         setFirstName(value);
     };
@@ -37,12 +52,12 @@ export default function SignUp() {
                 <Stack
                     width="100%"
                     sx={{ position: "absolute", bottom: 0, zIndex: "-1" }}
-                    >
+                >
                     <img
                         src={signUpPageIllustration}
                         alt="Sing up page illustration"
                         height="100%"
-                        width= "100%"
+                        width="100%"
                     />
                 </Stack>
             )}
@@ -53,26 +68,22 @@ export default function SignUp() {
                 justifyContent="space-evenly"
                 spacing={isMobile ? 1 : 0.1}
                 sx={{
-                    width:"32.0rem",
-                    height:"34.0rem",
-                    backgroundColor:'white',
-                    borderRadius:"1.5rem",
+                    width: "32.0rem",
+                    height: "34.0rem",
+                    backgroundColor: "white",
+                    borderRadius: "1.5rem",
                 }}
             >
-                 
-
                 <Stack
-                alignItems={isMobile ? "center" : "baseline"}
-                justifyContent="space-evenly"
-                width="90%"
-                sx={{
-                    width:"30.0rem",
-                    height:"4.0rem",
-                }}
+                    alignItems={isMobile ? "center" : "baseline"}
+                    justifyContent="space-evenly"
+                    width="90%"
+                    sx={{
+                        width: "30.0rem",
+                        height: "4.0rem",
+                    }}
                 >
-                    <StyledTitle>
-                        CREAT YOUR ACCOUNT
-                    </StyledTitle>
+                    <StyledTitle>CREAT YOUR ACCOUNT</StyledTitle>
                 </Stack>
 
                 <Stack width="70%">
@@ -93,7 +104,7 @@ export default function SignUp() {
                         value={lastName}
                         onChange={(value) => handleLastName(value)}
                     />
-                </Stack>                
+                </Stack>
 
                 <Stack width="70%">
                     <CustomizedTextField
@@ -119,7 +130,12 @@ export default function SignUp() {
                     <CustomizedButton
                         color="secondary"
                         borderRadius="0.3rem"
-                        disabled={email.length === 0 || password.length === 0 || lastName.length === 0 || firstName.length === 0}
+                        disabled={
+                            email.length === 0 ||
+                            password.length === 0 ||
+                            lastName.length === 0 ||
+                            firstName.length === 0
+                        }
                         fullWidth={true}
                         onClick={handleRegister}
                     >
