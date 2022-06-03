@@ -80,14 +80,17 @@ export function CardContent({
                         spacing={1}
                         mt={1}
                     >
-                        <Stack mt={1}>
+                        <Stack mt={3}>
                             {getIcon(emission.subcategory?.category)}
                         </Stack>
                         <Stack direction="row" width="100%">
                             <Stack direction="column" mb={1} width="100%">
-                                <StyledTitle>
+                                <StyledTitle>{emission.title}</StyledTitle>
+                                <StyledDescription>
+                                    {/* @ts-ignore */}
+                                    {emission.subcategory?.category} -{" "}
                                     {emission.subcategory?.name}
-                                </StyledTitle>
+                                </StyledDescription>
                                 <StyledDescription>
                                     {/* @ts-ignore */}
                                     {emission.date} - {emission.co2Emission}{" "}
