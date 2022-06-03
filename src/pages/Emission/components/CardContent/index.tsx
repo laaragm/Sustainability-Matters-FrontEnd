@@ -85,7 +85,11 @@ export function CardContent({
                         </Stack>
                         <Stack direction="row" width="100%">
                             <Stack direction="column" mb={1} width="100%">
-                                <StyledTitle>{emission.title}</StyledTitle>
+                                <StyledTitle
+                                    onClick={() => handleRowClick(emission)}
+                                >
+                                    {emission.title}
+                                </StyledTitle>
                                 <StyledDescription>
                                     {/* @ts-ignore */}
                                     {emission.subcategory?.category} -{" "}
