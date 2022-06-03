@@ -26,7 +26,10 @@ export function CardContent({
     onMonthClick,
 }: CardContentProps) {
     const handleMonth = (date: string) => {
-        onMonthClick(new Date(date));
+        const splittedDate = date.split("-");
+        const year = splittedDate[0];
+        const month = splittedDate[1];
+        onMonthClick(new Date(+year, +month));
     };
 
     const getIcon = (category: any) => {
@@ -65,9 +68,9 @@ export function CardContent({
                         </Stack>
                     </Stack>
                     <Stack width="100%">
-                        {emissions[key].map((emission) => (
+                        {emissions[key].map((emission, index) => (
                             <Stack
-                                key={`${emission.subcategory}-${emission.amount}-${emission.date}`}
+                                key={index}
                                 direction="row"
                                 spacing={1}
                                 mt={1}

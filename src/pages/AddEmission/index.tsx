@@ -110,14 +110,23 @@ export default function AddEmission() {
         }
     };
 
+    const getDate = () => {
+        // @ts-ignore
+        const splittedDate = date?.split("/");
+        const day = splittedDate[0];
+        const month = splittedDate[1];
+        const year = splittedDate[2];
+        return `${year}-${month}-${day}`;
+    };
+
     const handleAddEmission = async () => {
         try {
-            const response = await api.post("emissions", {
-                emission: {
-                    amount: amount,
-                    date: new Date(),
-                    subcategory: subCategory,
-                },
+            const response = await api.post("/consumption/", {
+                title: title,
+                subcategory: subCategory,
+                date: getDate(),
+                amount: +amount,
+                category: category,
             });
             navigate(PATHS.emissions.route);
         } catch (error) {

@@ -12,6 +12,7 @@ import { SideModal } from "./components/SideModal";
 import { ModalMobile } from "./components/ModalMobile";
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { PATHS } from "../../routes/paths";
+import { api } from "../../services/api";
 
 export default function Emission() {
     const theme = useTheme();
@@ -70,8 +71,23 @@ export default function Emission() {
         setSelectedEmission(null);
     };
 
-    const handleDelete = (emission: EmissionType) => {
-        setSelectedEmission(null);
+    const handleDelete = async (emission: EmissionType) => {
+        if (emission) {
+            try {
+                const response = await api.delete("/consumptionll/", {
+                    data: {
+                        title: emission.title,
+                        subcategory: emission.subcategory?.name,
+                        date: emission.date,
+                        amount: emission.amount,
+                        category: emission.subcategory?.category,
+                    },
+                });
+                setSelectedEmission(null);
+            } catch (error) {
+                console.log(error);
+            }
+        }
     };
 
     const handleGoBackToList = () => {
