@@ -72,7 +72,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
             if (accessToken != null && accessToken != undefined) {
                 setEmail(email);
                 setToken(accessToken);
-                await getUserInfo();
+                await getUserInfo(email);
             }
         } catch (error) {
             console.log(error);
@@ -90,10 +90,10 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         putVariablesInInitialState();
     };
 
-    const getUserInfo = async () => {
-        const response = await api.get(`user/${email}`);
+    const getUserInfo = async (userEmail: string) => {
+        const response = await api.get(`user/${userEmail}`);
         const userData = response?.data;
-        console.log("USER DATA: ", userData);
+        setName(userData?.name);
     };
 
     const saveInfoInLocalStorage = () => {
