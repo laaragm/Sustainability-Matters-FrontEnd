@@ -16,12 +16,12 @@ import { PATHS } from "../../../routes/paths";
 import { useAuth } from "../../../hooks/useAuth";
 
 export function Header() {
+    const { token, logout } = useAuth();
     let navigate = useNavigate();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const { token, logout } = useAuth();
+    const [isAuthenticated, setIsAuthenticated] = useState(token?.length > 0);
 
     const handleDrawerOpen = () => setDrawerOpen(true);
     const handleDrawerClose = () => setDrawerOpen(false);

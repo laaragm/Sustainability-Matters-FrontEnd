@@ -2,11 +2,6 @@ import { useState, useEffect, createContext, ReactNode } from "react";
 
 import { api } from "../services/api";
 
-interface User {
-    name: string;
-    email: string;
-}
-
 interface AuthContextType {
     token: string;
     name: string;
@@ -25,9 +20,18 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     // const [token, setToken] = useState(
     //     "b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiJzdHJpbmcifQ.CvZz7HtB2jSCBCpwOi8fm66TiCDlqhEilJj2ChoIzNE'"
     // );
-    const [token, setToken] = useState("");
-    const [email, setEmail] = useState("");
-    const [name, setName] = useState("");
+    const accessToken = localStorage.hasOwnProperty("REACT_TOKEN_AUTH")
+        ? localStorage.getItem("REACT_TOKEN_AUTH") || ""
+        : "";
+    const userEmail = localStorage.hasOwnProperty("REACT_EMAIL_AUTH")
+        ? localStorage.getItem("REACT_EMAIL_AUTH") || ""
+        : "";
+    const userName = localStorage.hasOwnProperty("REACT_NAME_AUTH")
+        ? localStorage.getItem("REACT_NAME_AUTH") || ""
+        : "";
+    const [token, setToken] = useState(accessToken);
+    const [email, setEmail] = useState(userEmail);
+    const [name, setName] = useState(userName);
 
     // useEffect(() => {
     //     async function getToken() {
@@ -52,8 +56,16 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     // }, []);
 
     useEffect(() => {
-        saveInfoInLocalStorage();
+        saveTokenInLocalStorage();
     }, [token]);
+
+    useEffect(() => {
+        saveEmailInLocalStorage();
+    }, [email]);
+
+    useEffect(() => {
+        saveNameInLocalStorage();
+    }, [name]);
 
     const login = async (email: string, password: string) => {
         try {
@@ -96,14 +108,28 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         setName(userData?.name);
     };
 
-    const saveInfoInLocalStorage = () => {
+    const saveTokenInLocalStorage = () => {
         if (token?.length > 0) {
             localStorage.setItem("REACT_TOKEN_AUTH", token);
         }
     };
 
+    const saveEmailInLocalStorage = () => {
+        if (email?.length > 0) {
+            localStorage.setItem("REACT_EMAIL_AUTH", email);
+        }
+    };
+
+    const saveNameInLocalStorage = () => {
+        if (name?.length > 0) {
+            localStorage.setItem("REACT_NAME_AUTH", name);
+        }
+    };
+
     const removeInfoFromLocalStorage = () => {
         localStorage.removeItem("REACT_TOKEN_AUTH");
+        localStorage.removeItem("REACT_EMAIL_AUTH");
+        localStorage.removeItem("REACT_NAME_AUTH");
     };
 
     return (
