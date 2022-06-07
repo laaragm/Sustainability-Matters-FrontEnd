@@ -15,7 +15,7 @@ export default function SignUp() {
     let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [firstName, setFirstName] = useState("");
-    const [lastName, setLastname] = useState("");
+    const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { login } = useAuth();
@@ -43,7 +43,7 @@ export default function SignUp() {
     };
 
     const handleLastName = (value: string) => {
-        setLastname(value);
+        setLastName(value);
     };
 
     const handleEmail = (value: string) => {
