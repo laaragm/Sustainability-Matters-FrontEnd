@@ -8,6 +8,7 @@ export const RootStyle = styled(Card)(({ theme }) => ({
     alignItems: "center",
     paddingTop: theme.spacing(10),
     paddingBottom: theme.spacing(10),
+    borderRadius: "1rem",
 }));
 
 export const LabelStyle = styled(Typography)(({ theme }) => ({
