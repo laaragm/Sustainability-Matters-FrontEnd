@@ -25,6 +25,10 @@ export default function Router() {
                 path={PATHS.changePassword.route}
                 element={<ChangePassword />}
             />
+            <Route
+                path={PATHS.noPermissions.route}
+                element={<NoPermissions />}
+            />
         </Routes>
     );
 }
@@ -41,3 +45,4 @@ const Budget = Loadable(lazy(() => import("../pages/Budget")));
 const Emissions = Loadable(lazy(() => import("../pages/Emissions")));
 const Emission = Loadable(lazy(() => import("../pages/Emission")));
 const ChangePassword = Loadable(lazy(() => import("../pages/ChangePassword")));
+const NoPermissions = Loadable(lazy(() => import("../pages/NoPermissions")));
