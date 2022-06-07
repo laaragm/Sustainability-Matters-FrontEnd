@@ -83,7 +83,7 @@ export default function SignUp() {
                         height: "4.0rem",
                     }}
                 >
-                    <StyledTitle>CREAT YOUR ACCOUNT</StyledTitle>
+                    <StyledTitle>CREATE YOUR ACCOUNT</StyledTitle>
                 </Stack>
 
                 <Stack width="70%">
