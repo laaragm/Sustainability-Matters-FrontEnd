@@ -26,10 +26,8 @@ export default function Login() {
 
     const handleLogin = async () => {
         try {
-            const response = await login(email, password);
-            if (response) {
-                navigate(PATHS.emissions.route);
-            }
+            await login(email, password);
+            navigate(PATHS.emissions.route);
         } catch (error) {
             console.log(error);
         }
