@@ -16,7 +16,7 @@ import { ScrollToTop } from "./shared/components/ScrollToTop";
 import { Header } from "./shared/components/Header";
 import { makeServer } from "./services/mirage";
 import { queryClient } from "./services/queryClient";
-import { TokenContextProvider } from "./contexts/TokenContext";
+import { AuthContextProvider } from "./contexts/AuthContext";
 import { MainStyle } from "./styles";
 
 if (process.env.NODE_ENV === "development") {
@@ -28,7 +28,7 @@ export default function App() {
         <Suspense fallback={<LoadingScreen />}>
             <QueryClientProvider client={queryClient}>
                 <BrowserRouter>
-                    <TokenContextProvider>
+                    <AuthContextProvider>
                         <StyledEngineProvider injectFirst>
                             <ThemeProvider theme={theme}>
                                 <CssBaseline />
@@ -45,7 +45,7 @@ export default function App() {
                                 />
                             </ThemeProvider>
                         </StyledEngineProvider>
-                    </TokenContextProvider>
+                    </AuthContextProvider>
                 </BrowserRouter>
 
                 <ReactQueryDevtools />

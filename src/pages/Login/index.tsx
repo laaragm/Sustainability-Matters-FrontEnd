@@ -1,15 +1,20 @@
-import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import loginPageIllustration from "../../assets/images/loginPageIllustration.svg";
 import { CustomizedButton } from "./../../shared/components/CustomizedButton/index";
 import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
+import { useAuth } from "../../hooks/useAuth";
+import { PATHS } from "../../routes/paths";
 
 export default function Login() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { login } = useAuth();
+    let navigate = useNavigate();
 
     const handleEmail = (value: string) => {
         setEmail(value);
@@ -19,8 +24,14 @@ export default function Login() {
         setPassword(value);
     };
 
-    // TODO: Implement functionality as soon as the backend is in place
-    const handleLogin = () => {};
+    const handleLogin = async () => {
+        try {
+            await login(email, password);
+            navigate(PATHS.emissions.route);
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     return (
         <Stack

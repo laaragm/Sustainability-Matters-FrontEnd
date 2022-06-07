@@ -13,13 +13,8 @@ import MIconButton from "./../../../@material-extend/MIconButton";
 import MenuPopover from "../MenuPopover";
 import MyAvatar from "../UserAvatar";
 import { CustomizedButton } from "../../../CustomizedButton";
+import { useAuth } from "../../../../../hooks/useAuth";
 import { StyledText } from "./styles";
-
-// TODO: Remove this as soon as we have the authentication process
-const user = {
-    name: "Lara Galvani",
-    email: "lara.galvani@gmail.com",
-};
 
 interface AccountPopoverProps {
     onLogout: () => void;
@@ -30,6 +25,7 @@ export function AccountPopover({ onLogout }: AccountPopoverProps) {
     const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
     const anchorRef = useRef(null);
     const [open, setOpen] = useState(false);
+    const { name, email } = useAuth();
 
     const handleOpen = () => {
         setOpen(true);
@@ -71,8 +67,8 @@ export function AccountPopover({ onLogout }: AccountPopoverProps) {
 
             {isMobile ? (
                 <Stack direction="column">
-                    <StyledText>{user?.name}</StyledText>
-                    <StyledText>{user?.email}</StyledText>
+                    <StyledText>{name}</StyledText>
+                    <StyledText>{email}</StyledText>
                 </Stack>
             ) : (
                 <MenuPopover
@@ -82,8 +78,8 @@ export function AccountPopover({ onLogout }: AccountPopoverProps) {
                     sx={{ width: 220 }}
                 >
                     <Stack direction="column" p={1.5}>
-                        <StyledText>{user?.name}</StyledText>
-                        <StyledText>{user?.email}</StyledText>
+                        <StyledText>{name}</StyledText>
+                        <StyledText>{email}</StyledText>
                     </Stack>
 
                     <Divider sx={{ my: 1 }} />
