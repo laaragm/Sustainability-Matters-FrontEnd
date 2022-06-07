@@ -42,5 +42,9 @@ export const PATHS = {
     budget: {
         name: "Budget",
         route: "/budget",
-    }
+    },
+    changePassword: {
+        name: "Change Password",
+        route: "/new-password",
+    },
 };

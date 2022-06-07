@@ -16,8 +16,15 @@ export default function Router() {
             <Route path={PATHS.addEmission.route} element={<AddEmission />} />
             <Route path={PATHS.emissions.route} element={<Emissions />} />
             <Route path={PATHS.emission.route} element={<Emission />} />
-            <Route path={PATHS.forgotPassword.route} element={<ForgotPassword />} />
+            <Route
+                path={PATHS.forgotPassword.route}
+                element={<ForgotPassword />}
+            />
             <Route path={PATHS.budget.route} element={<Budget />} />
+            <Route
+                path={PATHS.changePassword.route}
+                element={<ChangePassword />}
+            />
         </Routes>
     );
 }
@@ -33,3 +40,4 @@ const ForgotPassword = Loadable(lazy(() => import("../pages/ForgotPassword")));
 const Budget = Loadable(lazy(() => import("../pages/Budget")));
 const Emissions = Loadable(lazy(() => import("../pages/Emissions")));
 const Emission = Loadable(lazy(() => import("../pages/Emission")));
+const ChangePassword = Loadable(lazy(() => import("../pages/ChangePassword")));
