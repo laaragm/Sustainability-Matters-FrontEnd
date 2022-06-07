@@ -42,7 +42,6 @@ export function Header() {
         navigate(PATHS.signUp.route);
     };
 
-    // TODO: Implement it as soon as the backend is in place
     const handleLogout = () => {
         setIsAuthenticated(false);
         logout();

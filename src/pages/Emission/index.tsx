@@ -47,7 +47,6 @@ export default function Emission() {
         }
     };
 
-    // TODO: Adjust this
     const onScroll = () => {
         setHasMoreData(false);
     };
