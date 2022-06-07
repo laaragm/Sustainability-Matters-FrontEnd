@@ -47,4 +47,8 @@ export const PATHS = {
         name: "Change Password",
         route: "/new-password",
     },
+    noPermissions: {
+        name: "No Permissions",
+        route: "/no-permissions",
+    },
 };
