@@ -4,10 +4,11 @@ import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
-import { StyledTitle } from "./styles";
 import signUpPageIllustration from "../../assets/images/signUpPageIllustration.svg";
 import { api } from "../../services/api";
 import { PATHS } from "../../routes/paths";
+import { useAuth } from "../../hooks/useAuth";
+import { StyledTitle } from "./styles";
 
 export default function SignUp() {
     const theme = useTheme();
@@ -17,6 +18,7 @@ export default function SignUp() {
     const [lastName, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { login } = useAuth();
 
     const handleRegister = async () => {
         try {
@@ -27,6 +29,9 @@ export default function SignUp() {
                 password: password,
                 consumption: [],
             });
+            if (response) {
+                await login(email, password);
+            }
             navigate(PATHS.noEmissions.route);
         } catch (error) {
             console.log(error);
@@ -36,12 +41,15 @@ export default function SignUp() {
     const handleFirstName = (value: string) => {
         setFirstName(value);
     };
+
     const handleLastName = (value: string) => {
         setLastname(value);
     };
+
     const handleEmail = (value: string) => {
         setEmail(value);
     };
+
     const handlePassword = (value: string) => {
         setPassword(value);
     };
