@@ -1,19 +1,30 @@
+import { useState } from "react";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
-import { StyledTitle, StyledSubtitle, StyledText } from "./styles";
-import forgotPasswordIllustration from "../../assets/images/forgotPasswordIllustration.svg";
 
+import forgotPasswordIllustration from "../../assets/images/forgotPasswordIllustration.svg";
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
-
-import { useState } from "react";
+import { api } from "../../services/api";
+import { StyledTitle, StyledSubtitle, StyledText } from "./styles";
 
 export default function ForgotPassord() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
     const [email, setEmail] = useState("");
 
-    const handleResetPassword: () => void = () => 1;
+    const resetEmail = () => {
+        setEmail("");
+    };
+
+    const handleResetPassword = async () => {
+        try {
+            const response = await api.get(`sendEmail/${email}`);
+            console.log(response);
+            resetEmail();
+        } catch (error) {
+            console.log(error);
+        }
+    };
 
     const handleEmail = (value: string) => {
         setEmail(value);

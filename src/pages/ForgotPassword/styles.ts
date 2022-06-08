@@ -1,5 +1,4 @@
-import { styled } from '@mui/material/styles';
-
+import { styled } from "@mui/material/styles";
 
 export const StyledTitle = styled("div")(({ theme }) => ({
     fontWeight: 750,
@@ -8,7 +7,7 @@ export const StyledTitle = styled("div")(({ theme }) => ({
     color: theme.palette.text.secondary,
 }));
 
-export const StyledSubtitle = styled("div")(({ theme })=> ({
+export const StyledSubtitle = styled("div")(({ theme }) => ({
     fontWeight: 600,
     fontSize: "1rem",
     lineHeight: "2rem",
@@ -17,7 +16,7 @@ export const StyledSubtitle = styled("div")(({ theme })=> ({
     textJustify: "inter-word",
 }));
 
-export const StyledText = styled("div")(({ theme })=> ({
+export const StyledText = styled("div")(({ theme }) => ({
     fontWeight: 400,
     fontSize: "1rem",
     lineHeight: "2rem",

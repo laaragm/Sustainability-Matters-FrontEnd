@@ -7,6 +7,7 @@ import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
 import { PATHS } from "../../routes/paths";
 import { StyledTitle, StyledSubtitle, StyledText } from "./styles";
+import { api } from "../../services/api";
 
 export default function ChangePassword() {
     const theme = useTheme();
@@ -23,8 +24,33 @@ export default function ChangePassword() {
         setPasswordConfirmation(value);
     };
 
-    // TODO: Implement this as soon as the endpoint is ready
-    const handleChangePassword = () => {};
+    const handleChangePassword = async () => {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const urlToken = urlParams.has("token")
+            ? urlParams.get("token") || ""
+            : "";
+        try {
+            const response = await api.put(
+                "user/changePassword",
+                {
+                    password: password,
+                },
+                {
+                    headers: {
+                        Authorization: `${urlToken}'`,
+                    },
+                }
+            );
+            redirectToLoginPage();
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    const redirectToLoginPage = () => {
+        navigate(PATHS.login.route);
+    };
 
     const handleCancel = () => {
         navigate(PATHS.home.route);

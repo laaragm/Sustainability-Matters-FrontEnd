@@ -7,6 +7,7 @@ import { CustomizedButton } from "./../../shared/components/CustomizedButton/ind
 import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
 import { useAuth } from "../../hooks/useAuth";
 import { PATHS } from "../../routes/paths";
+import { StyledForgotPassword } from "./styles";
 
 export default function Login() {
     const theme = useTheme();
@@ -33,6 +34,10 @@ export default function Login() {
         }
     };
 
+    const handleForgotPassword = () => {
+        navigate(PATHS.forgotPassword.route);
+    };
+
     return (
         <Stack
             direction="column"
@@ -54,7 +59,6 @@ export default function Login() {
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-                spacing={isMobile ? 3 : 4}
                 width={isMobile ? "100%" : "20%"}
                 sx={{
                     position: "absolute",
@@ -65,6 +69,7 @@ export default function Login() {
                     alignItems="center"
                     justifyContent="center"
                     spacing={1}
+                    mb={isMobile ? 3 : 4}
                     width={isMobile ? "80%" : "100%"}
                 >
                     <CustomizedTextField
@@ -80,6 +85,7 @@ export default function Login() {
                     alignItems="center"
                     justifyContent="center"
                     spacing={1}
+                    mb={isMobile ? 1 : 2}
                     width={isMobile ? "80%" : "100%"}
                 >
                     <CustomizedTextField
@@ -89,6 +95,11 @@ export default function Login() {
                         value={password}
                         onChange={(value) => handlePassword(value)}
                     />
+                </Stack>
+                <Stack width={isMobile ? "80%" : "100%"} mb={isMobile ? 3 : 4}>
+                    <StyledForgotPassword onClick={handleForgotPassword}>
+                        Forgot Password
+                    </StyledForgotPassword>
                 </Stack>
                 <Stack
                     alignItems="center"
