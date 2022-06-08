@@ -33,28 +33,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     const [email, setEmail] = useState(userEmail);
     const [name, setName] = useState(userName);
 
-    // useEffect(() => {
-    //     async function getToken() {
-    //         const response = await api.post(
-    //             "login/",
-    //             {},
-    //             {
-    //                 auth: {
-    //                     // TODO: Change this
-    //                     username: "string",
-    //                     password: "string",
-    //                 },
-    //             }
-    //         );
-    //         const accessToken = response?.data?.token;
-    //         if (accessToken != null && accessToken != undefined) {
-    //             // setToken(accessToken);
-    //         }
-    //     }
-
-    //     getToken();
-    // }, []);
-
     useEffect(() => {
         saveTokenInLocalStorage();
     }, [token]);
@@ -79,7 +57,6 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
                     },
                 }
             );
-            console.log("LOGIN: ", response);
             const accessToken = response?.data?.token;
             if (accessToken != null && accessToken != undefined) {
                 setEmail(email);
