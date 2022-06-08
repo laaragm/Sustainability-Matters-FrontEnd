@@ -64,7 +64,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
                 await getUserInfo(email);
             }
         } catch (error) {
-            console.log(error);
+            throw error;
         }
     };
 

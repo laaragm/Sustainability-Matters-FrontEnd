@@ -1,12 +1,13 @@
 import { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClientProvider } from "react-query";
-import { ToastContainer } from "react-toastify";
+import toast, { Toaster } from "react-hot-toast";
 import { ReactQueryDevtools } from "react-query/devtools";
 import {
     ThemeProvider,
     StyledEngineProvider,
     CssBaseline,
+    Stack,
 } from "@mui/material";
 
 import { LoadingScreen } from "./shared/components/LoadingScreen";
@@ -36,13 +37,16 @@ export default function App() {
                                 <Header />
                                 <MainStyle>
                                     <Routes />
+                                    <Stack
+                                        sx={{
+                                            position: "absolute",
+                                            right: 0,
+                                            bottom: 0,
+                                        }}
+                                    >
+                                        <Toaster position="bottom-right" />
+                                    </Stack>
                                 </MainStyle>
-                                <ToastContainer
-                                    position="bottom-right"
-                                    autoClose={3000}
-                                    closeOnClick
-                                    pauseOnHover
-                                />
                             </ThemeProvider>
                         </StyledEngineProvider>
                     </AuthContextProvider>

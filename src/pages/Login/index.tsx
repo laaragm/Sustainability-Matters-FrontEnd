@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import loginPageIllustration from "../../assets/images/loginPageIllustration.svg";
@@ -30,6 +31,7 @@ export default function Login() {
             await login(email, password);
             navigate(PATHS.emissions.route);
         } catch (error) {
+            toast.error("Invalid credentials. Please try again.");
             console.log(error);
         }
     };
