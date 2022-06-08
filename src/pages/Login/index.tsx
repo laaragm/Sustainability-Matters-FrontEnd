@@ -59,7 +59,6 @@ export default function Login() {
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-                // spacing={isMobile ? 3 : 4}
                 width={isMobile ? "100%" : "20%"}
                 sx={{
                     position: "absolute",
