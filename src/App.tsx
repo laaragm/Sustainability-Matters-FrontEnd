@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClientProvider } from "react-query";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
 import { ReactQueryDevtools } from "react-query/devtools";
 import {
     ThemeProvider,

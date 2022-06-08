@@ -14,6 +14,7 @@ import { foodFactors } from "../../types/food/foodFactors";
 import { transportFactors } from "../../types/transport/transportFactors";
 import { AddEmissionForm } from "./components/AddEmissionForm";
 import { StyledCard } from "./styles";
+import toast from "react-hot-toast";
 
 const categoryOptions = Object.values(CategoryEnum);
 
@@ -128,9 +129,11 @@ export default function AddEmission() {
                 amount: +amount,
                 category: category,
             });
+            toast.success("Consumption created successfully.");
             navigate(PATHS.emissions.route);
         } catch (error) {
             console.log(error);
+            toast.error("Something went wrong. Please try again.");
         }
     };
 
