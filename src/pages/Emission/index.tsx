@@ -13,6 +13,7 @@ import { ModalMobile } from "./components/ModalMobile";
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { PATHS } from "../../routes/paths";
 import { api } from "../../services/api";
+import toast from "react-hot-toast";
 
 export default function Emission() {
     const theme = useTheme();
@@ -83,8 +84,10 @@ export default function Emission() {
                     },
                 });
                 setSelectedEmission(null);
+                toast.success("Consumption deleted successfully.");
             } catch (error) {
                 console.log(error);
+                toast.error("Something went wrong. Please try again.");
             }
         }
     };
