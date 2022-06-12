@@ -11,12 +11,13 @@ import { PATHS } from "../../routes/paths";
 import { StyledCard, StyledStack } from "./styles";
 
 export default function Emissions() {
+    const { data, isLoading } = useEmissions();
     const theme = useTheme();
     let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const [hasMoreData, setHasMoreData] = useState(true);
-    // @ts-ignore
-    const { data, isLoading } = useEmissions();
+    const [hasMoreData, setHasMoreData] = useState(
+        (data?.totalCount || 0) > 5 ? true : false
+    );
 
     const onScroll = () => {
         setHasMoreData(false);
