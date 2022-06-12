@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useMutation } from "react-query";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import { CategoryEnum } from "../../types/categoryEnum";
@@ -14,7 +16,7 @@ import { foodFactors } from "../../types/food/foodFactors";
 import { transportFactors } from "../../types/transport/transportFactors";
 import { AddEmissionForm } from "./components/AddEmissionForm";
 import { StyledCard } from "./styles";
-import toast from "react-hot-toast";
+import { queryClient } from "../../services/queryClient";
 
 const categoryOptions = Object.values(CategoryEnum);
 
@@ -120,21 +122,42 @@ export default function AddEmission() {
         return `${year}-${month}-${day}`;
     };
 
-    const handleAddEmission = async () => {
-        try {
-            const response = await api.post("/consumption/", {
-                title: title,
-                subcategory: subCategory,
-                date: getDate(),
-                amount: +amount,
-                category: category,
-            });
-            toast.success("Consumption created successfully.");
-            navigate(PATHS.emissions.route);
-        } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong. Please try again.");
+    const getDateWithoutDay = () => {
+        // @ts-ignore
+        const splittedDate = date?.split("/");
+        const month = splittedDate[1];
+        const year = splittedDate[2];
+        return `${year}-${month}`;
+    };
+
+    const createEmission = useMutation(
+        async () => {
+            try {
+                const response = await api.post("/consumption/", {
+                    title: title,
+                    subcategory: subCategory,
+                    date: getDate(),
+                    amount: +amount,
+                    category: category,
+                });
+                toast.success("Consumption created successfully.");
+                navigate(
+                    PATHS.emission.route.replace(":id", getDateWithoutDay())
+                );
+            } catch (error) {
+                console.log(error);
+                toast.error("Something went wrong. Please try again.");
+            }
+        },
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries("emissions");
+            },
         }
+    );
+
+    const handleAddEmission = async () => {
+        await createEmission.mutateAsync();
     };
 
     return (

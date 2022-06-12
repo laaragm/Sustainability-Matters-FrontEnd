@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -15,9 +15,17 @@ export default function Emissions() {
     const theme = useTheme();
     let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const [hasMoreData, setHasMoreData] = useState(
-        (data?.totalCount || 0) > 5 ? true : false
-    );
+    const [hasMoreData, setHasMoreData] = useState(true);
+
+    useEffect(() => {
+        checkIfThereIsMoreData();
+    }, [data]);
+
+    const checkIfThereIsMoreData = () => {
+        if (data != undefined && (data?.totalCount || 0) < 3) {
+            setHasMoreData(false);
+        }
+    };
 
     const onScroll = () => {
         setHasMoreData(false);
