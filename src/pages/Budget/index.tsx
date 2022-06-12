@@ -3,15 +3,17 @@ import budgetIllustration from "../../assets/images/budgetPageIllustration.svg";
 import { StyledTitle, StyledSubtitle, StyledText } from './styles';
 import { CustomizedBox } from "./components/CustomizedBox";
 import { CustomizedMessage } from "./components/CustomizedMessage";
+import { CircularProgress } from "@mui/material";
 
 import { useBudget} from "../../hooks/useBudget";
+import { useState } from 'react';
 
 export default function Budget() {
 
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-
     const { data: posts, isLoading } = useBudget();
+
 
     return (
         <>
@@ -26,6 +28,9 @@ export default function Budget() {
                         width= "90%"
                     />
             </Stack>
+            {isLoading ? <CircularProgress color="inherit" /> : (
+
+           
             <Stack
                 alignItems="center"
                 direction="column"
@@ -106,6 +111,7 @@ export default function Budget() {
                     </Stack>      
                 </Stack>
             </Stack>
+            )}
         </>
     )
 
