@@ -120,6 +120,14 @@ export default function AddEmission() {
         return `${year}-${month}-${day}`;
     };
 
+    const getDateWithoutDay = () => {
+        // @ts-ignore
+        const splittedDate = date?.split("/");
+        const month = splittedDate[1];
+        const year = splittedDate[2];
+        return `${year}-${month}`;
+    };
+
     const handleAddEmission = async () => {
         try {
             const response = await api.post("/consumption/", {
@@ -130,7 +138,7 @@ export default function AddEmission() {
                 category: category,
             });
             toast.success("Consumption created successfully.");
-            navigate(PATHS.emissions.route);
+            navigate(PATHS.emission.route.replace(":id", getDateWithoutDay()));
         } catch (error) {
             console.log(error);
             toast.error("Something went wrong. Please try again.");

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import { CircularProgress } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -13,7 +14,6 @@ import { ModalMobile } from "./components/ModalMobile";
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { PATHS } from "../../routes/paths";
 import { api } from "../../services/api";
-import toast from "react-hot-toast";
 
 export default function Emission() {
     const theme = useTheme();
@@ -32,6 +32,16 @@ export default function Emission() {
     useEffect(() => {
         defineDate();
     }, []);
+
+    useEffect(() => {
+        checkIfThereIsMoreData();
+    }, [data]);
+
+    const checkIfThereIsMoreData = () => {
+        if (data != undefined && (data?.totalCount || 0) < 3) {
+            setHasMoreData(false);
+        }
+    };
 
     const defineDate = () => {
         const value = window.location.href.substring(
