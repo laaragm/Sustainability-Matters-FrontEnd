@@ -1,8 +1,8 @@
 import { Box, Stack, useMediaQuery, useTheme } from '@mui/material';
 import budgetIllustration from "../../assets/images/budgetPageIllustration.svg";
 import { StyledTitle, StyledSubtitle, StyledText } from './styles';
-import { CustomizedBox } from "../../shared/components/CustomizedBox";
-import { CustomizedMessage } from "../../shared/components/CustomizedMessage";
+import { CustomizedBox } from "./components/CustomizedBox";
+import { CustomizedMessage } from "./components/CustomizedMessage";
 
 import { useBudget} from "../../hooks/useBudget";
 
