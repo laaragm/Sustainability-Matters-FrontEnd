@@ -66,10 +66,10 @@ export function CardContent({
             <StyledDate key={date}>{date}</StyledDate>
             <Stack direction="column" mt={2} mb={2} spacing={0.5}>
                 <StyledConsumptionInfo>
-                    Total: {totalConsumption} kgCO2eq
+                    Total: {totalConsumption?.toFixed(3)} kgCO2eq
                 </StyledConsumptionInfo>
                 <StyledConsumptionInfo>
-                    EU monthly average: {europeanUnionAverage?.toFixed(2)}{" "}
+                    EU monthly average: {europeanUnionAverage?.toFixed(3)}{" "}
                     kgCO2eq
                 </StyledConsumptionInfo>
             </Stack>
