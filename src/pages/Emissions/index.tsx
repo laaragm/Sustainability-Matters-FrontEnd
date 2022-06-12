@@ -18,16 +18,8 @@ export default function Emissions() {
     const [hasMoreData, setHasMoreData] = useState(true);
 
     useEffect(() => {
-        checkIfThereAreEmissions();
         checkIfThereIsMoreData();
     }, [data]);
-
-    const checkIfThereAreEmissions = () => {
-        const hasNoEmissions = data != undefined && data?.totalCount === 0;
-        if (hasNoEmissions) {
-            navigate(PATHS.noEmissions.route);
-        }
-    };
 
     const checkIfThereIsMoreData = () => {
         if (data != undefined && (data?.totalCount || 0) < 3) {

@@ -69,7 +69,8 @@ export function CardContent({
                     Total: {totalConsumption} kgCO2eq
                 </StyledConsumptionInfo>
                 <StyledConsumptionInfo>
-                    EU average: {europeanUnionAverage} kgCO2eq
+                    EU monthly average: {europeanUnionAverage?.toFixed(2)}{" "}
+                    kgCO2eq
                 </StyledConsumptionInfo>
             </Stack>
             <Stack width="100%">
