@@ -8,14 +8,16 @@ import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CardContent } from "./components/CardContent";
 import { useEmissions } from "../../hooks/useEmissions";
 import { PATHS } from "../../routes/paths";
+import { useAuth } from "../../hooks/useAuth";
 import { StyledCard, StyledStack } from "./styles";
 
 export default function Emissions() {
-    const { data, isLoading } = useEmissions();
     const theme = useTheme();
     let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [hasMoreData, setHasMoreData] = useState(true);
+    const { token } = useAuth();
+    const { data, isLoading } = useEmissions(token);
 
     useEffect(() => {
         checkIfThereIsMoreData();
