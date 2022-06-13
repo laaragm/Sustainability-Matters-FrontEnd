@@ -17,9 +17,6 @@ interface AuthContextProviderProps {
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
-    // const [token, setToken] = useState(
-    //     "b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiJzdHJpbmcifQ.CvZz7HtB2jSCBCpwOi8fm66TiCDlqhEilJj2ChoIzNE'"
-    // );
     const accessToken = localStorage.hasOwnProperty("REACT_TOKEN_AUTH")
         ? localStorage.getItem("REACT_TOKEN_AUTH") || ""
         : "";
