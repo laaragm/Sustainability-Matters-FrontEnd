@@ -1,4 +1,5 @@
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import forgotPasswordIllustration from "../../assets/images/forgotPasswordIllustration.svg";
@@ -21,6 +22,7 @@ export default function ForgotPassord() {
             const response = await api.get(`sendEmail/${email}`);
             console.log(response);
             resetEmail();
+            toast.success("Email sent successfully.");
         } catch (error) {
             console.log(error);
         }
