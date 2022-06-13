@@ -84,7 +84,8 @@ export function CardContent({
                                         {emission.subcategory?.name}
                                     </StyledDescription>
                                     <StyledDescription>
-                                        {emission.date} - {emission.co2Emission}{" "}
+                                        {emission.date} -{" "}
+                                        {emission.co2Emission?.toFixed(3)}{" "}
                                         kgCO2eq
                                     </StyledDescription>
                                     <Stack width="100%" mt={1}>
