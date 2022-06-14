@@ -85,7 +85,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     const logout = () => {
         removeInfoFromLocalStorage();
         putVariablesInInitialState();
-        navigate(PATHS.home.route);
+        navigate(PATHS.login.route);
     };
 
     const getUserInfo = async (userEmail: string) => {

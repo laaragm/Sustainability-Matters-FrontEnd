@@ -15,6 +15,7 @@ export default function Login() {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isButtonLoading, setIsButtonLoading] = useState(false);
     const { login } = useAuth();
     let navigate = useNavigate();
 
@@ -28,7 +29,9 @@ export default function Login() {
 
     const handleLogin = async () => {
         try {
+            setIsButtonLoading(true);
             await login(email, password);
+            setIsButtonLoading(false);
             navigate(PATHS.emissions.route);
         } catch (error) {
             toast.error("Invalid credentials. Please try again.");
@@ -113,6 +116,7 @@ export default function Login() {
                         borderRadius="1.5rem"
                         fullWidth={true}
                         disabled={email.length === 0 || password.length === 0}
+                        loading={isButtonLoading}
                         onClick={handleLogin}
                     >
                         Login

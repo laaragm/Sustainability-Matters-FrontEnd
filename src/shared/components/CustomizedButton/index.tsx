@@ -1,5 +1,5 @@
-import { Button } from "@mui/material";
 import { ReactNode } from "react";
+import { LoadingButton } from "@mui/lab";
 
 interface CustomizedButtonProps {
     children: ReactNode;
@@ -16,6 +16,7 @@ interface CustomizedButtonProps {
     borderRadius?: string;
     fullWidth?: boolean;
     disabled?: boolean;
+    loading?: boolean;
     onClick: () => void;
 }
 
@@ -27,6 +28,7 @@ export function CustomizedButton({
     padding = "0.2rem 1.5rem",
     fullWidth = false,
     disabled = false,
+    loading = false,
     onClick,
 }: CustomizedButtonProps) {
     const handleClick = () => {
@@ -34,11 +36,12 @@ export function CustomizedButton({
     };
 
     return (
-        <Button
+        <LoadingButton
             fullWidth={fullWidth}
             color={color}
             variant={variant}
             disabled={disabled}
+            loading={loading}
             onClick={handleClick}
             sx={{
                 borderRadius: borderRadius,
@@ -48,6 +51,6 @@ export function CustomizedButton({
             }}
         >
             {children}
-        </Button>
+        </LoadingButton>
     );
 }
