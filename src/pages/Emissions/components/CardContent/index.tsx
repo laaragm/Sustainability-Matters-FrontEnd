@@ -6,12 +6,15 @@ import { CategoryEnum } from "../../../../types/categoryEnum";
 import transportIcon from "../../../../assets/images/transportIcon.svg";
 import foodIcon from "../../../../assets/images/foodIcon.svg";
 import electricityIcon from "../../../../assets/images/electricityIcon.svg";
+import noEmissionsIllustration from "../../../../assets/images/noEmissionsIllustration.svg";
+
 import {
     StyledDate,
     StyledTitle,
     StyledDescription,
     StyledDivider,
     StyledImage,
+    StyledTNoEmissionsMessage,
 } from "./styles";
 
 interface CardContentProps {
@@ -25,6 +28,8 @@ export function CardContent({
     isMobile,
     onMonthClick,
 }: CardContentProps) {
+    const hasEmissions = Object.keys(emissions)?.length > 0;
+
     const handleMonth = (date: string) => {
         const splittedDate = date.split("-");
         const year = splittedDate[0];
@@ -53,60 +58,85 @@ export function CardContent({
             justifyContent="flex-start"
             width="100%"
         >
-            {Object.keys(emissions)
-                .reverse()
-                .map((key) => (
-                    <>
-                        <Stack direction="row">
-                            <StyledDate key={key}>{key}</StyledDate>
-                            <Stack mt={isMobile ? 0.5 : 1} ml={1}>
-                                <StyledImage
-                                    src={chevronForwardIcon}
-                                    alt="Chevron forward icon"
-                                    height="20"
-                                    width="20"
-                                    onClick={() => handleMonth(key)}
-                                />
-                            </Stack>
-                        </Stack>
-                        <Stack width="100%">
-                            {emissions[key].map((emission, index) => (
-                                <Stack
-                                    key={index}
-                                    direction="row"
-                                    spacing={1}
-                                    mt={1}
-                                >
-                                    <Stack mt={3}>
-                                        {getIcon(
-                                            emission.subcategory?.category
-                                        )}
-                                    </Stack>
-                                    <Stack
-                                        direction="column"
-                                        mb={1}
-                                        width="100%"
-                                    >
-                                        <StyledTitle>
-                                            {emission.title}
-                                        </StyledTitle>
-                                        <StyledDescription>
-                                            {emission.subcategory?.name}
-                                        </StyledDescription>
-                                        <StyledDescription>
-                                            {emission.date} -{" "}
-                                            {emission.co2Emission?.toFixed(3)}{" "}
-                                            kgCO2eq
-                                        </StyledDescription>
-                                        <Stack width="100%" mt={1}>
-                                            <StyledDivider />
-                                        </Stack>
+            {hasEmissions ? (
+                <>
+                    {Object.keys(emissions)
+                        .reverse()
+                        .map((key) => (
+                            <>
+                                <Stack direction="row">
+                                    <StyledDate key={key}>{key}</StyledDate>
+                                    <Stack mt={isMobile ? 0.5 : 1} ml={1}>
+                                        <StyledImage
+                                            src={chevronForwardIcon}
+                                            alt="Chevron forward icon"
+                                            height="20"
+                                            width="20"
+                                            onClick={() => handleMonth(key)}
+                                        />
                                     </Stack>
                                 </Stack>
-                            ))}
-                        </Stack>
-                    </>
-                ))}
+                                <Stack width="100%">
+                                    {emissions[key].map((emission, index) => (
+                                        <Stack
+                                            key={index}
+                                            direction="row"
+                                            spacing={1}
+                                            mt={1}
+                                        >
+                                            <Stack mt={3}>
+                                                {getIcon(
+                                                    emission.subcategory
+                                                        ?.category
+                                                )}
+                                            </Stack>
+                                            <Stack
+                                                direction="column"
+                                                mb={1}
+                                                width="100%"
+                                            >
+                                                <StyledTitle>
+                                                    {emission.title}
+                                                </StyledTitle>
+                                                <StyledDescription>
+                                                    {emission.subcategory?.name}
+                                                </StyledDescription>
+                                                <StyledDescription>
+                                                    {emission.date} -{" "}
+                                                    {emission.co2Emission?.toFixed(
+                                                        3
+                                                    )}{" "}
+                                                    kgCO2eq
+                                                </StyledDescription>
+                                                <Stack width="100%" mt={1}>
+                                                    <StyledDivider />
+                                                </Stack>
+                                            </Stack>
+                                        </Stack>
+                                    ))}
+                                </Stack>
+                            </>
+                        ))}
+                </>
+            ) : (
+                <Stack
+                    alignItems="center"
+                    justifyContent="center"
+                    width="100%"
+                    mt={3}
+                    spacing={5}
+                >
+                    <img
+                        src={noEmissionsIllustration}
+                        alt="No emissions illustration"
+                        height="100%"
+                        width="100%"
+                    />
+                    <StyledTNoEmissionsMessage>
+                        There are currently no registered emissions
+                    </StyledTNoEmissionsMessage>
+                </Stack>
+            )}
         </Stack>
     );
 }
