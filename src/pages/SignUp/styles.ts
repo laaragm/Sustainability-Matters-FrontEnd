@@ -1,5 +1,4 @@
-import { styled } from '@mui/material/styles';
-
+import { styled } from "@mui/material/styles";
 
 export const StyledTitle = styled("div")(({ theme }) => ({
     fontWeight: 750,

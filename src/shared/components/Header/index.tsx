@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import {
     AppBar,
@@ -13,29 +13,39 @@ import {
 import { AppBarDesktop } from "./components/AppBarDesktop";
 import { AppBarMobile } from "./components/AppBarMobile";
 import { PATHS } from "../../../routes/paths";
+import { useAuth } from "../../../hooks/useAuth";
 
 export function Header() {
+    const { token, logout } = useAuth();
     let navigate = useNavigate();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("lg"));
     const [drawerOpen, setDrawerOpen] = useState(false);
-    const [isAuthenticated, setIsAuthenticated] = useState(false); // TODO: Change this as soon as we have the authentication in place
+    const [isAuthenticated, setIsAuthenticated] = useState(token?.length > 0);
 
     const handleDrawerOpen = () => setDrawerOpen(true);
     const handleDrawerClose = () => setDrawerOpen(false);
+
+    useEffect(() => {
+        if (token?.length > 0) {
+            setIsAuthenticated(true);
+        } else {
+            setIsAuthenticated(false);
+        }
+    }, [token]);
 
     const handleLogin = () => {
         navigate(PATHS.login.route);
     };
 
-    // TODO: Implement it as soon as the backend is in place
     const handleSignUp = () => {
         navigate(PATHS.signUp.route);
     };
 
-    // TODO: Implement it as soon as the backend is in place
     const handleLogout = () => {
         setIsAuthenticated(false);
+        logout();
+        navigate(PATHS.login.route);
     };
 
     const handleClickOnTitle = () => {

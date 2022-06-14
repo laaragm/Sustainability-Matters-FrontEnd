@@ -1,12 +1,13 @@
 import { Suspense } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { QueryClientProvider } from "react-query";
-import { ToastContainer } from "react-toastify";
+import { Toaster } from "react-hot-toast";
 import { ReactQueryDevtools } from "react-query/devtools";
 import {
     ThemeProvider,
     StyledEngineProvider,
     CssBaseline,
+    Stack,
 } from "@mui/material";
 
 import { LoadingScreen } from "./shared/components/LoadingScreen";
@@ -16,7 +17,7 @@ import { ScrollToTop } from "./shared/components/ScrollToTop";
 import { Header } from "./shared/components/Header";
 import { makeServer } from "./services/mirage";
 import { queryClient } from "./services/queryClient";
-import { TokenContextProvider } from "./contexts/TokenContext";
+import { AuthContextProvider } from "./contexts/AuthContext";
 import { MainStyle } from "./styles";
 
 if (process.env.NODE_ENV === "development") {
@@ -28,7 +29,7 @@ export default function App() {
         <Suspense fallback={<LoadingScreen />}>
             <QueryClientProvider client={queryClient}>
                 <BrowserRouter>
-                    <TokenContextProvider>
+                    <AuthContextProvider>
                         <StyledEngineProvider injectFirst>
                             <ThemeProvider theme={theme}>
                                 <CssBaseline />
@@ -36,16 +37,19 @@ export default function App() {
                                 <Header />
                                 <MainStyle>
                                     <Routes />
+                                    <Stack
+                                        sx={{
+                                            position: "absolute",
+                                            right: 0,
+                                            bottom: 0,
+                                        }}
+                                    >
+                                        <Toaster position="bottom-right" />
+                                    </Stack>
                                 </MainStyle>
-                                <ToastContainer
-                                    position="bottom-right"
-                                    autoClose={3000}
-                                    closeOnClick
-                                    pauseOnHover
-                                />
                             </ThemeProvider>
                         </StyledEngineProvider>
-                    </TokenContextProvider>
+                    </AuthContextProvider>
                 </BrowserRouter>
 
                 <ReactQueryDevtools />

@@ -16,6 +16,7 @@ interface CustomizedButtonProps {
     borderRadius?: string;
     fullWidth?: boolean;
     disabled?: boolean;
+    height?: string;
     onClick: () => void;
 }
 
@@ -27,6 +28,7 @@ export function CustomizedButton({
     padding = "0.2rem 1.5rem",
     fullWidth = false,
     disabled = false,
+    height = "2.5rem",
     onClick,
 }: CustomizedButtonProps) {
     const handleClick = () => {
@@ -45,6 +47,7 @@ export function CustomizedButton({
                 textTransform: "capitalize",
                 padding: padding,
                 fontWeight: variant === "text" ? "bold" : "normal",
+                height: height
             }}
         >
             {children}

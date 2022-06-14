@@ -42,5 +42,13 @@ export const PATHS = {
     budget: {
         name: "Budget",
         route: "/budget",
-    }
+    },
+    changePassword: {
+        name: "Change Password",
+        route: "/new-password",
+    },
+    noPermissions: {
+        name: "No Permissions",
+        route: "/no-permissions",
+    },
 };

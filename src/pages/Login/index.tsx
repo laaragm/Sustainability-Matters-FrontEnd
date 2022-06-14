@@ -1,15 +1,22 @@
-import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import loginPageIllustration from "../../assets/images/loginPageIllustration.svg";
 import { CustomizedButton } from "./../../shared/components/CustomizedButton/index";
 import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
+import { useAuth } from "../../hooks/useAuth";
+import { PATHS } from "../../routes/paths";
+import { StyledForgotPassword } from "./styles";
 
 export default function Login() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const { login } = useAuth();
+    let navigate = useNavigate();
 
     const handleEmail = (value: string) => {
         setEmail(value);
@@ -19,8 +26,19 @@ export default function Login() {
         setPassword(value);
     };
 
-    // TODO: Implement functionality as soon as the backend is in place
-    const handleLogin = () => {};
+    const handleLogin = async () => {
+        try {
+            await login(email, password);
+            navigate(PATHS.emissions.route);
+        } catch (error) {
+            toast.error("Invalid credentials. Please try again.");
+            console.log(error);
+        }
+    };
+
+    const handleForgotPassword = () => {
+        navigate(PATHS.forgotPassword.route);
+    };
 
     return (
         <Stack
@@ -43,7 +61,6 @@ export default function Login() {
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-                spacing={isMobile ? 3 : 4}
                 width={isMobile ? "100%" : "20%"}
                 sx={{
                     position: "absolute",
@@ -54,6 +71,7 @@ export default function Login() {
                     alignItems="center"
                     justifyContent="center"
                     spacing={1}
+                    mb={isMobile ? 3 : 4}
                     width={isMobile ? "80%" : "100%"}
                 >
                     <CustomizedTextField
@@ -69,6 +87,7 @@ export default function Login() {
                     alignItems="center"
                     justifyContent="center"
                     spacing={1}
+                    mb={isMobile ? 1 : 2}
                     width={isMobile ? "80%" : "100%"}
                 >
                     <CustomizedTextField
@@ -78,6 +97,11 @@ export default function Login() {
                         value={password}
                         onChange={(value) => handlePassword(value)}
                     />
+                </Stack>
+                <Stack width={isMobile ? "80%" : "100%"} mb={isMobile ? 3 : 4}>
+                    <StyledForgotPassword onClick={handleForgotPassword}>
+                        Forgot Password
+                    </StyledForgotPassword>
                 </Stack>
                 <Stack
                     alignItems="center"
