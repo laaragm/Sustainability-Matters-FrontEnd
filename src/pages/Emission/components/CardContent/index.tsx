@@ -59,10 +59,6 @@ export function CardContent({
         return <img src={icon} alt="Category icon" height="24" width="24" />;
     };
 
-    const handleAddEmission = () => {
-        navigate(PATHS.addEmission.route);
-    };
-
     return (
         <Stack
             direction="column"
@@ -106,8 +102,8 @@ export function CardContent({
                                 </StyledDescription>
                                 <StyledDescription>
                                     {/* @ts-ignore */}
-                                    {emission.date} - {emission.co2Emission}{" "}
-                                    kgCO2eq
+                                    {emission.date} -{" "}
+                                    {emission.co2Emission?.toFixed(3)} kgCO2eq
                                 </StyledDescription>
                                 <Stack width="100%" mt={1}>
                                     <StyledDivider />
