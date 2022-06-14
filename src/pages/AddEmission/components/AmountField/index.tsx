@@ -20,7 +20,6 @@ export function AmountField({
             customTextField
             title={title}
             id={id}
-            type="number"
             value={value}
             onChange={(value) => onChange(value)}
         />

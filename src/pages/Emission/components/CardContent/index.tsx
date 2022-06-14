@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Stack } from "@mui/material";
 
 import { Emission } from "../../../../types/emission";
@@ -14,6 +15,8 @@ import {
     StyledImage,
     StyledConsumptionInfo,
 } from "./styles";
+import { CustomizedButton } from "../../../../shared/components/CustomizedButton";
+import { PATHS } from "../../../../routes/paths";
 
 interface EmissionData {
     totalCount: number;
@@ -35,6 +38,7 @@ export function CardContent({
     isMobile,
     onRowClick,
 }: CardContentProps) {
+    let navigate = useNavigate();
     const { emissions, totalCount, totalConsumption, europeanUnionAverage } =
         data;
 
@@ -98,8 +102,8 @@ export function CardContent({
                                 </StyledDescription>
                                 <StyledDescription>
                                     {/* @ts-ignore */}
-                                    {emission.date} - {emission.co2Emission}{" "}
-                                    kgCO2eq
+                                    {emission.date} -{" "}
+                                    {emission.co2Emission?.toFixed(3)} kgCO2eq
                                 </StyledDescription>
                                 <Stack width="100%" mt={1}>
                                     <StyledDivider />

@@ -19,6 +19,15 @@ export const StyledTitle = styled("div")(({ theme }) => ({
     },
 }));
 
+export const StyledNoEmissionsMessage = styled("div")(({ theme }) => ({
+    color: theme.palette.text.secondary,
+    fontSize: "1.2rem",
+    fontWeight: 500,
+    "@media (max-width: 400px)": {
+        fontSize: "1rem",
+    },
+}));
+
 export const StyledDescription = styled("div")(({ theme }) => ({
     color: theme.palette.warning.main,
     fontWeight: 400,

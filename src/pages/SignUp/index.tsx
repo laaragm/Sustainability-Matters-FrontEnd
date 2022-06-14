@@ -18,10 +18,12 @@ export default function SignUp() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isButtonLoading, setIsButtonLoading] = useState(false);
     const { login } = useAuth();
 
     const handleRegister = async () => {
         try {
+            setIsButtonLoading(true);
             const response = await api.post("/user/", {
                 email: email,
                 name: firstName,
@@ -31,6 +33,7 @@ export default function SignUp() {
             });
             if (response) {
                 await login(email, password);
+                setIsButtonLoading(true);
             }
             navigate(PATHS.noEmissions.route);
         } catch (error) {
@@ -138,6 +141,7 @@ export default function SignUp() {
                     <CustomizedButton
                         color="secondary"
                         borderRadius="0.3rem"
+                        loading={isButtonLoading}
                         disabled={
                             email.length === 0 ||
                             password.length === 0 ||
