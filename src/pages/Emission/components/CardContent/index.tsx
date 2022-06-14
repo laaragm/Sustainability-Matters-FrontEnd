@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Stack } from "@mui/material";
 
 import { Emission } from "../../../../types/emission";
@@ -14,6 +15,8 @@ import {
     StyledImage,
     StyledConsumptionInfo,
 } from "./styles";
+import { CustomizedButton } from "../../../../shared/components/CustomizedButton";
+import { PATHS } from "../../../../routes/paths";
 
 interface EmissionData {
     totalCount: number;
@@ -35,6 +38,7 @@ export function CardContent({
     isMobile,
     onRowClick,
 }: CardContentProps) {
+    let navigate = useNavigate();
     const { emissions, totalCount, totalConsumption, europeanUnionAverage } =
         data;
 
@@ -53,6 +57,10 @@ export function CardContent({
         }
 
         return <img src={icon} alt="Category icon" height="24" width="24" />;
+    };
+
+    const handleAddEmission = () => {
+        navigate(PATHS.addEmission.route);
     };
 
     return (
