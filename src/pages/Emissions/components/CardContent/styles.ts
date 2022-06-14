@@ -19,7 +19,7 @@ export const StyledTitle = styled("div")(({ theme }) => ({
     },
 }));
 
-export const StyledTNoEmissionsMessage = styled("div")(({ theme }) => ({
+export const StyledNoEmissionsMessage = styled("div")(({ theme }) => ({
     color: theme.palette.text.secondary,
     fontSize: "1.2rem",
     fontWeight: 500,

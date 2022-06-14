@@ -14,7 +14,7 @@ import {
     StyledDescription,
     StyledDivider,
     StyledImage,
-    StyledTNoEmissionsMessage,
+    StyledNoEmissionsMessage,
 } from "./styles";
 
 interface CardContentProps {
@@ -132,9 +132,9 @@ export function CardContent({
                         height="100%"
                         width="100%"
                     />
-                    <StyledTNoEmissionsMessage>
+                    <StyledNoEmissionsMessage>
                         There are currently no registered emissions
-                    </StyledTNoEmissionsMessage>
+                    </StyledNoEmissionsMessage>
                 </Stack>
             )}
         </Stack>
