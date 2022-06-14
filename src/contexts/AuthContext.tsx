@@ -1,5 +1,6 @@
 import { useState, useEffect, createContext, ReactNode } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import { api } from "../services/api";
 import { PATHS } from "../routes/paths";
@@ -47,6 +48,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
     useEffect(() => {
         if (localStorage.getItem("REACT_TOKEN_AUTH")?.length === 0) {
+            toast.error("Your session has expired. Please login again.");
             logout();
         }
     }, [localStorage.getItem("REACT_TOKEN_AUTH")]);
