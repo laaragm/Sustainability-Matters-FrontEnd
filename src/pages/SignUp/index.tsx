@@ -72,17 +72,17 @@ export default function SignUp() {
                     />
                 </Stack>
             )}
-
             <Stack
                 alignItems="center"
                 direction="column"
                 justifyContent="space-evenly"
-                spacing={isMobile ? 1 : 0.1}
+                spacing={isMobile ? 1 : 3}
+                width={isMobile ? "30rem" : "40rem"}
+                height="40rem"
+                mt={isMobile ? 5 : 0}
                 sx={{
-                    width: "32.0rem",
-                    height: "34.0rem",
                     backgroundColor: "white",
-                    borderRadius: "1.5rem",
+                    borderRadius: isMobile ? 0 : "1.5rem",
                 }}
             >
                 <Stack
@@ -96,7 +96,6 @@ export default function SignUp() {
                 >
                     <StyledTitle>CREATE YOUR ACCOUNT</StyledTitle>
                 </Stack>
-
                 <Stack width="70%">
                     <CustomizedTextField
                         title="First Name"
@@ -106,7 +105,6 @@ export default function SignUp() {
                         onChange={(value) => handleFirstName(value)}
                     />
                 </Stack>
-
                 <Stack width="70%">
                     <CustomizedTextField
                         title="Last Name"
@@ -116,7 +114,6 @@ export default function SignUp() {
                         onChange={(value) => handleLastName(value)}
                     />
                 </Stack>
-
                 <Stack width="70%">
                     <CustomizedTextField
                         title="Email"
@@ -126,7 +123,6 @@ export default function SignUp() {
                         onChange={(value) => handleEmail(value)}
                     />
                 </Stack>
-
                 <Stack width="70%">
                     <CustomizedTextField
                         title="Password"
@@ -136,11 +132,11 @@ export default function SignUp() {
                         onChange={(value) => handlePassword(value)}
                     />
                 </Stack>
-
-                <Stack width="40%" mt={20}>
+                <Stack width="40%" pb={2}>
                     <CustomizedButton
+                        variant="outlined"
                         color="secondary"
-                        borderRadius="0.3rem"
+                        borderRadius="1.5rem"
                         loading={isButtonLoading}
                         disabled={
                             email.length === 0 ||
