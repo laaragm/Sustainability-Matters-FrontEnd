@@ -59,6 +59,7 @@ export default function Budget() {
                                 <Stack
                                     direction="row"
                                     justifyContent="space-between"
+                                    spacing={isMobile ? 0 : 3}
                                 >
                                     <CustomizedBox
                                         // @ts-ignore
@@ -88,9 +89,15 @@ export default function Budget() {
                                 <Stack
                                     direction="row"
                                     justifyContent="space-between"
+                                    spacing={isMobile ? 0 : 3}
                                 >
                                     <CustomizedBox
-                                        consumption={
+                                        // @ts-ignore
+                                        consumption={posts?.budget.month}
+                                        type="month"
+                                    />
+                                    <StyledText isMobile={isMobile}>
+                                        {
                                             // @ts-ignore
                                             posts?.budget.month > 0
                                                 ? // @ts-ignore
@@ -98,11 +105,8 @@ export default function Budget() {
                                                       3
                                                   )
                                                 : posts?.budget.month
-                                        }
-                                        type="month"
-                                    />
-                                    <StyledText isMobile={isMobile}>
-                                        {posts?.budget.month} kgCO2eq{" "}
+                                        }{" "}
+                                        kgCO2eq{" "}
                                     </StyledText>
                                 </Stack>
                                 <CustomizedMessage
@@ -119,6 +123,7 @@ export default function Budget() {
                                 <Stack
                                     direction="row"
                                     justifyContent="space-between"
+                                    spacing={isMobile ? 0 : 3}
                                 >
                                     <CustomizedBox
                                         // @ts-ignore
