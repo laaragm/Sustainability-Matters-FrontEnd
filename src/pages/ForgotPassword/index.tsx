@@ -23,7 +23,6 @@ export default function ForgotPassord() {
     const handleResetPassword = async () => {
         try {
             const response = await api.get(`sendEmail/${email}`);
-            console.log(response);
             resetEmail();
             toast.success("Email sent successfully.");
         } catch (error) {

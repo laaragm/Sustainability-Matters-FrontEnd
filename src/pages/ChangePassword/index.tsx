@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import forgotPasswordIllustration from "../../assets/images/forgotPasswordIllustration.svg";
@@ -42,6 +43,7 @@ export default function ChangePassword() {
                     },
                 }
             );
+            toast.success("Password has been changed successfully.");
             redirectToLoginPage();
         } catch (error) {
             console.log(error);
