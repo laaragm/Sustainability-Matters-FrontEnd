@@ -22,22 +22,61 @@ export default function SignUp() {
     const [isButtonLoading, setIsButtonLoading] = useState(false);
     const { login } = useAuth();
 
+    const containsOnlyLetters = (value: string) => {
+        const isValid = /^[a-zA-Z]+$/.test(value);
+        return isValid;
+    };
+
+    const emailIsInCorrectFormat = () => {
+        if (
+            email.match(
+                /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+            ) != null
+        ) {
+            return true;
+        }
+        return false;
+    };
+
+    const fieldsAreCorrect = () => {
+        let result = true;
+        const firstNameIsValid = containsOnlyLetters(firstName);
+        const lastNameIsValid = containsOnlyLetters(lastName);
+        const emailIsValid = emailIsInCorrectFormat();
+        if (!firstNameIsValid) {
+            toast.error("First name is not valid.");
+            result = false;
+        }
+        if (!lastNameIsValid) {
+            toast.error("Last name is not valid.");
+            result = false;
+        }
+        if (!emailIsValid) {
+            toast.error("Email is not valid.");
+            result = false;
+        }
+        return result;
+    };
+
     const handleRegister = async () => {
         try {
-            setIsButtonLoading(true);
-            const response = await api.post("/user/", {
-                email: email,
-                name: firstName,
-                last_name: lastName,
-                password: password,
-                consumption: [],
-            });
-            if (response != undefined) {
-                await login(email, password);
+            const fieldsAreValidated = fieldsAreCorrect();
+            if (fieldsAreValidated) {
                 setIsButtonLoading(true);
-                navigate(PATHS.noEmissions.route);
-            } else {
-                clearFields();
+                const response = await api.post("/user/", {
+                    email: email,
+                    name: firstName,
+                    last_name: lastName,
+                    password: password,
+                    consumption: [],
+                });
+                if (response != undefined) {
+                    await login(email, password);
+                    setIsButtonLoading(true);
+                    navigate(PATHS.noEmissions.route);
+                } else {
+                    clearFields();
+                }
             }
         } catch (error) {
             console.log(error);
