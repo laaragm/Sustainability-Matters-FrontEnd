@@ -19,6 +19,7 @@ export default function SignUp() {
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [passwordConfirmation, setPasswordConfirmation] = useState("");
     const [isButtonLoading, setIsButtonLoading] = useState(false);
     const { login } = useAuth();
 
@@ -53,6 +54,10 @@ export default function SignUp() {
         }
         if (!emailIsValid) {
             toast.error("Email is not valid.");
+            result = false;
+        }
+        if (password !== passwordConfirmation) {
+            toast.error("Password does not match Password Confirmation.");
             result = false;
         }
         return result;
@@ -107,6 +112,10 @@ export default function SignUp() {
         setPassword(value);
     };
 
+    const handlePasswordConfirmation = (value: string) => {
+        setPasswordConfirmation(value);
+    };
+
     return (
         <>
             {!isMobile && (
@@ -127,8 +136,8 @@ export default function SignUp() {
                 direction="column"
                 justifyContent="space-evenly"
                 spacing={isMobile ? 1 : 3}
-                width={isMobile ? "30rem" : "40rem"}
-                height="40rem"
+                width={isMobile ? "100%" : "50%"}
+                height={isMobile ? "90%" : "75%"}
                 mt={isMobile ? 5 : 0}
                 sx={{
                     backgroundColor: "white",
@@ -139,10 +148,6 @@ export default function SignUp() {
                     alignItems={isMobile ? "center" : "baseline"}
                     justifyContent="space-evenly"
                     width="90%"
-                    sx={{
-                        width: "30.0rem",
-                        height: "4.0rem",
-                    }}
                 >
                     <StyledTitle>CREATE YOUR ACCOUNT</StyledTitle>
                 </Stack>
@@ -182,6 +187,15 @@ export default function SignUp() {
                         onChange={(value) => handlePassword(value)}
                     />
                 </Stack>
+                <Stack width="70%">
+                    <CustomizedTextField
+                        title="Password Confirmation"
+                        id="password-confirmation-field-login"
+                        type="password"
+                        value={passwordConfirmation}
+                        onChange={(value) => handlePasswordConfirmation(value)}
+                    />
+                </Stack>
                 <Stack width="40%" pb={2}>
                     <CustomizedButton
                         variant="outlined"
@@ -192,7 +206,8 @@ export default function SignUp() {
                             email.length === 0 ||
                             password.length === 0 ||
                             lastName.length === 0 ||
-                            firstName.length === 0
+                            firstName.length === 0 ||
+                            passwordConfirmation.length === 0
                         }
                         fullWidth={true}
                         onClick={handleRegister}
