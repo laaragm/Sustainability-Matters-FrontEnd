@@ -17,8 +17,11 @@ apiConfig.interceptors.response.use(
     (error: AxiosError) => {
         // @ts-ignore
         const isUnauthorized = error.response.status === 401;
+        const hasConflict = error.response.status === 409;
         if (isUnauthorized) {
             localStorage.setItem("REACT_TOKEN_AUTH", "");
+            toast.error(error.response.data.message);
+        } else if (hasConflict) {
             toast.error(error.response.data.message);
         }
     }

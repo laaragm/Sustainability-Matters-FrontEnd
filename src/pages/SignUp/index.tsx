@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
@@ -31,14 +32,24 @@ export default function SignUp() {
                 password: password,
                 consumption: [],
             });
-            if (response) {
+            if (response != undefined) {
                 await login(email, password);
                 setIsButtonLoading(true);
+                navigate(PATHS.noEmissions.route);
+            } else {
+                clearFields();
             }
-            navigate(PATHS.noEmissions.route);
         } catch (error) {
             console.log(error);
         }
+    };
+
+    const clearFields = () => {
+        setFirstName("");
+        setLastName("");
+        setEmail("");
+        setPassword("");
+        setIsButtonLoading(false);
     };
 
     const handleFirstName = (value: string) => {
