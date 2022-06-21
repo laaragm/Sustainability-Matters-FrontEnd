@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 const apiConfig = axios.create({
     baseURL: process.env.REACT_APP_BASE_REQUEST_URL,
@@ -19,6 +20,7 @@ apiConfig.interceptors.response.use(
         if (isUnauthorized) {
             localStorage.setItem("REACT_TOKEN_AUTH", "");
         }
+        toast.error(error.response.data.message);
     }
 );
 

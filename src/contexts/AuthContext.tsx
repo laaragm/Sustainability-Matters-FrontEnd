@@ -48,7 +48,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
 
     useEffect(() => {
         if (localStorage.getItem("REACT_TOKEN_AUTH")?.length === 0) {
-            toast.error("Your session has expired. Please login again.");
+            // toast.error("Your session has expired. Please login again.");
             logout();
         }
     }, [localStorage.getItem("REACT_TOKEN_AUTH")]);
