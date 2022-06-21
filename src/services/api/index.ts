@@ -19,8 +19,8 @@ apiConfig.interceptors.response.use(
         const isUnauthorized = error.response.status === 401;
         if (isUnauthorized) {
             localStorage.setItem("REACT_TOKEN_AUTH", "");
+            toast.error(error.response.data.message);
         }
-        toast.error(error.response.data.message);
     }
 );
 

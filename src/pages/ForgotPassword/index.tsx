@@ -20,11 +20,24 @@ export default function ForgotPassord() {
         setEmail("");
     };
 
+    const checkIfEmailExists = async () => {
+        const response = await api.get(`user/${email}`);
+        if (response) {
+            return true;
+        }
+        return false;
+    };
+
     const handleResetPassword = async () => {
         try {
-            const response = await api.get(`sendEmail/${email}`);
-            resetEmail();
-            toast.success("Email sent successfully.");
+            const emailExists = await checkIfEmailExists();
+            if (emailExists) {
+                const response = await api.get(`sendEmail/${email}`);
+                resetEmail();
+                toast.success("Email sent successfully.");
+            } else {
+                toast.error("Email does not exist");
+            }
         } catch (error) {
             console.log(error);
         }
