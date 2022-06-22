@@ -26,11 +26,20 @@ export default function Emission() {
         queryClient.invalidateQueries("emission");
         return url.pathname.split("/")[url.pathname.split("/")?.length - 1];
     }, [url]);
-    const { data, isLoading } = useEmission(dateParam);
+    const { data } = useEmission(dateParam);
     const [hasMoreData, setHasMoreData] = useState(true);
     const [date, setDate] = useState("");
     const [selectedEmission, setSelectedEmission] =
         useState<EmissionType | null>(null);
+    const monthOfTheCurrentEmissions = data?.emissions[0]?.date?.split("-")[1];
+    const monthOfTheUrl = dateParam.split("-")[1];
+    const [isLoading, setIsLoading] = useState(
+        monthOfTheCurrentEmissions !== monthOfTheUrl
+    );
+
+    useEffect(() => {
+        setIsLoading(monthOfTheCurrentEmissions !== monthOfTheUrl);
+    }, [monthOfTheCurrentEmissions, monthOfTheUrl]);
 
     useEffect(() => {
         defineDate();
