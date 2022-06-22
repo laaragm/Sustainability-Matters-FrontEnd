@@ -1,6 +1,7 @@
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import homePageIllustration from "../../assets/images/homePageIllustration.svg";
+import { SuspenseImg } from "./../../shared/components/SuspenseImage";
 import { StyledTitle, StyledSubtitle } from "./styles";
 
 export default function HomePage() {
@@ -35,7 +36,7 @@ export default function HomePage() {
                 </StyledSubtitle>
             </Stack>
             <Stack width={isMobile ? "100%" : "60%"}>
-                <img
+                <SuspenseImg
                     src={homePageIllustration}
                     alt="Home page illustration"
                     height="100%"

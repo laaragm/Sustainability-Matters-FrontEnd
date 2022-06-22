@@ -1,6 +1,7 @@
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import aboutUsPageIllustration from "../../assets/images/aboutUsPageIllustration.svg";
+import { SuspenseImg } from "../../shared/components/SuspenseImage";
 import { StyledTitle, StyledSubtitle } from "./styles";
 
 export default function AboutUs() {
@@ -70,7 +71,7 @@ export default function AboutUs() {
                         width="100%"
                         sx={{ position: "absolute", bottom: 0 }}
                     >
-                        <img
+                        <SuspenseImg
                             src={aboutUsPageIllustration}
                             alt="Abous us page illustration"
                             height="100%"

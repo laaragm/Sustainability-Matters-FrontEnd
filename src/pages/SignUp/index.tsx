@@ -9,6 +9,7 @@ import signUpPageIllustration from "../../assets/images/signUpPageIllustration.s
 import { api } from "../../services/api";
 import { PATHS } from "../../routes/paths";
 import { useAuth } from "../../hooks/useAuth";
+import { SuspenseImg } from "./../../shared/components/SuspenseImage";
 import { StyledTitle } from "./styles";
 
 export default function SignUp() {
@@ -123,7 +124,7 @@ export default function SignUp() {
                     width="100%"
                     sx={{ position: "absolute", bottom: 0, zIndex: "-1" }}
                 >
-                    <img
+                    <SuspenseImg
                         src={signUpPageIllustration}
                         alt="Sing up page illustration"
                         height="100%"

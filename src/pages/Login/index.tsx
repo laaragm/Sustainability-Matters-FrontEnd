@@ -8,6 +8,7 @@ import { CustomizedButton } from "./../../shared/components/CustomizedButton/ind
 import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
 import { useAuth } from "../../hooks/useAuth";
 import { PATHS } from "../../routes/paths";
+import { SuspenseImg } from "./../../shared/components/SuspenseImage";
 import { StyledForgotPassword } from "./styles";
 
 export default function Login() {
@@ -53,7 +54,7 @@ export default function Login() {
             height="100%"
         >
             <Stack width="100%" sx={{ position: "absolute", bottom: 0 }}>
-                <img
+                <SuspenseImg
                     src={loginPageIllustration}
                     alt="Login page illustration"
                     height="100%"

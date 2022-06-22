@@ -9,6 +9,7 @@ import budgetIllustration from "../../assets/images/budgetPageIllustration.svg";
 import { CustomizedBox } from "../../shared/components/CustomizedBox";
 import { CustomizedMessage } from "../../shared/components/CustomizedMessage";
 import { useBudget } from "../../hooks/useBudget";
+import { SuspenseImg } from "./../../shared/components/SuspenseImage/index";
 import { StyledTitle, StyledSubtitle, StyledText, StyledCard } from "./styles";
 
 export default function Budget() {
@@ -22,7 +23,7 @@ export default function Budget() {
                 width="100%"
                 sx={{ position: "absolute", bottom: 0, zIndex: "-1" }}
             >
-                <img
+                <SuspenseImg
                     src={budgetIllustration}
                     alt="Budget illustration"
                     height="90%"

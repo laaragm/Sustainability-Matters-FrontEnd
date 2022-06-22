@@ -7,8 +7,9 @@ import forgotPasswordIllustration from "../../assets/images/forgotPasswordIllust
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
 import { PATHS } from "../../routes/paths";
-import { StyledTitle, StyledSubtitle, StyledText } from "./styles";
+import { SuspenseImg } from "./../../shared/components/SuspenseImage";
 import { api } from "../../services/api";
+import { StyledTitle, StyledSubtitle, StyledText } from "./styles";
 
 export default function ChangePassword() {
     const theme = useTheme();
@@ -64,7 +65,7 @@ export default function ChangePassword() {
                 width="100%"
                 sx={{ position: "absolute", bottom: 0, zIndex: "-1" }}
             >
-                <img
+                <SuspenseImg
                     src={forgotPasswordIllustration}
                     alt="Change password illustration"
                     height="90%"

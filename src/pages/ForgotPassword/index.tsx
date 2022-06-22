@@ -8,6 +8,7 @@ import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
 import { api } from "../../services/api";
 import { PATHS } from "../../routes/paths";
+import { SuspenseImg } from "./../../shared/components/SuspenseImage";
 import { StyledTitle, StyledSubtitle, StyledText } from "./styles";
 
 export default function ForgotPassord() {
@@ -58,7 +59,7 @@ export default function ForgotPassord() {
                 width="100%"
                 sx={{ position: "absolute", bottom: 0, zIndex: "-1" }}
             >
-                <img
+                <SuspenseImg
                     src={forgotPasswordIllustration}
                     alt="Forgot password illustration"
                     height="90%"

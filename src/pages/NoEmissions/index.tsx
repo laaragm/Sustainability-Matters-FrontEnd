@@ -1,12 +1,11 @@
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
-import { CustomizedButton } from "../../shared/components/CustomizedButton";
-import { StyledSubtitle, StyledTitle } from "./styles";
-
-import noEmissionsIllustration from "../../assets/images/noEmissionsIllustration.svg";
-
 import { useNavigate } from "react-router-dom";
 
+import { CustomizedButton } from "../../shared/components/CustomizedButton";
+import noEmissionsIllustration from "../../assets/images/noEmissionsIllustration.svg";
+import { SuspenseImg } from "./../../shared/components/SuspenseImage";
 import { PATHS } from "../../routes/paths";
+import { StyledSubtitle, StyledTitle } from "./styles";
 
 export default function NoEmissions() {
     const theme = useTheme();
@@ -40,7 +39,7 @@ export default function NoEmissions() {
                         width="100%"
                         sx={{ position: "absolute", bottom: 0 }}
                     >
-                        <img
+                        <SuspenseImg
                             src={noEmissionsIllustration}
                             alt="No emissions page illustration"
                             height="100%"

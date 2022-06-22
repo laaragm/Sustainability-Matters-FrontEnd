@@ -1,6 +1,7 @@
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import contactPageIllustration from "../../assets/images/contactPageIllustration.svg";
+import { SuspenseImg } from "./../../shared/components/SuspenseImage";
 import { StyledTitle, StyledSubtitle } from "./styles";
 
 export default function Contact() {
@@ -51,7 +52,7 @@ export default function Contact() {
                 justifyContent="center"
                 sx={{ position: "absolute", bottom: 0 }}
             >
-                <img
+                <SuspenseImg
                     src={contactPageIllustration}
                     alt="Contact page illustration"
                     height="100%"

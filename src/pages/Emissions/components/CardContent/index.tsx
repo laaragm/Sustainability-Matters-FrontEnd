@@ -7,7 +7,7 @@ import transportIcon from "../../../../assets/images/transportIcon.svg";
 import foodIcon from "../../../../assets/images/foodIcon.svg";
 import electricityIcon from "../../../../assets/images/electricityIcon.svg";
 import noEmissionsIllustration from "../../../../assets/images/noEmissionsIllustration.svg";
-
+import { SuspenseImg } from "./../../../../shared/components/SuspenseImage";
 import {
     StyledDate,
     StyledTitle,
@@ -126,7 +126,7 @@ export function CardContent({
                     mt={3}
                     spacing={5}
                 >
-                    <img
+                    <SuspenseImg
                         src={noEmissionsIllustration}
                         alt="No emissions illustration"
                         height="100%"
