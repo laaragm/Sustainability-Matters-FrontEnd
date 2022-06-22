@@ -23,6 +23,7 @@ export default function Emission() {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const url = new URL(window.location.href);
     const dateParam = useMemo(() => {
+        queryClient.invalidateQueries("emission");
         return url.pathname.split("/")[url.pathname.split("/")?.length - 1];
     }, [url]);
     const { data, isLoading } = useEmission(dateParam);
