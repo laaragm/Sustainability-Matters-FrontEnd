@@ -35,6 +35,7 @@ export default function ForgotPassord() {
                 const response = await api.get(`sendEmail/${email}`);
                 resetEmail();
                 toast.success("Email sent successfully.");
+                setTimeout(() => navigate(PATHS.login.route), 1000);
             } else {
                 toast.error("Email does not exist");
             }
