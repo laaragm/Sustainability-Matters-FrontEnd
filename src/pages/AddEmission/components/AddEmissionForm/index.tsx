@@ -80,9 +80,10 @@ export function AddEmissionForm({
             direction="column"
             alignItems="flex-start"
             justifyContent="flex-start"
-            spacing={isMobile ? 0 : 2}
+            spacing={isMobile ? 0 : -1.5}
             width={isMobile ? "60%" : "50%"}
             pl={isMobile ? 1 : 3}
+            pt={2}
         >
             <Stack direction="row">
                 <StyledTitle isMobile={isMobile}>CO2 Emissions</StyledTitle>
