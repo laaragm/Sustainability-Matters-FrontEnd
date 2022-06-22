@@ -50,7 +50,15 @@ export default function Emission() {
 
     useEffect(() => {
         checkIfThereIsMoreData();
+        redirectToEmisionsPageIfNecessary();
     }, [data]);
+
+    const redirectToEmisionsPageIfNecessary = () => {
+        // @ts-ignore
+        if (!data?.emissions?.length > 0) {
+            navigate(PATHS.emissions.route);
+        }
+    };
 
     const checkIfThereIsMoreData = () => {
         if (data != undefined && (data?.totalCount || 0) < 3) {
