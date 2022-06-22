@@ -23,9 +23,10 @@ export default function SignUp() {
     const [isButtonLoading, setIsButtonLoading] = useState(false);
     const { login } = useAuth();
 
-    const containsOnlyLetters = (value: string) => {
-        const isValid = /^[a-zA-Z]+$/.test(value);
-        return isValid;
+    const hasNumber = (text: string) => {
+        const containsNumber = /\d/.test(text);
+        console.log(text, containsNumber);
+        return containsNumber;
     };
 
     const emailIsInCorrectFormat = () => {
@@ -41,8 +42,8 @@ export default function SignUp() {
 
     const fieldsAreCorrect = () => {
         let result = true;
-        const firstNameIsValid = containsOnlyLetters(firstName);
-        const lastNameIsValid = containsOnlyLetters(lastName);
+        const firstNameIsValid = !hasNumber(firstName);
+        const lastNameIsValid = !hasNumber(lastName);
         const emailIsValid = emailIsInCorrectFormat();
         if (!firstNameIsValid) {
             toast.error("First name is not valid.");
