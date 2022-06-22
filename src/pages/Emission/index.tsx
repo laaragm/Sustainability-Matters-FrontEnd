@@ -46,13 +46,13 @@ export default function Emission() {
     };
 
     const defineDate = () => {
-        const value = window.location.href.substring(
-            window.location.href.lastIndexOf("/") + 1
-        );
+        let value = window.location.href
+            .substring(window.location.href.lastIndexOf("/") + 1)
+            .replace("/", "");
         if (value != undefined) {
             const month = +value.split("-")[1];
             const year = +value.split("-")[0];
-            const newDate = new Date(year, month, 1).toLocaleDateString("en", {
+            const newDate = new Date(year, month - 1).toLocaleString("en", {
                 month: "long",
                 year: "numeric",
             });
