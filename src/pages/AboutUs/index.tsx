@@ -12,12 +12,7 @@ export default function AboutUs() {
         <>
             <StyledTitle>About us</StyledTitle>
             <StyledSubtitle>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Volutpat facilisis quam volutpat turpis. Felis mi, ultrices
-                ornare duis placerat erat.Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Volutpat facilisis quam volutpat
-                turpis. Felis mi, ultrices ornare duis placerat erat. Aenean
-                convallis.
+                Our solution aims to promote environmental solutions, through our platform users can become more aware of their CO2 production.
             </StyledSubtitle>
         </>
     );

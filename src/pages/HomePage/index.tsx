@@ -26,12 +26,7 @@ export default function HomePage() {
                     Lets Make our Earth Green and Clean ☘️
                 </StyledTitle>
                 <StyledSubtitle>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Volutpat facilisis quam volutpat turpis. Felis mi, ultrices
-                    ornare duis placerat erat.Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit. Volutpat facilisis quam
-                    volutpat turpis. Felis mi, ultrices ornare duis placerat
-                    erat.
+                    The increase in C02 production in recent centuries, as well as the effects caused by it, is already a matter of concern in many nations. We have an obligation to preserve life on earth, doing everything possible to improve its environment.
                 </StyledSubtitle>
             </Stack>
             <Stack width={isMobile ? "100%" : "60%"}>
