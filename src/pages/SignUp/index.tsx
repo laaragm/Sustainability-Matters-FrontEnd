@@ -25,7 +25,6 @@ export default function SignUp() {
 
     const hasNumber = (text: string) => {
         const containsNumber = /\d/.test(text);
-        console.log(text, containsNumber);
         return containsNumber;
     };
 

@@ -153,7 +153,7 @@ export default function AddEmission() {
     };
 
     const isAmountValid = () => {
-        const expression = /^[-+]?[0-9]+\.[0-9]+$/;
+        const expression = /^[0-9.,]+$/;
         const value = amount?.toString();
         const found = value.match(expression);
         if (found == null) {
