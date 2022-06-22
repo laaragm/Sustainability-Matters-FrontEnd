@@ -202,6 +202,7 @@ export default function AddEmission() {
         {
             onSuccess: () => {
                 queryClient.invalidateQueries("emissions");
+                queryClient.invalidateQueries("emission");
             },
         }
     );

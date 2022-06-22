@@ -23,7 +23,6 @@ export default function Emission() {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const url = new URL(window.location.href);
     const dateParam = useMemo(() => {
-        queryClient.invalidateQueries("emission");
         return url.pathname.split("/")[url.pathname.split("/")?.length - 1];
     }, [url]);
     const { data } = useEmission(dateParam);
@@ -31,8 +30,12 @@ export default function Emission() {
     const [date, setDate] = useState("");
     const [selectedEmission, setSelectedEmission] =
         useState<EmissionType | null>(null);
-    const monthOfTheCurrentEmissions = data?.emissions[0]?.date?.split("-")[1];
     const monthOfTheUrl = dateParam.split("-")[1];
+    const monthOfTheCurrentEmissions =
+        // @ts-ignore
+        data?.emissions?.length > 0
+            ? data?.emissions[0]?.date?.split("-")[1]
+            : monthOfTheUrl;
     const [isLoading, setIsLoading] = useState(
         monthOfTheCurrentEmissions !== monthOfTheUrl
     );

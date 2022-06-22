@@ -10,6 +10,7 @@ import { useEmissions } from "../../hooks/useEmissions";
 import { PATHS } from "../../routes/paths";
 import { useAuth } from "../../hooks/useAuth";
 import { StyledCard, StyledStack } from "./styles";
+import { queryClient } from "../../services/queryClient";
 
 export default function Emissions() {
     const theme = useTheme();
@@ -45,6 +46,7 @@ export default function Emissions() {
     );
 
     const handleClickOnMonth = (date: Date) => {
+        queryClient.invalidateQueries("emission");
         const month =
             date.getMonth()?.toString()?.length === 1
                 ? `0${date.getMonth()}`
