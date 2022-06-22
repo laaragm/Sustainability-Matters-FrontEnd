@@ -9,7 +9,6 @@ export default function Contact() {
 
     const content = (
         <>
-            <StyledTitle>Contact</StyledTitle>
             <StyledSubtitle>
                 Do you like the project? Do you have a feedback for us? Reach
                 out! <br />
@@ -25,7 +24,7 @@ export default function Contact() {
             direction="column"
             alignItems="center"
             justifyContent="center"
-            spacing={isMobile ? 8 : 2}
+            spacing={isMobile ? 8 : 0}
             m={isMobile ? 0 : 5}
             height="100%"
         >
@@ -33,7 +32,7 @@ export default function Contact() {
                 direction="column"
                 alignItems="center"
                 justifyContent="center"
-                spacing={2}
+                spacing={isMobile ? 2 : -2}
                 width={isMobile ? "100%" : "40%"}
                 p={isMobile ? 5 : 0}
                 pl={isMobile ? 5 : 12}
@@ -43,7 +42,27 @@ export default function Contact() {
                     position: "absolute",
                 }}
             >
-                {content}
+                <StyledTitle>Contact</StyledTitle>
+                <Stack spacing={-1.5}
+                >
+                    <StyledSubtitle>
+                        Do you like the project? Do you have a feedback for us?
+                    </StyledSubtitle>
+                    <StyledSubtitle>
+                        Reach out!
+                    </StyledSubtitle>
+                    <StyledSubtitle>
+                        email@email.com
+                    </StyledSubtitle>
+                    <StyledSubtitle>
+                        Laranjeiras 52, Lisbon, 1100-115 - Portugal
+                    </StyledSubtitle>
+                    <StyledSubtitle>
+                        +351 210 705 4584
+                    </StyledSubtitle>
+                </Stack>
+                
+                
             </Stack>
             <Stack
                 width="100%"
@@ -55,7 +74,7 @@ export default function Contact() {
                     src={contactPageIllustration}
                     alt="Contact page illustration"
                     height="100%"
-                    width={isMobile ? "100%" : "65%"}
+                    width={isMobile ? "100%" : "55%"}
                 />
             </Stack>
         </Stack>
