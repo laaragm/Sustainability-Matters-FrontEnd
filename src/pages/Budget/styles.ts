@@ -41,6 +41,6 @@ export const StyledCard = styled("div")<StyledCardProps>(
         borderRadius: "1.25rem",
         padding: isMobile ? "1rem" : "3rem",
         width: isMobile ? "90%" : "40%",
-        height: isMobile ? "90%" : "60%",
+        height: isMobile ? "90%" : "75%",
     })
 );

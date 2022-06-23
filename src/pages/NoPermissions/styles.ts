@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 
 export const RootStyle = styled(Card)(({ theme }) => ({
     display: "flex",
-    height: "60%",
+    height: "80%",
     width: "50%",
     alignItems: "center",
     paddingTop: theme.spacing(10),

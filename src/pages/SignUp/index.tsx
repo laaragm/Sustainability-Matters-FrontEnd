@@ -136,9 +136,9 @@ export default function SignUp() {
                 alignItems="center"
                 direction="column"
                 justifyContent="space-evenly"
-                spacing={isMobile ? 1 : 3}
+                spacing={isMobile ? 1 : 0}
                 width={isMobile ? "100%" : "50%"}
-                height={isMobile ? "90%" : "75%"}
+                height={isMobile ? "90%" : "80%"}
                 mt={isMobile ? 5 : 0}
                 sx={{
                     backgroundColor: "white",
@@ -157,6 +157,7 @@ export default function SignUp() {
                         title="First Name"
                         id="first-name-field"
                         type="text"
+                        height="45%"
                         value={firstName}
                         onChange={(value) => handleFirstName(value)}
                     />
@@ -166,6 +167,7 @@ export default function SignUp() {
                         title="Last Name"
                         id="last-name-field"
                         type="text"
+                        height="45%"
                         value={lastName}
                         onChange={(value) => handleLastName(value)}
                     />
@@ -175,6 +177,7 @@ export default function SignUp() {
                         title="Email"
                         id="email-field"
                         type="email"
+                        height="45%"
                         value={email}
                         onChange={(value) => handleEmail(value)}
                     />
@@ -184,6 +187,7 @@ export default function SignUp() {
                         title="Password"
                         id="password-field-login"
                         type="password"
+                        height="45%"
                         value={password}
                         onChange={(value) => handlePassword(value)}
                     />
@@ -193,6 +197,7 @@ export default function SignUp() {
                         title="Password Confirmation"
                         id="password-confirmation-field-login"
                         type="password"
+                        height="45%"
                         value={passwordConfirmation}
                         onChange={(value) => handlePasswordConfirmation(value)}
                     />

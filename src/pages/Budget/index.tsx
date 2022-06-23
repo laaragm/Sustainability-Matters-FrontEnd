@@ -47,7 +47,7 @@ export default function Budget() {
                         justifyContent={
                             isMobile ? "flex-start" : "space-evenly"
                         }
-                        spacing={isMobile ? 2 : 5}
+                        spacing={isMobile ? 2 : 0}
                     >
                         <StyledTitle>
                             C02 consumption based on European standards
@@ -60,7 +60,7 @@ export default function Budget() {
                                 <Stack
                                     direction="row"
                                     justifyContent="space-between"
-                                    spacing={isMobile ? 0 : 3}
+                                    spacing={isMobile ? 0 : 1}
                                 >
                                     <CustomizedBox
                                         // @ts-ignore
@@ -90,7 +90,7 @@ export default function Budget() {
                                 <Stack
                                     direction="row"
                                     justifyContent="space-between"
-                                    spacing={isMobile ? 0 : 3}
+                                    spacing={isMobile ? 0 : 1}
                                 >
                                     <CustomizedBox
                                         // @ts-ignore
@@ -124,7 +124,7 @@ export default function Budget() {
                                 <Stack
                                     direction="row"
                                     justifyContent="space-between"
-                                    spacing={isMobile ? 0 : 3}
+                                    spacing={isMobile ? 0 : 1}
                                 >
                                     <CustomizedBox
                                         // @ts-ignore
