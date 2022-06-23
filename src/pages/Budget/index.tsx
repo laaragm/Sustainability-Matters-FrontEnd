@@ -42,6 +42,7 @@ export default function Budget() {
                     </Stack>
                 ) : (
                     <Stack
+                        height="100%"
                         alignItems="center"
                         direction="column"
                         justifyContent={
