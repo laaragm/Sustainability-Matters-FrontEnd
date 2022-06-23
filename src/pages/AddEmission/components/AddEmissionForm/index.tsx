@@ -92,7 +92,9 @@ export function AddEmissionForm({
                     padding: {
                         xs: 0,
                         sm: 0,
-                        md: "0.65rem 0",
+                        md: "0.5rem 0",
+                        lg: "0.5rem 0",
+                        xl: "0.75rem 0",
                     },
                 }}
             >
@@ -108,7 +110,9 @@ export function AddEmissionForm({
                     padding: {
                         xs: 0,
                         sm: 0,
-                        md: "0.65rem 0",
+                        md: "0.5rem 0",
+                        lg: "0.5rem 0",
+                        xl: "0.75rem 0",
                     },
                 }}
             >
@@ -124,7 +128,9 @@ export function AddEmissionForm({
                     padding: {
                         xs: 0,
                         sm: 0,
-                        md: "0.65rem 0",
+                        md: "0.5rem 0",
+                        lg: "0.5rem 0",
+                        xl: "0.75rem 0",
                     },
                 }}
             >
@@ -142,7 +148,9 @@ export function AddEmissionForm({
                     padding: {
                         xs: 0,
                         sm: 0,
-                        md: "0.65rem 0",
+                        md: "0.5rem 0",
+                        lg: "0.5rem 0",
+                        xl: "0.75rem 0",
                     },
                 }}
             >
@@ -161,7 +169,9 @@ export function AddEmissionForm({
                         padding: {
                             xs: 0,
                             sm: 0,
-                            md: "0.65rem 0",
+                            md: "0.5rem 0",
+                            lg: "0.5rem 0",
+                            xl: "0.75rem 0",
                         },
                     }}
                 >
