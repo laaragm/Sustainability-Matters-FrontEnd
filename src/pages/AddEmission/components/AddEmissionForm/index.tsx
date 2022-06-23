@@ -79,7 +79,7 @@ export function AddEmissionForm({
             direction="column"
             alignItems="flex-start"
             justifyContent="flex-start"
-            spacing={isMobile ? 0 : -1.5}
+            spacing={isMobile ? 0 : 1}
             width={isMobile ? "60%" : "50%"}
             pl={isMobile ? 1 : 3}
             pt={2}
@@ -87,21 +87,21 @@ export function AddEmissionForm({
             <Stack direction="row">
                 <StyledTitle isMobile={isMobile}>CO2 Emissions</StyledTitle>
             </Stack>
-            <Stack width={isMobile ? "90%" : "50%"} pt={isMobile ? 1 : 2}>
+            <Stack width={isMobile ? "90%" : "50%"} pt={1}>
                 <Title
                     value={title}
                     isMobile={isMobile}
                     onChange={handleTitle}
                 />
             </Stack>
-            <Stack width={isMobile ? "90%" : "50%"} pt={isMobile ? 1 : 2}>
+            <Stack width={isMobile ? "90%" : "50%"} pt={1}>
                 <CustomizedDate
                     value={date}
                     isMobile={isMobile}
                     onChange={handleDate}
                 />
             </Stack>
-            <Stack width={isMobile ? "90%" : "50%"} pt={isMobile ? 1 : 2}>
+            <Stack width={isMobile ? "90%" : "50%"} pt={1}>
                 <CategorySelector
                     title="Select a category"
                     id="category-field-add-emission"
@@ -110,7 +110,7 @@ export function AddEmissionForm({
                     onChange={handleCategory}
                 />
             </Stack>
-            <Stack width={isMobile ? "90%" : "50%"} pt={isMobile ? 1 : 2}>
+            <Stack width={isMobile ? "90%" : "50%"} pt={1}>
                 <CategorySelector
                     title="Select a sub-category"
                     id="sub-category-field-add-emission"
@@ -120,7 +120,7 @@ export function AddEmissionForm({
                 />
             </Stack>
             {category.length > 0 && (
-                <Stack width={isMobile ? "90%" : "50%"} pt={isMobile ? 1 : 2}>
+                <Stack width={isMobile ? "90%" : "50%"} pt={1}>
                     <AmountField
                         title={amountFieldTitle}
                         id="amount-field-add-emission"

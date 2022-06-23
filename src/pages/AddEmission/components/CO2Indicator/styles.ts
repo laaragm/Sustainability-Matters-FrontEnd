@@ -12,11 +12,15 @@ export const StyledIndicator = styled("div")<StyledIndicatorProps>(
         border: isMobile
             ? `0.7rem solid ${theme.palette.secondary.main}`
             : `1.25rem solid ${theme.palette.secondary.main}`,
-        width: isMobile ? "90%" : "80%",
-        height: isMobile ? "20%" : "80%",
+        width: "75%",
+        height: "85%",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        "@media (max-width: 1480px)": {
+            width: isMobile ? "90%" : "85%",
+            height: isMobile ? "20%" : "65%",
+        },
     })
 );
 
