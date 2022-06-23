@@ -39,33 +39,24 @@ export default function Contact() {
                 pl={isMobile ? 5 : 12}
                 pr={isMobile ? 5 : 12}
                 mb={isMobile ? 32 : 48}
-                //mt={3}
+                mt={isMobile ? 0 : 3}
                 pt={6}
                 sx={{
                     position: "absolute",
                 }}
             >
                 <StyledTitle>Contact</StyledTitle>
-                <Stack spacing={-1.5}
-                >
+                <Stack spacing={-1.5}>
                     <StyledSubtitle>
                         Do you like the project? Do you have a feedback for us?
                     </StyledSubtitle>
-                    <StyledSubtitle>
-                        Reach out!
-                    </StyledSubtitle>
-                    <StyledSubtitle>
-                        email@email.com
-                    </StyledSubtitle>
+                    <StyledSubtitle>Reach out!</StyledSubtitle>
+                    <StyledSubtitle>email@email.com</StyledSubtitle>
                     <StyledSubtitle>
                         Laranjeiras 52, Lisbon, 1100-115 - Portugal
                     </StyledSubtitle>
-                    <StyledSubtitle>
-                        +351 210 705 4584
-                    </StyledSubtitle>
+                    <StyledSubtitle>+351 210 705 4584</StyledSubtitle>
                 </Stack>
-                
-                
             </Stack>
             <Stack
                 width="100%"
