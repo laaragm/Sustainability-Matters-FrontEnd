@@ -42,5 +42,8 @@ export const StyledCard = styled("div")<StyledCardProps>(
         padding: isMobile ? "1rem" : "3rem",
         width: isMobile ? "90%" : "40%",
         height: isMobile ? "90%" : "75%",
+        "@media (max-width: 1480px)": {
+            marginTop: isMobile ? "3rem" : "4rem",
+        },
     })
 );
