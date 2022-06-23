@@ -38,6 +38,8 @@ export default function Contact() {
                 pl={isMobile ? 5 : 12}
                 pr={isMobile ? 5 : 12}
                 mb={isMobile ? 32 : 48}
+                //mt={3}
+                pt={6}
                 sx={{
                     position: "absolute",
                 }}
