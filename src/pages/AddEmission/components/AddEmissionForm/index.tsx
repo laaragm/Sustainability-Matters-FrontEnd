@@ -79,7 +79,6 @@ export function AddEmissionForm({
             direction="column"
             alignItems="flex-start"
             justifyContent="flex-start"
-            spacing={isMobile ? 0 : 1}
             width={isMobile ? "60%" : "50%"}
             pl={isMobile ? 1 : 3}
             pt={2}
@@ -87,21 +86,48 @@ export function AddEmissionForm({
             <Stack direction="row">
                 <StyledTitle isMobile={isMobile}>CO2 Emissions</StyledTitle>
             </Stack>
-            <Stack width={isMobile ? "90%" : "50%"} pt={1}>
+            <Stack
+                width={isMobile ? "90%" : "50%"}
+                sx={{
+                    padding: {
+                        xs: 0,
+                        sm: 0,
+                        md: "0.65rem 0",
+                    },
+                }}
+            >
                 <Title
                     value={title}
                     isMobile={isMobile}
                     onChange={handleTitle}
                 />
             </Stack>
-            <Stack width={isMobile ? "90%" : "50%"} pt={1}>
+            <Stack
+                width={isMobile ? "90%" : "50%"}
+                sx={{
+                    padding: {
+                        xs: 0,
+                        sm: 0,
+                        md: "0.65rem 0",
+                    },
+                }}
+            >
                 <CustomizedDate
                     value={date}
                     isMobile={isMobile}
                     onChange={handleDate}
                 />
             </Stack>
-            <Stack width={isMobile ? "90%" : "50%"} pt={1}>
+            <Stack
+                width={isMobile ? "90%" : "50%"}
+                sx={{
+                    padding: {
+                        xs: 0,
+                        sm: 0,
+                        md: "0.65rem 0",
+                    },
+                }}
+            >
                 <CategorySelector
                     title="Select a category"
                     id="category-field-add-emission"
@@ -110,7 +136,16 @@ export function AddEmissionForm({
                     onChange={handleCategory}
                 />
             </Stack>
-            <Stack width={isMobile ? "90%" : "50%"} pt={1}>
+            <Stack
+                width={isMobile ? "90%" : "50%"}
+                sx={{
+                    padding: {
+                        xs: 0,
+                        sm: 0,
+                        md: "0.65rem 0",
+                    },
+                }}
+            >
                 <CategorySelector
                     title="Select a sub-category"
                     id="sub-category-field-add-emission"
@@ -120,7 +155,16 @@ export function AddEmissionForm({
                 />
             </Stack>
             {category.length > 0 && (
-                <Stack width={isMobile ? "90%" : "50%"} pt={1}>
+                <Stack
+                    width={isMobile ? "90%" : "50%"}
+                    sx={{
+                        padding: {
+                            xs: 0,
+                            sm: 0,
+                            md: "0.65rem 0",
+                        },
+                    }}
+                >
                     <AmountField
                         title={amountFieldTitle}
                         id="amount-field-add-emission"
