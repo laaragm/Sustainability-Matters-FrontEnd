@@ -6,17 +6,16 @@ import {
 } from "@mui/material";
 
 import budgetIllustration from "../../assets/images/budgetPageIllustration.svg";
-import { CustomizedBox } from "../../shared/components/CustomizedBox";
-import { CustomizedMessage } from "../../shared/components/CustomizedMessage";
 import { useBudget } from "../../hooks/useBudget";
 import { SuspenseImg } from "./../../shared/components/SuspenseImage/index";
+import { CustomizedBox } from "./components/CustomizedBox";
 import { StyledTitle, StyledSubtitle, StyledText, StyledCard } from "./styles";
+import { CustomizedMessage } from "./components/CustomizedMessage";
 
 export default function Budget() {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const { data: posts, isLoading } = useBudget();
-
 
     return (
         <>
