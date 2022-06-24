@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import { CircularProgress } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -13,7 +14,8 @@ import { ModalMobile } from "./components/ModalMobile";
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { PATHS } from "../../routes/paths";
 import { api } from "../../services/api";
-import toast from "react-hot-toast";
+import { useMutation } from "react-query";
+import { queryClient } from "../../services/queryClient";
 
 export default function Emission() {
     const theme = useTheme();
@@ -23,24 +25,55 @@ export default function Emission() {
     const dateParam = useMemo(() => {
         return url.pathname.split("/")[url.pathname.split("/")?.length - 1];
     }, [url]);
-    const { data, isLoading } = useEmission(dateParam);
+    const { data } = useEmission(dateParam);
     const [hasMoreData, setHasMoreData] = useState(true);
     const [date, setDate] = useState("");
     const [selectedEmission, setSelectedEmission] =
         useState<EmissionType | null>(null);
+    const monthOfTheUrl = dateParam.split("-")[1];
+    const monthOfTheCurrentEmissions =
+        // @ts-ignore
+        data?.emissions?.length > 0
+            ? data?.emissions[0]?.date?.split("-")[1]
+            : monthOfTheUrl;
+    const [isLoading, setIsLoading] = useState(
+        monthOfTheCurrentEmissions !== monthOfTheUrl
+    );
+
+    useEffect(() => {
+        setIsLoading(monthOfTheCurrentEmissions !== monthOfTheUrl);
+    }, [monthOfTheCurrentEmissions, monthOfTheUrl]);
 
     useEffect(() => {
         defineDate();
     }, []);
 
+    useEffect(() => {
+        checkIfThereIsMoreData();
+        redirectToEmissionsPageIfNecessary();
+    }, [data]);
+
+    const redirectToEmissionsPageIfNecessary = () => {
+        // @ts-ignore
+        if (!data?.emissions?.length > 0 && data?.emissions != undefined) {
+            navigate(PATHS.emissions.route);
+        }
+    };
+
+    const checkIfThereIsMoreData = () => {
+        if (data != undefined && (data?.totalCount || 0) < 3) {
+            setHasMoreData(false);
+        }
+    };
+
     const defineDate = () => {
-        const value = window.location.href.substring(
-            window.location.href.lastIndexOf("/") + 1
-        );
+        let value = window.location.href
+            .substring(window.location.href.lastIndexOf("/") + 1)
+            .replace("/", "");
         if (value != undefined) {
             const month = +value.split("-")[1];
             const year = +value.split("-")[0];
-            const newDate = new Date(year, month, 1).toLocaleDateString("en", {
+            const newDate = new Date(year, month - 1).toLocaleString("en", {
                 month: "long",
                 year: "numeric",
             });
@@ -71,25 +104,37 @@ export default function Emission() {
         setSelectedEmission(null);
     };
 
-    const handleDelete = async (emission: EmissionType) => {
-        if (emission) {
-            try {
-                const response = await api.delete("/consumptionll/", {
-                    data: {
-                        title: emission.title,
-                        subcategory: emission.subcategory?.name,
-                        date: emission.date,
-                        amount: emission.amount,
-                        category: emission.subcategory?.category,
-                    },
-                });
-                setSelectedEmission(null);
-                toast.success("Consumption deleted successfully.");
-            } catch (error) {
-                console.log(error);
-                toast.error("Something went wrong. Please try again.");
+    const deleteEmission = useMutation(
+        async (emission: EmissionType) => {
+            if (emission) {
+                try {
+                    const response = await api.delete("/consumptionll/", {
+                        data: {
+                            title: emission.title,
+                            subcategory: emission.subcategory?.name,
+                            date: emission.date,
+                            amount: emission.amount,
+                            category: emission.subcategory?.category,
+                        },
+                    });
+                    setSelectedEmission(null);
+                    toast.success("Consumption deleted successfully.");
+                } catch (error) {
+                    console.log(error);
+                    toast.error("Something went wrong. Please try again.");
+                }
             }
+        },
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries("emission");
+                queryClient.invalidateQueries("emissions");
+            },
         }
+    );
+
+    const handleDelete = async (emission: EmissionType) => {
+        await deleteEmission.mutateAsync(emission);
     };
 
     const handleGoBackToList = () => {

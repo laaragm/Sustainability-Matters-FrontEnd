@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -8,16 +8,27 @@ import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CardContent } from "./components/CardContent";
 import { useEmissions } from "../../hooks/useEmissions";
 import { PATHS } from "../../routes/paths";
+import { useAuth } from "../../hooks/useAuth";
 import { StyledCard, StyledStack } from "./styles";
+import { queryClient } from "../../services/queryClient";
 
 export default function Emissions() {
-    const { data, isLoading } = useEmissions();
     const theme = useTheme();
     let navigate = useNavigate();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
-    const [hasMoreData, setHasMoreData] = useState(
-        (data?.totalCount || 0) > 5 ? true : false
-    );
+    const [hasMoreData, setHasMoreData] = useState(true);
+    const { token } = useAuth();
+    const { data, isLoading } = useEmissions(token);
+
+    useEffect(() => {
+        checkIfThereIsMoreData();
+    }, [data]);
+
+    const checkIfThereIsMoreData = () => {
+        if (data != undefined && (data?.totalCount || 0) < 3) {
+            setHasMoreData(false);
+        }
+    };
 
     const onScroll = () => {
         setHasMoreData(false);
@@ -35,6 +46,7 @@ export default function Emissions() {
     );
 
     const handleClickOnMonth = (date: Date) => {
+        queryClient.invalidateQueries("emission");
         const month =
             date.getMonth()?.toString()?.length === 1
                 ? `0${date.getMonth()}`

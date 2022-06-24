@@ -2,7 +2,7 @@ import { styled } from "@mui/material/styles";
 
 export const StyledTitle = styled("div")(({ theme }) => ({
     fontWeight: 700,
-    fontSize: "4rem",
+    fontSize: "2.7rem",
     lineHeight: "5.5rem",
     color: theme.palette.text.disabled,
     "@media (max-width: 1280px)": {
@@ -21,7 +21,7 @@ export const StyledTitle = styled("div")(({ theme }) => ({
 
 export const StyledSubtitle = styled("div")(({ theme }) => ({
     fontWeight: 600,
-    fontSize: "1rem",
+    fontSize: "1.2rem",
     lineHeight: "2rem",
     color: theme.palette.text.disabled,
     textAlign: "justify",

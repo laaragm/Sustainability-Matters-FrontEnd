@@ -16,6 +16,9 @@ export const StyledCard = styled("div")<StyledCardProps>(
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
+        "@media (max-width: 1480px)": {
+            marginTop: isMobile ? 0 : "4rem",
+        },
     })
 );
 

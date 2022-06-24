@@ -1,6 +1,7 @@
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import aboutUsPageIllustration from "../../assets/images/aboutUsPageIllustration.svg";
+import { SuspenseImg } from "../../shared/components/SuspenseImage";
 import { StyledTitle, StyledSubtitle } from "./styles";
 
 export default function AboutUs() {
@@ -12,19 +13,7 @@ export default function AboutUs() {
         <>
             <StyledTitle>About us</StyledTitle>
             <StyledSubtitle>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                Volutpat facilisis quam volutpat turpis. Felis mi, ultrices
-                ornare duis placerat erat.Lorem ipsum dolor sit amet,
-                consectetur adipiscing elit. Volutpat facilisis quam volutpat
-                turpis. Felis mi, ultrices ornare duis placerat erat. Aenean
-                convallis magna eu mauris efficitur molestie. Maecenas volutpat
-                urna vel lacus placerat porta. Ut vehicula sollicitudin augue, a
-                aliquam ipsum iaculis in. Etiam feugiat molestie nunc, ut
-                imperdiet urna semper convallis. Aliquam consectetur augue eget
-                mauris pulvinar, eu vestibulum odio consequat. Duis eu fermentum
-                ex. Donec bibendum nulla tellus, vitae iaculis urna cursus
-                varius. In rutrum dui ac lectus porta, vitae elementum nunc
-                viverra.
+                Our solution aims to promote environmental solutions, through our platform users can become more aware of their CO2 production.
             </StyledSubtitle>
         </>
     );
@@ -70,7 +59,7 @@ export default function AboutUs() {
                         width="100%"
                         sx={{ position: "absolute", bottom: 0 }}
                     >
-                        <img
+                        <SuspenseImg
                             src={aboutUsPageIllustration}
                             alt="Abous us page illustration"
                             height="100%"

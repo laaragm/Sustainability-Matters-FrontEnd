@@ -14,6 +14,7 @@ export const StyledTitle = styled("div")(({ theme }) => ({
     textTransform: "capitalize",
     fontSize: "1rem",
     fontWeight: 500,
+    cursor: "pointer",
     "@media (max-width: 400px)": {
         fontSize: "0.9rem",
     },

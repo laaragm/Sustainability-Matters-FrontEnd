@@ -62,7 +62,11 @@ export function Header() {
             component="h6"
             color={theme.palette.text.primary}
         >
-            <Box fontWeight="fontWeightBold" onClick={handleClickOnTitle}>
+            <Box
+                fontWeight="fontWeightBold"
+                onClick={handleClickOnTitle}
+                sx={{ cursor: "pointer" }}
+            >
                 Sustainability Matters
             </Box>
         </Typography>

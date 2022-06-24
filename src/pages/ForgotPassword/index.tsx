@@ -1,13 +1,18 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import forgotPasswordIllustration from "../../assets/images/forgotPasswordIllustration.svg";
 import { CustomizedButton } from "../../shared/components/CustomizedButton";
 import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
 import { api } from "../../services/api";
+import { PATHS } from "../../routes/paths";
+import { SuspenseImg } from "./../../shared/components/SuspenseImage";
 import { StyledTitle, StyledSubtitle, StyledText } from "./styles";
 
 export default function ForgotPassord() {
+    let navigate = useNavigate();
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [email, setEmail] = useState("");
@@ -16,11 +21,25 @@ export default function ForgotPassord() {
         setEmail("");
     };
 
+    const checkIfEmailExists = async () => {
+        const response = await api.get(`user/${email}`);
+        if (response) {
+            return true;
+        }
+        return false;
+    };
+
     const handleResetPassword = async () => {
         try {
-            const response = await api.get(`sendEmail/${email}`);
-            console.log(response);
-            resetEmail();
+            const emailExists = await checkIfEmailExists();
+            if (emailExists) {
+                const response = await api.get(`sendEmail/${email}`);
+                resetEmail();
+                toast.success("Email sent successfully.");
+                setTimeout(() => navigate(PATHS.login.route), 1000);
+            } else {
+                toast.error("Email does not exist");
+            }
         } catch (error) {
             console.log(error);
         }
@@ -30,13 +49,17 @@ export default function ForgotPassord() {
         setEmail(value);
     };
 
+    const handleCancel = () => {
+        navigate(PATHS.login.route);
+    };
+
     return (
         <>
             <Stack
                 width="100%"
                 sx={{ position: "absolute", bottom: 0, zIndex: "-1" }}
             >
-                <img
+                <SuspenseImg
                     src={forgotPasswordIllustration}
                     alt="Forgot password illustration"
                     height="90%"
@@ -97,7 +120,7 @@ export default function ForgotPassord() {
                         variant="text"
                         borderRadius="0.1rem"
                         fullWidth={true}
-                        onClick={handleResetPassword}
+                        onClick={handleCancel}
                     >
                         Cancel
                     </CustomizedButton>

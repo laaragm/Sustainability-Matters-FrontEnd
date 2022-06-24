@@ -8,6 +8,7 @@ import { CustomizedButton } from "./../../shared/components/CustomizedButton/ind
 import { CustomizedTextField } from "../../shared/components/CustomizedTextField";
 import { useAuth } from "../../hooks/useAuth";
 import { PATHS } from "../../routes/paths";
+import { SuspenseImg } from "./../../shared/components/SuspenseImage";
 import { StyledForgotPassword } from "./styles";
 
 export default function Login() {
@@ -15,6 +16,7 @@ export default function Login() {
     const isMobile = useMediaQuery(theme.breakpoints.down("md"));
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [isButtonLoading, setIsButtonLoading] = useState(false);
     const { login } = useAuth();
     let navigate = useNavigate();
 
@@ -28,7 +30,9 @@ export default function Login() {
 
     const handleLogin = async () => {
         try {
+            setIsButtonLoading(true);
             await login(email, password);
+            setIsButtonLoading(false);
             navigate(PATHS.emissions.route);
         } catch (error) {
             toast.error("Invalid credentials. Please try again.");
@@ -50,7 +54,7 @@ export default function Login() {
             height="100%"
         >
             <Stack width="100%" sx={{ position: "absolute", bottom: 0 }}>
-                <img
+                <SuspenseImg
                     src={loginPageIllustration}
                     alt="Login page illustration"
                     height="100%"
@@ -113,6 +117,7 @@ export default function Login() {
                         borderRadius="1.5rem"
                         fullWidth={true}
                         disabled={email.length === 0 || password.length === 0}
+                        loading={isButtonLoading}
                         onClick={handleLogin}
                     >
                         Login

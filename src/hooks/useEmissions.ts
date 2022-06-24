@@ -8,8 +8,14 @@ type GetEmissionsResponse = {
     emissions: { [key: string]: Emission[] };
 };
 
-export async function getEmissions(): Promise<GetEmissionsResponse> {
-    const response = await api.get("monthemission/month");
+export async function getEmissions(
+    token: string
+): Promise<GetEmissionsResponse> {
+    const response = await api.get("monthemission/month", {
+        headers: {
+            Authorization: token,
+        },
+    });
     const emissions = response?.data;
     let count = 0;
     for (const [key, value] of Object.entries(emissions)) {
@@ -21,10 +27,10 @@ export async function getEmissions(): Promise<GetEmissionsResponse> {
     return { emissions, totalCount };
 }
 
-export function useEmissions(options?: UseQueryOptions) {
+export function useEmissions(token: string, options?: UseQueryOptions) {
     const { data, isLoading, isFetching, error } = useQuery(
         ["emissions"],
-        () => getEmissions(),
+        () => getEmissions(token),
         // @ts-ignore
         {
             staleTime: 1000 * 15,

@@ -1,6 +1,9 @@
 import { useState, useEffect, createContext, ReactNode } from "react";
+import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
 
 import { api } from "../services/api";
+import { PATHS } from "../routes/paths";
 
 interface AuthContextType {
     token: string;
@@ -17,9 +20,6 @@ interface AuthContextProviderProps {
 export const AuthContext = createContext({} as AuthContextType);
 
 export function AuthContextProvider({ children }: AuthContextProviderProps) {
-    // const [token, setToken] = useState(
-    //     "b'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJwdWJsaWNfaWQiOiJzdHJpbmcifQ.CvZz7HtB2jSCBCpwOi8fm66TiCDlqhEilJj2ChoIzNE'"
-    // );
     const accessToken = localStorage.hasOwnProperty("REACT_TOKEN_AUTH")
         ? localStorage.getItem("REACT_TOKEN_AUTH") || ""
         : "";
@@ -32,6 +32,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     const [token, setToken] = useState(accessToken);
     const [email, setEmail] = useState(userEmail);
     const [name, setName] = useState(userName);
+    let navigate = useNavigate();
 
     useEffect(() => {
         saveTokenInLocalStorage();
@@ -45,6 +46,13 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         saveNameInLocalStorage();
     }, [name]);
 
+    useEffect(() => {
+        if (localStorage.getItem("REACT_TOKEN_AUTH")?.length === 0) {
+            // toast.error("Your session has expired. Please login again.");
+            logout();
+        }
+    }, [localStorage.getItem("REACT_TOKEN_AUTH")]);
+
     const login = async (email: string, password: string) => {
         try {
             const response = await api.post(
@@ -57,8 +65,10 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
                     },
                 }
             );
-            const accessToken = response?.data?.token;
-            if (accessToken != null && accessToken != undefined) {
+            const accessToken = await response?.data?.token;
+            if (accessToken?.length > 0 && accessToken != undefined) {
+                // @ts-ignore
+                api.defaults.headers["Authorization"] = accessToken;
                 setEmail(email);
                 setToken(accessToken);
                 await getUserInfo(email);
@@ -77,6 +87,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
     const logout = () => {
         removeInfoFromLocalStorage();
         putVariablesInInitialState();
+        navigate(PATHS.login.route);
     };
 
     const getUserInfo = async (userEmail: string) => {
@@ -107,6 +118,7 @@ export function AuthContextProvider({ children }: AuthContextProviderProps) {
         localStorage.removeItem("REACT_TOKEN_AUTH");
         localStorage.removeItem("REACT_EMAIL_AUTH");
         localStorage.removeItem("REACT_NAME_AUTH");
+        localStorage.clear();
     };
 
     return (

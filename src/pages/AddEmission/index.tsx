@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import { useMutation } from "react-query";
 import { Stack, useMediaQuery, useTheme } from "@mui/material";
 
 import { CategoryEnum } from "../../types/categoryEnum";
@@ -14,7 +16,7 @@ import { foodFactors } from "../../types/food/foodFactors";
 import { transportFactors } from "../../types/transport/transportFactors";
 import { AddEmissionForm } from "./components/AddEmissionForm";
 import { StyledCard } from "./styles";
-import toast from "react-hot-toast";
+import { queryClient } from "../../services/queryClient";
 
 const categoryOptions = Object.values(CategoryEnum);
 
@@ -117,24 +119,96 @@ export default function AddEmission() {
         const day = splittedDate[0];
         const month = splittedDate[1];
         const year = splittedDate[2];
+
         return `${year}-${month}-${day}`;
     };
 
-    const handleAddEmission = async () => {
-        try {
-            const response = await api.post("/consumption/", {
-                title: title,
-                subcategory: subCategory,
-                date: getDate(),
-                amount: +amount,
-                category: category,
-            });
-            toast.success("Consumption created successfully.");
-            navigate(PATHS.emissions.route);
-        } catch (error) {
-            console.log(error);
-            toast.error("Something went wrong. Please try again.");
+    const getDateWithoutDay = () => {
+        // @ts-ignore
+        const splittedDate = date?.split("/");
+        const month = splittedDate[1];
+        const year = splittedDate[2];
+        return `${year}-${month}`;
+    };
+
+    const isDateValid = () => {
+        // @ts-ignore
+        if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(date)) {
+            return false;
         }
+        // @ts-ignore
+        var parts = date?.split("/");
+        var day = parseInt(parts[0], 10);
+        var month = parseInt(parts[1], 10);
+        var year = parseInt(parts[2], 10);
+        if (year < 1000 || year > 3000 || month == 0 || month > 12) {
+            return false;
+        }
+        var monthLength = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        if (year % 400 == 0 || (year % 100 != 0 && year % 4 == 0)) {
+            monthLength[1] = 29;
+        }
+
+        return day > 0 && day <= monthLength[month - 1];
+    };
+
+    const isAmountValid = () => {
+        const expression = /^[0-9.,]+$/;
+        const value = amount?.toString();
+        const found = value.match(expression);
+        if (found == null) {
+            return false;
+        }
+        return true;
+    };
+
+    const fieldsAreCorrect = () => {
+        let result = true;
+        const dateIsValid = isDateValid();
+        const amountIsValid = isAmountValid();
+        if (!dateIsValid) {
+            toast.error("Date format is not valid.");
+            result = false;
+        }
+        if (!amountIsValid) {
+            toast.error("Amount format is not valid.");
+            result = false;
+        }
+        return result;
+    };
+
+    const createEmission = useMutation(
+        async () => {
+            try {
+                const fieldsAreValidated = fieldsAreCorrect();
+                if (fieldsAreValidated) {
+                    const response = await api.post("/consumption/", {
+                        title: title,
+                        subcategory: subCategory,
+                        date: getDate(),
+                        amount: +amount,
+                        category: category,
+                    });
+                    toast.success("Consumption created successfully.");
+                    navigate(
+                        PATHS.emission.route.replace(":id", getDateWithoutDay())
+                    );
+                }
+            } catch (error) {
+                console.log(error);
+                toast.error("Something went wrong. Please try again.");
+            }
+        },
+        {
+            onSuccess: () => {
+                queryClient.invalidateQueries("emissions");
+                queryClient.invalidateQueries("emission");
+            },
+        }
+    );
+
+    const handleAddEmission = async () => {
+        await createEmission.mutateAsync();
     };
 
     return (
